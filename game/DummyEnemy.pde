@@ -5,15 +5,20 @@ class DummyEnemy implements Enemy{
   private float xPos;
   private float yPos;
   private int stunTimer = 0;
-  Room room;
+  Hurtbox[] hurtboxes;
+  Hitbox touchZone;
+  public Room room;
   
-  DummyEnemy(Room a){
+  public DummyEnemy(Room a){
     attack=1;
     xPos = 600;
     yPos = 600;
     health = 50;
     //for when it deletes itself later
     room = a;
+    hurtboxes = new Hurtbox[1];
+    hurtboxes[1] = new Hurtbox(xPos,yPos,radius);
+    touchZone = new Hitbox(xPos,yPos,radius);
   }
   void takeDamage(int damage){
     health-=damage;
