@@ -4,6 +4,8 @@ public class Room {
   public final int roomType;
   public final int ROWS;
   public final int COLS;
+  public Enemy[] enemies;
+  //need to initialize
   
   public Room (int rT) {
     roomType = rT;
