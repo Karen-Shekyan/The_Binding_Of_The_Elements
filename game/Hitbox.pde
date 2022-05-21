@@ -3,6 +3,15 @@ class Hitbox{
   float xPos;
   float yPos;
   
+  public Hitbox(float x, float y){
+    this(x,y,20);
+  }
+  public Hitbox(float x, float y, float r){
+    xPos=x;
+    yPos=y;
+    radius = r;
+  }
+  
   float getX(){
     return xPos;
   }
