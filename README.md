@@ -9,3 +9,12 @@ This is a game similar to The Binding of Isaac in that it’s a dungeon-based ro
 
 ### Link to design document:
 https://docs.google.com/document/d/14aSD5MYKt3-_xdbgievmI_6Ht4iWH8zdrucnTaJyMbY/edit?usp=sharing
+
+
+### devlog
+###### 5/20/22
+Jonathan Shavit:
+- wrote Enemy interface, Hitbox class, Hurtbox class, and DummyEnemy class.
+- did not code the isTouching method int Hitbox because an issue with the hitboxes was brought up by Karen
+- did not code die method because some necessary instance variables in the Room class are not properly done (list of enemies)
+- methods in DummyEnemy class were defined as needed for a non-moving test enemy (move is blank, attack is blank, etc.)
