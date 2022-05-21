@@ -12,6 +12,7 @@ class DummyEnemy implements Enemy{
     xPos = 600;
     yPos = 600;
     health = 50;
+    //for when it deletes itself later
     room = a;
   }
   void takeDamage(int damage){
@@ -22,6 +23,7 @@ class DummyEnemy implements Enemy{
   void die(){
     if (health<=0){} //enemy dies when hp is 0 or below
     //enemy removes itself from the enemylist of the room it's in
+    //can't do this yet since the room doesn't have an enemyList yet
   }
   void display(){
     fill(255,150,10);
@@ -30,6 +32,7 @@ class DummyEnemy implements Enemy{
   void knockback(float x, float y){
     xPos+=x;
     yPos+=y;
+    //i might need to subtract and not add
   }
   
   void moveHurt(){}
