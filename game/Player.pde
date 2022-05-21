@@ -17,7 +17,7 @@ public class Player implements Character {
     attack = 3;//subject to change
     x = 500;
     y = 400;
-    weaponMode = (int)(Math.random()*4);
+    weaponMode = (int)(Math.random()*4); //change later
   }
   
   void calculateMultiplier() {

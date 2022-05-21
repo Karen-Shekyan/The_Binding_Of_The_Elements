@@ -9,3 +9,5 @@ This is a game similar to The Binding of Isaac in that it’s a dungeon-based ro
 
 ### Link to design document:
 https://docs.google.com/document/d/14aSD5MYKt3-_xdbgievmI_6Ht4iWH8zdrucnTaJyMbY/edit?usp=sharing
+
+5/20 Karen Shekyan: Added basic stuff to *game* sketch, made Room class, Character interface, Player class. Completed basic methods (as defined by the "Proof of Concept" section) for Player other than attack() and those for Room. Room and Player have features to be removed or changed later, kept for now to debug/test. Room constructor WILL be changed to create better coloration.
