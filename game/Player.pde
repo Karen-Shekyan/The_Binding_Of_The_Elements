@@ -8,6 +8,7 @@ public class Player implements Character {
   private float y;
   private int stunTimer = 0;
   private float damageMultiplier = 1;
+  public int weaponMode;// 0 = water, 1 = earth, 2 = fire, 3 = air
   private int radius = 20; //          remove later         //
 
   public Player () {
@@ -16,17 +17,72 @@ public class Player implements Character {
     attack = 3;//subject to change
     x = 500;
     y = 400;
+    weaponMode = (int)(Math.random()*4);
+  }
+  
+  void calculateMultiplier() {
+    if (weaponMode == 0) {
+      if (pixels[width*(int)(y) + (int)(x)] == WATER) {
+        damageMultiplier = 1.5;
+      } else if (pixels[width*(int)(y) + (int)(x)] == FIRE) {
+        damageMultiplier = 0.67;
+      }
+      else {
+        damageMultiplier = 1;
+      }
+    }
+    if (weaponMode == 1) {
+      if (pixels[width*(int)(y) + (int)(x)] == EARTH) {
+        damageMultiplier = 1.5;
+      } else if (pixels[width*(int)(y) + (int)(x)] == AIR) {
+        damageMultiplier = 0.67;
+      }
+      else {
+        damageMultiplier = 1;
+      }
+    }
+    if (weaponMode == 2) {
+      if (pixels[width*(int)(y) + (int)(x)] == FIRE) {
+        damageMultiplier = 1.5;
+      } else if (pixels[width*(int)(y) + (int)(x)] == WATER) {
+        damageMultiplier = 0.67;
+      }
+      else {
+        damageMultiplier = 1;
+      }
+    }
+    if (weaponMode == 3) {
+      if (pixels[width*(int)(y) + (int)(x)] == AIR) {
+        damageMultiplier = 1.5;
+      } else if (pixels[width*(int)(y) + (int)(x)] == EARTH) {
+        damageMultiplier = 0.67;
+      }
+      else {
+        damageMultiplier = 1;
+      }
+    }
   }
 
   void takeDamage(int damage) {
-    health -= damage;
+    if (tempHealth > 0) {
+      tempHealth -= damage;
+    } else {
+      health -= damage;
+    }
+    if (tempHealth < 0) {
+      health += tempHealth;
+      tempHealth = 0;
+    }
+    if (health <= 0) {
+      die();
+    }
   }
-  
-  
+
+
   void attack() {
   }
-  
-  
+
+
   void move() {
     if (R) {
       if (vx != maxV) {
@@ -112,39 +168,68 @@ public class Player implements Character {
         camR = Math.min(r.ROWS-height, camR+vy);
       }
     }
+    
+    calculateMultiplier();
   }
-  
-  
+
+
   void die() {
+    dead = true;
   }
-  
-  
+
+
   void display() {
+    fill(255);
+    textSize(20);
+    text(weaponMode + " " + damageMultiplier,40,780); //   remove later    //
+    
     fill(255, 0, 0);
     ellipse(x, y, 2*radius, 2*radius);
+    //display health
+    for (int i = 0; i < maxHealth; i++) {
+      if (i < health) {
+        fill(186, 39, 22);
+      } else {
+        noFill();
+      }
+      
+      if (i%2 == 0) {//left
+        arc(40+i*30,40,30,30,HALF_PI,3*HALF_PI);
+      } else {//right
+        arc(40+(i-1)*30,40,30,30,3*HALF_PI,5*HALF_PI);
+      }
+    }
+    for (int i = 0; i < tempHealth; i++) {
+      fill(135);
+      if (i%2 == 0) {//left
+        arc((maxHealth)*40+i*30-20,40,30,30,HALF_PI,3*HALF_PI);
+      } else {//right
+        arc((maxHealth)*40+(i-1)*30-20,40,30,30,3*HALF_PI,5*HALF_PI);
+      }
+    }
   }
-  
-  
+
+
   void knockback(float x, float y) {
   }
-  
-  
+
+
   void moveHurt() {
   }
-  
-  
+
+
   void moveHit() {
   }
-  
-  
+
+
   void setStun() {
   }
-  
-  
+
+
   void getStun() {
   }
-  
-  
+
+
   void decrementStun() {
   }
 }

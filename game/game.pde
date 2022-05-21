@@ -16,6 +16,10 @@ float a = 0.3;//acceleration
 float f = 0.2;//frictional force
 Room r;
 Player Aang;
+color EARTH = color(87, 62, 29);
+color FIRE = color(212, 8, 8);
+color WATER = color(54, 143, 199);
+color AIR = color(212, 236, 250);
 
 void setup() {
   size(1000, 800);
@@ -25,24 +29,32 @@ void setup() {
 }
 
 void draw() {
+  if (dead) {
+    dead = false;
+    size(1000, 800);
+    loadPixels();
+    r = new Room(1);//  change later  //
+    Aang = new Player();
+  }
+  
   for (int i = (int)camR; i < height+(int)camR; i++) {
     for (int j = (int)camC; j < width+(int)camC; j++) {
       if (r.floor[i][j] == -1) {//make 6 sections, not 4
         pixels[width*(i-(int)camR) + (j-(int)camC)] = color(0);
       } else if (r.floor[i][j] > 0.70) {//earth
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = color(87, 62, 29);
+        pixels[width*(i-(int)camR) + (j-(int)camC)] = EARTH;
       } else if (r.floor[i][j] > 0.5) {//fire
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = color(212, 8, 8);
+        pixels[width*(i-(int)camR) + (j-(int)camC)] = FIRE;
       } else if (r.floor[i][j] > 0.30) {//water
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = color(54, 143, 199);
+        pixels[width*(i-(int)camR) + (j-(int)camC)] = WATER;
       } else {//air
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = color(212, 236, 250);
+        pixels[width*(i-(int)camR) + (j-(int)camC)] = AIR;
       }
     }
   }
 
   updatePixels();
-  
+
   Aang.move();
   Aang.display();
 }
