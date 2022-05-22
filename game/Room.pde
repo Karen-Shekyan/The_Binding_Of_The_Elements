@@ -6,7 +6,8 @@ public class Room {
   public final int roomType;
   public final int ROWS;
   public final int COLS;
-  public LinkedList<Hitbox> bullets = new LinkedList<Hitbox>();
+  public LinkedList<Hitbox> enemyBullets = new LinkedList<Hitbox>();
+  public LinkedList<Hitbox> playerBullets = new LinkedList<Hitbox>();
   public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
   //need to initialize
 
