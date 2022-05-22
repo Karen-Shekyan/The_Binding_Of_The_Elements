@@ -22,5 +22,5 @@ Jonathan Shavit:
 
 Karen Shekyan:
 - Added basic stuff to *game* sketch, made Room class, Character interface, Player class.
-- Completed basic methods (as defined by the "Proof of Concept" section) for Player other than attack() and those for Room. 
+- Completed basic methods (as defined by the "Proof of Concept" section) for Player other than attack() and those for Room.
 - Room and Player have features to be removed or changed later, kept for now to debug/test. Room constructor WILL be changed to create better coloration.
