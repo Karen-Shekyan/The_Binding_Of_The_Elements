@@ -37,10 +37,10 @@ class TouchyEnemy implements Enemy {
   }
 
   void move() {
-    float distance = dist(Aang.getX()+camC, Aang.getY()+camR, getX(), getY());
-    float movementScale = 4;
-    xPos+=movementScale*=(Aang.getX()+camC-getX())/distance;
-    yPos+=movementScale*=(Aang.getY()+camR-getY())/distance;
+    float distance = dist(Aang.getX(), Aang.getY(), getX()-camC, getY()-camR);
+    float movementScale = 3;
+    xPos+=movementScale*(Aang.getX()-getX()+camC)/distance;
+    yPos+=movementScale*(Aang.getY()-getY()+camR)/distance;
     moveHurt();
     moveHit();
   }
@@ -56,8 +56,8 @@ class TouchyEnemy implements Enemy {
   void display() {
     fill(10, 150, 200);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
-    fill(150);
-    ellipse(xPos,yPos,2*radius,2*radius);
+    //fill(150);
+    //ellipse(xPos,yPos,2*radius,2*radius);
   }
 
   void knockback(float x, float y) {// NOT HOW THIS WORKS. FIX LATER //
@@ -66,13 +66,13 @@ class TouchyEnemy implements Enemy {
 
   void moveHurt() {
     //this should be looping through all the Hurtboxes in hurtboxes, i'll get back to that later
-    hurtboxes[0].setX(getX());
-    hurtboxes[0].setY(getY());
+    hurtboxes[0].setX(getX()-camC);
+    hurtboxes[0].setY(getY()-camR);
   }
 
   void moveHit() {
-    touchZone.setX(getX());
-    touchZone.setY(getY());
+    touchZone.setX(getX()-camC);
+    touchZone.setY(getY()-camR);
     
   }
 
