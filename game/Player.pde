@@ -21,7 +21,7 @@ public class Player implements Character {
     x = 500;
     y = 400;
     //consider making the body smaller than the player appears to be. games often do this
-    body.add(new Hurtbox(x,y,radius));//   change later with radius    //
+    body.add(new Hurtbox(x, y, radius));//   change later with radius    //
     weaponMode = (int)(Math.random()*4); //    change later    //
   }
 
@@ -85,7 +85,7 @@ public class Player implements Character {
 
 
   void move() {
-          //move player
+    //move player
     if (R) {
       if (vx != maxV) {
         vx = Math.min(maxV, vx+a);
@@ -172,12 +172,7 @@ public class Player implements Character {
     }
 
     calculateMultiplier();
-    
-    //move Hurtbox(s)
-    for (int i = 0; i < body.size(); i++) {
-      body.get(i).setX(x);
-      body.get(i).setY(y);
-    }
+    moveHurt();
   }
 
 
@@ -193,13 +188,13 @@ public class Player implements Character {
 
     fill(255, 0, 0);
     ellipse(x, y, 2*radius, 2*radius);
-    
+
     //    display hitbox. DEBUG PURPOSES ONLY    //
     //fill(0,0,255);
     //for (int i = 0; i < body.size(); i++) {
     //  ellipse(body.get(i).getX(),body.get(i).getY(),body.get(i).getR()*2,body.get(i).getR()*2);
     //}
-    
+
     //display health
     for (int i = 0; i < maxHealth; i++) {
       if (i < health) {
@@ -230,6 +225,10 @@ public class Player implements Character {
 
 
   void moveHurt() {
+    for (int i = 0; i < body.size(); i++) {
+      body.get(i).setX(x);
+      body.get(i).setY(y);
+    }
   }
 
 
@@ -238,6 +237,7 @@ public class Player implements Character {
 
 
   void setStun(int stun) {
+    stunTimer = stun;
   }
 
 
@@ -247,5 +247,6 @@ public class Player implements Character {
 
 
   void decrementStun() {
+    stunTimer -= 1;
   }
 }

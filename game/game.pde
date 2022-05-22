@@ -56,7 +56,12 @@ void draw() {
   updatePixels();
 
   for (int i = 0; i < r.enemies.size(); i++) {
-    r.enemies.get(i).display();
+    Enemy guy = r.enemies.get(i);
+    guy.move();
+    guy.display();
+    if (guy.getTouchZone().isTouching(Aang)) {
+      Aang.takeDamage(1);
+    }
   }
 
   Aang.move();
