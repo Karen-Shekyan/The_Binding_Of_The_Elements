@@ -1,6 +1,6 @@
 int wt = 100;
-float camR = 200;
-float camC = 250;
+float camR = 200;//corresponds to y
+float camC = 250;//corresponds to x
 boolean dead = false;
 //control movement for Player
 boolean R = false;
@@ -36,7 +36,7 @@ void draw() {
     r = new Room(1);//  change later  //
     Aang = new Player();
   }
-  
+
   for (int i = (int)camR; i < height+(int)camR; i++) {
     for (int j = (int)camC; j < width+(int)camC; j++) {
       if (r.floor[i][j] == -1) {//make 6 sections, not 4
@@ -54,6 +54,15 @@ void draw() {
   }
 
   updatePixels();
+
+  for (int i = 0; i < r.enemies.size(); i++) {
+    Enemy guy = r.enemies.get(i);
+    guy.move();
+    guy.display();
+    if (guy.getTouchZone().isTouching(Aang)) {
+      Aang.takeDamage(1);
+    }
+  }
 
   Aang.move();
   Aang.display();

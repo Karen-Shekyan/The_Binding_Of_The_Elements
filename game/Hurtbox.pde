@@ -1,11 +1,10 @@
+import java.util.*;
+
 class Hurtbox {
   float radius;
   float xPos;
   float yPos;
 
-  public Hurtbox(float x, float y) {
-    this(x, y, 20);
-  }
   public Hurtbox(float x, float y, float r) {
     xPos=x;
     yPos=y;

@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Player implements Character {
 
   private int health;
@@ -8,6 +10,7 @@ public class Player implements Character {
   private float y;
   private int stunTimer = 0;
   private float damageMultiplier = 1;
+  public ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   public int weaponMode;// 0 = water, 1 = earth, 2 = fire, 3 = air
   private int radius = 20; //          remove later         //
 
@@ -17,7 +20,9 @@ public class Player implements Character {
     attack = 3;//subject to change
     x = 500;
     y = 400;
-    weaponMode = (int)(Math.random()*4); //change later
+    //consider making the body smaller than the player appears to be. games often do this
+    body.add(new Hurtbox(x, y, radius));//   change later with radius    //
+    weaponMode = (int)(Math.random()*4); //    change later    //
   }
 
   void calculateMultiplier() {
@@ -80,6 +85,7 @@ public class Player implements Character {
 
 
   void move() {
+    //move player
     if (R) {
       if (vx != maxV) {
         vx = Math.min(maxV, vx+a);
@@ -166,6 +172,7 @@ public class Player implements Character {
     }
 
     calculateMultiplier();
+    moveHurt();
   }
 
 
@@ -181,6 +188,13 @@ public class Player implements Character {
 
     fill(255, 0, 0);
     ellipse(x, y, 2*radius, 2*radius);
+
+    //    display hitbox. DEBUG PURPOSES ONLY    //
+    //fill(0,0,255);
+    //for (int i = 0; i < body.size(); i++) {
+    //  ellipse(body.get(i).getX(),body.get(i).getY(),body.get(i).getR()*2,body.get(i).getR()*2);
+    //}
+
     //display health
     for (int i = 0; i < maxHealth; i++) {
       if (i < health) {
@@ -211,6 +225,10 @@ public class Player implements Character {
 
 
   void moveHurt() {
+    for (int i = 0; i < body.size(); i++) {
+      body.get(i).setX(x);
+      body.get(i).setY(y);
+    }
   }
 
 
@@ -219,6 +237,7 @@ public class Player implements Character {
 
 
   void setStun(int stun) {
+    stunTimer = stun;
   }
 
 
@@ -228,5 +247,6 @@ public class Player implements Character {
 
 
   void decrementStun() {
+    stunTimer -= 1;
   }
 }
