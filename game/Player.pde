@@ -194,11 +194,11 @@ public class Player implements Character {
     fill(255, 0, 0);
     ellipse(x, y, 2*radius, 2*radius);
     
-    //    display hitbox. REMOVE LATER    //
-    fill(0,0,255);
-    for (int i = 0; i < body.size(); i++) {
-      ellipse(body.get(i).getX(),body.get(i).getY(),body.get(i).getR()*2,body.get(i).getR()*2);
-    }
+    //    display hitbox. DEBUG PURPOSES ONLY    //
+    //fill(0,0,255);
+    //for (int i = 0; i < body.size(); i++) {
+    //  ellipse(body.get(i).getX(),body.get(i).getY(),body.get(i).getR()*2,body.get(i).getR()*2);
+    //}
     
     //display health
     for (int i = 0; i < maxHealth; i++) {

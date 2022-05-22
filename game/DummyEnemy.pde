@@ -12,8 +12,8 @@ class DummyEnemy implements Enemy {
 
   public DummyEnemy(Room a) {
     attack=1;
-    xPos = 600;
-    yPos = 600;
+    xPos = 300;
+    yPos = 300;
     health = 50;
     //for when it deletes itself later
     room = a;
@@ -38,7 +38,7 @@ class DummyEnemy implements Enemy {
   void display() {
     fill(255, 150, 10);
     //FIX THIS. WRONG POSITION COORDINATES
-    ellipse(xPos, yPos, 2*radius, 2*radius);
+    ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
   }
   void knockback(float x, float y) {
     xPos+=x;
