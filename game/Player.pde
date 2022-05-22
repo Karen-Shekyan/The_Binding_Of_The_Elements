@@ -19,15 +19,14 @@ public class Player implements Character {
     y = 400;
     weaponMode = (int)(Math.random()*4); //change later
   }
-  
+
   void calculateMultiplier() {
     if (weaponMode == 0) {
       if (pixels[width*(int)(y) + (int)(x)] == WATER) {
         damageMultiplier = 1.5;
       } else if (pixels[width*(int)(y) + (int)(x)] == FIRE) {
         damageMultiplier = 0.67;
-      }
-      else {
+      } else {
         damageMultiplier = 1;
       }
     }
@@ -36,8 +35,7 @@ public class Player implements Character {
         damageMultiplier = 1.5;
       } else if (pixels[width*(int)(y) + (int)(x)] == AIR) {
         damageMultiplier = 0.67;
-      }
-      else {
+      } else {
         damageMultiplier = 1;
       }
     }
@@ -46,8 +44,7 @@ public class Player implements Character {
         damageMultiplier = 1.5;
       } else if (pixels[width*(int)(y) + (int)(x)] == WATER) {
         damageMultiplier = 0.67;
-      }
-      else {
+      } else {
         damageMultiplier = 1;
       }
     }
@@ -56,8 +53,7 @@ public class Player implements Character {
         damageMultiplier = 1.5;
       } else if (pixels[width*(int)(y) + (int)(x)] == EARTH) {
         damageMultiplier = 0.67;
-      }
-      else {
+      } else {
         damageMultiplier = 1;
       }
     }
@@ -168,7 +164,7 @@ public class Player implements Character {
         camR = Math.min(r.ROWS-height, camR+vy);
       }
     }
-    
+
     calculateMultiplier();
   }
 
@@ -181,8 +177,8 @@ public class Player implements Character {
   void display() {
     fill(255);
     textSize(20);
-    text(weaponMode + " " + damageMultiplier,40,780); //   remove later    //
-    
+    text(weaponMode + " " + damageMultiplier, 40, 780); //   remove later    //
+
     fill(255, 0, 0);
     ellipse(x, y, 2*radius, 2*radius);
     //display health
@@ -192,19 +188,19 @@ public class Player implements Character {
       } else {
         noFill();
       }
-      
+
       if (i%2 == 0) {//left
-        arc(40+i*30,40,30,30,HALF_PI,3*HALF_PI);
+        arc(40+i*30, 40, 30, 30, HALF_PI, 3*HALF_PI);
       } else {//right
-        arc(40+(i-1)*30,40,30,30,3*HALF_PI,5*HALF_PI);
+        arc(40+(i-1)*30, 40, 30, 30, 3*HALF_PI, 5*HALF_PI);
       }
     }
     for (int i = 0; i < tempHealth; i++) {
       fill(135);
       if (i%2 == 0) {//left
-        arc((maxHealth)*40+i*30-20,40,30,30,HALF_PI,3*HALF_PI);
+        arc((maxHealth)*40+i*30-20, 40, 30, 30, HALF_PI, 3*HALF_PI);
       } else {//right
-        arc((maxHealth)*40+(i-1)*30-20,40,30,30,3*HALF_PI,5*HALF_PI);
+        arc((maxHealth)*40+(i-1)*30-20, 40, 30, 30, 3*HALF_PI, 5*HALF_PI);
       }
     }
   }
@@ -222,11 +218,12 @@ public class Player implements Character {
   }
 
 
-  void setStun() {
+  void setStun(int stun) {
   }
 
 
-  void getStun() {
+  int getStun() {
+    return stunTimer;
   }
 
 

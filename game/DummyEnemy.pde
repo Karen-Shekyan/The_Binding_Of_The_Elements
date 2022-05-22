@@ -1,0 +1,62 @@
+class DummyEnemy implements Enemy {
+  private int health;
+  private float radius = 20;
+  private float attack = 0;
+  private float xPos;
+  private float yPos;
+  private int stunTimer = 0;
+  Hurtbox[] hurtboxes;
+  Hitbox touchZone;
+  public Room room;
+
+  public DummyEnemy(Room a) {
+    attack=1;
+    xPos = 600;
+    yPos = 600;
+    health = 50;
+    //for when it deletes itself later
+    room = a;
+    hurtboxes = new Hurtbox[1];
+    hurtboxes[1] = new Hurtbox(xPos, yPos, radius);
+    touchZone = new Hitbox(xPos, yPos, radius);
+  }
+  void takeDamage(int damage) {
+    health-=damage;
+  }
+  void attack() {
+  }
+  void move() {
+  }
+  void die() {
+    if (health<=0) {
+    } //enemy dies when hp is 0 or below
+    //enemy removes itself from the enemylist of the room it's in
+    //can't do this yet since the room doesn't have an enemyList yet
+  }
+  void display() {
+    fill(255, 150, 10);
+    ellipse(xPos, yPos, 2*radius, 2*radius);
+  }
+  void knockback(float x, float y) {
+    xPos+=x;
+    yPos+=y;
+    //i might need to subtract and not add
+  }
+
+  void moveHurt() {
+  }
+  void moveHit() {
+  }
+  void setStun(int stun) {
+    stunTimer = stun;
+  }
+  int getStun() {
+    return stunTimer;
+  }
+  void decrementStun() {
+    stunTimer--;
+  }
+  void dropLoot() {
+    //nothing yet
+  }
+}
