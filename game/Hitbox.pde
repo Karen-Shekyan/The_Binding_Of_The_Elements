@@ -12,21 +12,16 @@ class Hitbox {//consider making these smaller than projectiles look
     xPos=x;
     yPos=y;
     radius = r;
+
+    //the velocities serve no function now that there's a separate bullet class. i'm leaving them as legacy in case we need them again
+    //but they should be cleaned up if we still don't need them at the end of the project
     this.vx = vx;
     this.vy = vy;
     this.r = where;
   }
-  
-  void move() {
-    xPos += vx;
-    yPos += vy;
-    if (xPos <= wt || yPos <= wt || xPos >= r.COLS-wt || yPos >= r.ROWS-wt) {
-      r.bullets.remove(this);
-    }
-  }
-  
+
+
   void display() {
-    
   }
 
   float getX() {
@@ -48,7 +43,7 @@ class Hitbox {//consider making these smaller than projectiles look
   void setY(float y) {
     yPos = y;
   }
-  
+
   //Enemy hitboxes and player hitboxes MUST be separated.
   boolean isTouching(Player other) {
     float d = Integer.MAX_VALUE;
@@ -60,7 +55,7 @@ class Hitbox {//consider making these smaller than projectiles look
     }
     return false;
   }
-  
+
   //we didn't really need a separate method for this
   float distance(Hurtbox other) {
     float d = dist(getX(), getY(), other.getX(), other.getY());

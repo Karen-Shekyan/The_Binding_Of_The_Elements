@@ -9,6 +9,7 @@ class Bullet extends Hitbox {
   //i know it's bad form but i'm lazy
 
   public Bullet(float x, float y, float r, float vx, float vy, Room room, color c, boolean b) {
+    //velocity as a parameter might be removed from the superclass later, so the other comments in this method are preparation for that
     super(x, y, r, vx, vy, room);
     col=c;
     playerBullet = b;
