@@ -1,10 +1,13 @@
+import java.util.*;
+
 public class Room {
 
   public final float[][] floor;
   public final int roomType;
   public final int ROWS;
   public final int COLS;
-  public Enemy[] enemies;
+  public LinkedList<Hitbox> bullets = new LinkedList<Hitbox>();
+  public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
   //need to initialize
 
   public Room (int rT) {
@@ -26,5 +29,8 @@ public class Room {
         }
       }
     }
+    
+    //enemy generation. EXPAND THIS SECTION
+    enemies.add(new DummyEnemy(this));
   }
 }
