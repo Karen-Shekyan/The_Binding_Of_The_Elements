@@ -251,10 +251,10 @@ public class Player implements Character {
   }
   
   float getX() {
-    return xPos;
+    return x;
   }
 
   float getY() {
-    return yPos;
+    return y;
   }
 }
