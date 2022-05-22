@@ -249,4 +249,12 @@ public class Player implements Character {
   void decrementStun() {
     stunTimer -= 1;
   }
+  
+  float getX() {
+    return xPos;
+  }
+
+  float getY() {
+    return yPos;
+  }
 }

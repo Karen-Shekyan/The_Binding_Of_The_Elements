@@ -76,4 +76,12 @@ class DummyEnemy implements Enemy {
   void dropLoot() {
     //nothing yet
   }
+  
+  float getX() {
+    return xPos;
+  }
+
+  float getY() {
+    return yPos;
+  }
 }

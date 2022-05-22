@@ -10,4 +10,6 @@ interface Character {
   void setStun(int stun);
   int getStun();
   void decrementStun();
+  float getX();
+  float getY();
 }
