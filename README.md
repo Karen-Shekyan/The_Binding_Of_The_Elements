@@ -27,4 +27,6 @@ Karen Shekyan:
 
 ###### 5/21/22
 Karen Shekyan:
-- Fixed merging issues due to not using --no-ff flags. Pushed Jonathan's code from 5/20 to origin.
+- Fixed merging issues due to not using --no-ff flags. Pushed Jonathan's code and devlog from 5/20 to origin.
+- Made enemies do contact damage. Added to enemy interface to allow for this. Knockback does NOT get dealt from contact damage as of yet.
+- Enemies are now displayed.
