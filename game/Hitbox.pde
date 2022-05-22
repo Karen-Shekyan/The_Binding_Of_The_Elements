@@ -1,11 +1,8 @@
-class Hitbox {
+class Hitbox {//consider making these smaller than projectiles look
   float radius;
   float xPos;
   float yPos;
 
-  public Hitbox(float x, float y) {
-    this(x, y, 20);
-  }
   public Hitbox(float x, float y, float r) {
     xPos=x;
     yPos=y;
@@ -15,18 +12,23 @@ class Hitbox {
   float getX() {
     return xPos;
   }
+
   float getY() {
     return yPos;
   }
+
   float getR() {
     return radius;
   }
+
   void setX(float x) {
     xPos = x;
   }
+
   void setY(float y) {
     yPos = y;
   }
+  
   //have yet to write, since it needs the hurtboxList
   boolean isTouching(Character other) {
     boolean anyTouching = false;
