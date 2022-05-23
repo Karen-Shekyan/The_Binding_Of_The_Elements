@@ -25,6 +25,10 @@ class TouchyEnemy implements Enemy {
   Hitbox getTouchZone() {
     return touchZone;
   }
+  
+  Hurtbox[] getHurtboxes(){
+    return hurtboxes;
+  }
 
   void takeDamage(int damage) {
     health -= damage;

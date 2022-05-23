@@ -26,6 +26,10 @@ class DummyEnemy implements Enemy {
     return touchZone;
   }
   
+  Hurtbox[] getHurtboxes(){
+    return hurtboxes;
+  }
+  
   void takeDamage(int damage) {
     health -= damage;
     if (health <= 0) {
