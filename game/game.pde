@@ -78,7 +78,7 @@ void draw() {
     for (int i = 0; i < r.enemies.size(); i++) {
       Enemy guy = r.enemies.get(i);
       
-      if (bullet.isTouching(guy.getHurtboxes())) {
+      if (bullet.isTouching(guy)) {
         guy.takeDamage(10);
       }
       

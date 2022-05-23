@@ -24,6 +24,10 @@ public class Player implements Character {
     body.add(new Hurtbox(x, y, radius));//   change later with radius    //
     weaponMode = (int)(Math.random()*4); //    change later    //
   }
+  
+  ArrayList<Hurtbox> getHurtboxes() {
+    return body;
+  }
 
   void calculateMultiplier() {
     if (weaponMode == 0) {
