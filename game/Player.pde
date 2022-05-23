@@ -82,7 +82,8 @@ public class Player implements Character {
 
   void attack() {
     //i should add to the Player's current room, but for now that is just r, so...
-    r.playerBullets.add(new Bullet(x, y, 10, vx, vy, r, color(255, 255, 255, 170), true));
+    //bullets don't even get placed in the right location... what am i doing wrong?
+    r.playerBullets.add(new Bullet(x+camC, y+camR, 10, vx, vy, r, color(255, 255, 255, 170), true));
   }
 
 
