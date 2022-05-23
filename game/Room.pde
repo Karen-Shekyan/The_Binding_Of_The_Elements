@@ -3,7 +3,7 @@ import java.util.*;
 public class Room {
 
   public final float[][] floor;
-  public final int roomType;//1 = normal, 2 = shop, 3 = treasure, 4 = boss, 5 = secret
+  public final int roomType;//1 = normal, 2 = treasure, 3 = shop, 4 = boss, 5 = secret
   public final int ROWS;
   public final int COLS;
   public LinkedList<Hitbox> bullets = new LinkedList<Hitbox>();
