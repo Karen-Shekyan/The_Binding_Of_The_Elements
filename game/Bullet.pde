@@ -2,8 +2,6 @@
 
 class Bullet extends Hitbox {
   color col;
-  float vx;
-  float vy;
   boolean playerBullet;
   //i'd rather differeentiate between whether a bullet is a player's or not than have two different bullet classes
   //i know it's bad form but i'm lazy
@@ -30,7 +28,6 @@ class Bullet extends Hitbox {
   }
 
   void move() {
-    //they're 0 for some reason
     xPos += vx;
     yPos += vy;
 
