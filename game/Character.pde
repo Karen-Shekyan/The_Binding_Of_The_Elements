@@ -7,7 +7,9 @@ interface Character {
   void knockback(float x, float y);
   void moveHurt();//         subject to change         //
   void moveHit();
-  void setStun();
-  void getStun();
+  void setStun(int stun);
+  int getStun();
   void decrementStun();
+  float getX();
+  float getY();
 }
