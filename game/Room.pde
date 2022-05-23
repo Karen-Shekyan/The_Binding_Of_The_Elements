@@ -6,7 +6,8 @@ public class Room {
   public final int roomType;//1 = normal, 2 = treasure, 3 = shop, 4 = boss, 5 = secret
   public final int ROWS;
   public final int COLS;
-  public LinkedList<Hitbox> bullets = new LinkedList<Hitbox>();
+  public LinkedList<Bullet> enemyBullets = new LinkedList<Bullet>();
+  public LinkedList<Bullet> playerBullets = new LinkedList<Bullet>();
   public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
   //need to initialize
 
@@ -32,6 +33,7 @@ public class Room {
 
     //enemy generation. EXPAND THIS SECTION
     enemies.add(new DummyEnemy(this));
+    enemies.add(new TouchyEnemy(this));
   }
 
 //for debugging

@@ -32,6 +32,10 @@ Karen Shekyan:
 - Enemies are now displayed.
 
 ###### 5/22/22
+Jonathan Shavit:
+- wrote TouchyEnemy class, which moves towards the player and deals contact damage
+- tried making a Bullet class. they deal damage and are released properly, but don't move (so they're like permanent mines)
+
 Karen Shekyan:
 - Added Dungeon class. It generates properly, allegedly. Special rooms generate as they should.
 - Debug methods and print statements added.

@@ -65,6 +65,24 @@ void draw() {
       Aang.takeDamage(1);
     }
   }
+  
+  
+  for (int j = 0; j < r.playerBullets.size(); j++) {
+    Bullet bullet = r.playerBullets.get(j);
+    //not working rn, bullet gets no velocity
+    bullet.move();
+
+    for (int i = 0; i < r.enemies.size(); i++) {
+      Enemy guy = r.enemies.get(i);
+      
+      if (bullet.isTouching(guy.getHurtboxes())) {
+        guy.takeDamage(10);
+      }
+      
+    }
+
+    bullet.display();
+  }
 
   Aang.move();
   Aang.display();
@@ -83,6 +101,9 @@ void keyPressed() {
   }
   if (keyCode == DOWN) {
     D = true;
+  }
+  if (key == 'x') {
+    Aang.attack();
   }
 }
 

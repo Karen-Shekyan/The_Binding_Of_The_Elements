@@ -11,19 +11,20 @@ class Hurtbox {
     radius = r;
   }
 
-  float getX() {
+  
+  float getX(){
     return xPos;
   }
-  float getY() {
+  float getY(){
     return yPos;
   }
-  float getR() {
+  float getR(){
     return radius;
   }
-  void setX(float x) {
+  void setX(float x){
     xPos = x;
   }
-  void setY(float y) {
+  void setY(float y){
     yPos = y;
   }
 }
