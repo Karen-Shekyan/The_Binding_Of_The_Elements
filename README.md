@@ -30,3 +30,9 @@ Karen Shekyan:
 - Fixed merging issues due to not using --no-ff flags. Pushed Jonathan's code and devlog from 5/20 to origin.
 - Made enemies do contact damage. Added to enemy interface to allow for this. Knockback does NOT get dealt from contact damage as of yet.
 - Enemies are now displayed.
+
+###### 5/22/22
+Jonathan Shavit:
+- wrote TouchyEnemy class, which moves towards the player and deals contact damage
+- tried making a Bullet class. they deal damage and are released properly, but don't move (so they're like permanent mines)
+- 
