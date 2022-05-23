@@ -22,13 +22,18 @@ class Bullet extends Hitbox {
   }
 
   void display() {
-    fill(230, 240, 255, 220);
+    //fill(230, 240, 255, 220);
+    fill(240, 240, 100, 200);
+    noStroke();
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    stroke(1);
   }
 
   void move() {
+    //they're 0 for some reason
     xPos += vx;
     yPos += vy;
+
     if (xPos <= wt || yPos <= wt || xPos >= r.COLS-wt || yPos >= r.ROWS-wt) {
       if (playerBullet) {
         r.playerBullets.remove(this);
@@ -37,32 +42,46 @@ class Bullet extends Hitbox {
       }
     }
   }
-  
+
+  /*
   //it yells at me if i don't make it specific to a certain kind of enemy. i can fix this later by making enemy an abstract class
-  boolean isTouching(TouchyEnemy other) {
+   boolean isTouching(TouchyEnemy other) {
+   float d = Integer.MAX_VALUE;
+   for (int i = 0; i < other.hurtboxes.length; i++) {
+   d = distance(other.hurtboxes[i]);
+   if (d <= getR() + other.hurtboxes[i].getR()) {
+   return true;
+   }
+   }
+   return false;
+   }
+   
+   //having essentially identical methods is disgusting, i need to make enemy an abstract class
+   boolean isTouching(DummyEnemy other) {
+   float d = Integer.MAX_VALUE;
+   for (int i = 0; i < other.hurtboxes.length; i++) {
+   d = distance(other.hurtboxes[i]);
+   if (d <= getR() + other.hurtboxes[i].getR()) {
+   return true;
+   }
+   }
+   return false;
+   }
+   */
+
+  boolean isTouching(Hurtbox[] other) {
     float d = Integer.MAX_VALUE;
-    for (int i = 0; i < other.hurtboxes.length; i++) {
-      d = distance(other.hurtboxes[i]);
-      if (d <= getR() + other.hurtboxes[i].getR()) {
+    for (int i = 0; i < other.length; i++) {
+      d = distance(other[i]);
+      if (d <= getR() + other[i].getR()) {
         return true;
       }
     }
     return false;
   }
-  
-  //having essentially identical methods is disgusting, i need to make enemy an abstract class
-  boolean isTouching(DummyEnemy other) {
-    float d = Integer.MAX_VALUE;
-    for (int i = 0; i < other.hurtboxes.length; i++) {
-      d = distance(other.hurtboxes[i]);
-      if (d <= getR() + other.hurtboxes[i].getR()) {
-        return true;
-      }
-    }
-    return false;
-  }
-  
-  boolean isPlayerBullet(){
+
+  //instead of separate enemyBullet and playerBullet classes, i made a nifty boolean! we probably won't even use it since the bullets are in separate lists based on type (well they will be, we still don't have enemy bullets)
+  boolean isPlayerBullet() {
     return playerBullet;
   }
 }
