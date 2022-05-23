@@ -27,7 +27,7 @@ void setup() {
   loadPixels();
   r = new Room(1);//  change later  //
   Aang = new Player();
-  LEVEL = new Dungeon(1);
+  LEVEL = new Dungeon(2);
 }
 
 void draw() {

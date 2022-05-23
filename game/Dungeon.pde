@@ -47,7 +47,7 @@ public class Dungeon {
       int giveUps = 0;
 
       int neighbor = room + 10;
-      if (roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
+      if (neighbor / 10 != 8 && neighbor % 10 != 0 && roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
         queue.add(neighbor);
         level[neighbor%10-1][neighbor/10] = new Room(1);
         roomsLeft--;
@@ -56,7 +56,7 @@ public class Dungeon {
       }
 
       neighbor = room - 10;
-      if (roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
+      if (neighbor / 10 != 8 && neighbor % 10 != 0 && roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
         queue.add(neighbor);
         level[neighbor%10-1][neighbor/10] = new Room(1);
         roomsLeft--;
@@ -65,7 +65,7 @@ public class Dungeon {
       }
 
       neighbor = room + 1;
-      if (roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
+      if (neighbor / 10 != 8 && neighbor % 10 != 0 && roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
         queue.add(neighbor);
         level[neighbor%10-1][neighbor/10] = new Room(1);
         roomsLeft--;
@@ -74,7 +74,7 @@ public class Dungeon {
       }
 
       neighbor = room - 1;
-      if (roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
+      if (neighbor / 10 != 8 && neighbor % 10 != 0 && roomsLeft != 0 && get(neighbor) == null && countNeighbors(neighbor) == 1 && Math.random() > 0.5) {
         queue.add(neighbor);
         level[neighbor%10-1][neighbor/10] = new Room(1);
         roomsLeft--;
@@ -101,13 +101,16 @@ public class Dungeon {
   }
 
   private Room get(int n) {
-    if (n < 0 || n%10 == 0 || n/10 == -1 || n/10 == 8) {//bounds check
+    if (n < 0 || n%10 == 0 || n/10 == -1 || n/10 >= 8) {//bounds check
       return null;
     }
     return level[n%10-1][n/10];
   }
 
   private int countNeighbors(int n) {
+    if (n < 0) {
+      return 2;
+    }
     int ans = 0;
     if (get(n-1) != null) {
       ans++;
