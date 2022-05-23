@@ -61,4 +61,5 @@ class Hitbox {//consider making these smaller than projectiles look
     float d = dist(getX(), getY(), other.getX(), other.getY());
     return d;
   }
+  
 }
