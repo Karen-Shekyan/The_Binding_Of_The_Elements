@@ -1,3 +1,5 @@
+//UPDATE MOVEMENT TO WASD. BIND PLAYER ATTACKS TO MOUSEPRESS AND MOUSE COORDS
+
 int wt = 100;
 float camR = 200;//corresponds to y
 float camC = 250;//corresponds to x
@@ -7,6 +9,7 @@ boolean R = false;
 boolean L = false;
 boolean U = false;
 boolean D = false;
+boolean MOUSE = false;
 //speeds of the Player
 float vx = 0.0;
 float vy = 0.0;
@@ -86,38 +89,46 @@ void draw() {
 
   Aang.move();
   Aang.display();
-}
-
-//updating booleans for each arrow key
-void keyPressed() {
-  if (keyCode == RIGHT) {
-    R = true;
-  }
-  if (keyCode == LEFT) {
-    L = true;
-  }
-  if (keyCode == UP) {
-    U = true;
-  }
-  if (keyCode == DOWN) {
-    D = true;
-  }
-  if (key == 'x') {
+  if (MOUSE) {
     Aang.attack();
   }
 }
 
+//updating booleans for each arrow key
+void keyPressed() {
+  if (key == 'd') {
+    R = true;
+  }
+  if (key == 'a') {
+    L = true;
+  }
+  if (key == 'w') {
+    U = true;
+  }
+  if (key == 's') {
+    D = true;
+  }
+}
+
 void keyReleased() {
-  if (keyCode == RIGHT) {
+  if (key == 'd') {
     R = false;
   }
-  if (keyCode == LEFT) {
+  if (key == 'a') {
     L = false;
   }
-  if (keyCode == UP) {
+  if (key == 'w') {
     U = false;
   }
-  if (keyCode == DOWN) {
+  if (key == 's') {
     D = false;
   }
+}
+
+void mousePressed() {
+  MOUSE = true;
+}
+
+void mouseReleased() {
+  MOUSE = false;
 }
