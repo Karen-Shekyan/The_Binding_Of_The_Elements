@@ -20,12 +20,14 @@ color EARTH = color(87, 62, 29);
 color FIRE = color(212, 8, 8);
 color WATER = color(54, 143, 199);
 color AIR = color(212, 236, 250);
+Dungeon LEVEL;
 
 void setup() {
   size(1000, 800);
   loadPixels();
   r = new Room(1);//  change later  //
   Aang = new Player();
+  LEVEL = new Dungeon(1);
 }
 
 void draw() {
