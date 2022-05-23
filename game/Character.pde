@@ -12,4 +12,5 @@ interface Character {
   void decrementStun();
   float getX();
   float getY();
+  ArrayList<Hurtbox> getHurtboxes();
 }

@@ -45,11 +45,12 @@ class Hitbox {//consider making these smaller than projectiles look
   }
 
   //Enemy hitboxes and player hitboxes MUST be separated.
-  boolean isTouching(Player other) {
+  boolean isTouching(Character other) {
+    ArrayList<Hurtbox> body = other.getHurtboxes();
     float d = Integer.MAX_VALUE;
-    for (int i = 0; i < other.body.size(); i++) {
-      d = distance(other.body.get(i));
-      if (d <= getR() + other.body.get(i).getR()) {
+    for (int i = 0; i < body.size(); i++) {
+      d = distance(body.get(i));
+      if (d <= getR() + body.get(i).getR()) {
         return true;
       }
     }

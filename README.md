@@ -40,3 +40,11 @@ Karen Shekyan:
 - Added Dungeon class. It generates properly, allegedly. Special rooms generate as they should.
 - Debug methods and print statements added.
 - Game now generates dungeon on setup.
+
+###### 5/23/22
+
+Karen Shekyan:
+- Fixed bullets, now functional. Move properly and deal damage.
+- Player attacks aim at mouse.
+- Changed control scheme: use WASD and mouse now.
+- Strange bug with Touchy. To be fixed today.

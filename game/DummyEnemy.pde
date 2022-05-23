@@ -1,3 +1,5 @@
+import java.util.*;
+
 class DummyEnemy implements Enemy {
   private int health;
   private float radius = 20;
@@ -6,8 +8,8 @@ class DummyEnemy implements Enemy {
   private float xPos;
   private float yPos;
   private int stunTimer = 0;
-  Hurtbox[] hurtboxes;
-  Hitbox touchZone;
+  private ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
+  private Hitbox touchZone;
   public Room room;
 
   public DummyEnemy(Room a) {
@@ -17,8 +19,7 @@ class DummyEnemy implements Enemy {
     health = 50;
     //for when it deletes itself later
     room = a;
-    hurtboxes = new Hurtbox[1];
-    hurtboxes[0] = new Hurtbox(xPos, yPos, radius);
+    body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
   }
   
@@ -26,8 +27,8 @@ class DummyEnemy implements Enemy {
     return touchZone;
   }
   
-  Hurtbox[] getHurtboxes(){
-    return hurtboxes;
+  ArrayList<Hurtbox> getHurtboxes(){
+    return body;
   }
   
   void takeDamage(int damage) {
@@ -51,6 +52,9 @@ class DummyEnemy implements Enemy {
   void display() {
     fill(255, 150, 10);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    fill(0);
+    textSize(10);
+    text(""+health,xPos-camC, yPos-camR);
   }
   
   void knockback(float x, float y) {// NOT HOW THIS WORKS. FIX LATER //

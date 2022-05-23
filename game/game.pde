@@ -13,7 +13,7 @@ boolean MOUSE = false;
 //speeds of the Player
 float vx = 0.0;
 float vy = 0.0;
-float maxV = 4.0;
+float maxV = 2.5;
 // forces on Player
 float a = 0.3;//acceleration
 float f = 0.2;//frictional force
@@ -78,7 +78,7 @@ void draw() {
     for (int i = 0; i < r.enemies.size(); i++) {
       Enemy guy = r.enemies.get(i);
       
-      if (bullet.isTouching(guy.getHurtboxes())) {
+      if (bullet.isTouching(guy)) {
         guy.takeDamage(10);
       }
       
@@ -92,6 +92,7 @@ void draw() {
   if (MOUSE) {
     Aang.attack();
   }
+  Aang.decrementAttackCD();
 }
 
 //updating booleans for each arrow key
