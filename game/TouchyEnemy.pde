@@ -59,10 +59,7 @@ class TouchyEnemy implements Enemy {
   void display() {
     fill(105, 66, 245);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
-    //debug: draw hurtbox
-    fill(255);
-    ellipse(body.get(0).getX(),body.get(0).getY(),2*radius,2*radius);
-    
+
     fill(0);
     textSize(10);
     text(""+health,xPos-camC, yPos-camR);
