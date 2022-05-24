@@ -1,5 +1,3 @@
-//UPDATE MOVEMENT TO WASD. BIND PLAYER ATTACKS TO MOUSEPRESS AND MOUSE COORDS
-
 int wt = 100;
 float camR = 200;//corresponds to y
 float camC = 250;//corresponds to x
@@ -90,20 +88,20 @@ void draw() {
         Enemy guy = r.enemies.get(i);
 
         if (bullet.isTouching(guy)) {
-          guy.takeDamage(10);
+          guy.takeDamage(Aang.attack);
           r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
         }
+
+        bullet.display();
       }
 
-      bullet.display();
+      Aang.move();
+      Aang.display();
+      if (MOUSE) {
+        Aang.attack();
+      }
+      Aang.decrementAttackCD();
     }
-
-    Aang.move();
-    Aang.display();
-    if (MOUSE) {
-      Aang.attack();
-    }
-    Aang.decrementAttackCD();
   }
 }
 

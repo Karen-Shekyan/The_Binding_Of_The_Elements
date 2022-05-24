@@ -32,7 +32,7 @@ public class Room {
     }
 
     //enemy generation. EXPAND THIS SECTION
-    //enemies.add(new DummyEnemy(this));
+    enemies.add(new DummyEnemy(this));
     enemies.add(new TouchyEnemy(this));
   }
 

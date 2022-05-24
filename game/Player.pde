@@ -5,7 +5,7 @@ public class Player implements Character {
   private int health;
   private int maxHealth;
   private int tempHealth = 0;
-  private int attack;
+  public int attack;
   private float x;
   private float y;
   private int stunTimer = 0;
@@ -19,8 +19,8 @@ public class Player implements Character {
     health = 6;
     maxHealth = 6;
     attack = 3;//subject to change
-    x = 500;
-    y = 400;
+    x = 500+camC;
+    y = 400+camR;
     //consider making the body smaller than the player appears to be. games often do this
     body.add(new Hurtbox(x, y, radius));//   change later with radius    //
     weaponMode = (int)(Math.random()*4); //    change later    //
@@ -32,36 +32,36 @@ public class Player implements Character {
 
   void calculateMultiplier() {
     if (weaponMode == 0) {
-      if (pixels[width*(int)(y) + (int)(x)] == WATER) {
+      if (pixels[width*(int)(y-camR) + (int)(x-camC)] == WATER) {
         damageMultiplier = 1.5;
-      } else if (pixels[width*(int)(y) + (int)(x)] == FIRE) {
+      } else if (pixels[width*(int)(y-camR) + (int)(x-camC)] == FIRE) {
         damageMultiplier = 0.67;
       } else {
         damageMultiplier = 1;
       }
     }
     if (weaponMode == 1) {
-      if (pixels[width*(int)(y) + (int)(x)] == EARTH) {
+      if (pixels[width*(int)(y-camR) + (int)(x-camC)] == EARTH) {
         damageMultiplier = 1.5;
-      } else if (pixels[width*(int)(y) + (int)(x)] == AIR) {
+      } else if (pixels[width*(int)(y-camR) + (int)(x-camC)] == AIR) {
         damageMultiplier = 0.67;
       } else {
         damageMultiplier = 1;
       }
     }
     if (weaponMode == 2) {
-      if (pixels[width*(int)(y) + (int)(x)] == FIRE) {
+      if (pixels[width*(int)(y-camR) + (int)(x-camC)] == FIRE) {
         damageMultiplier = 1.5;
-      } else if (pixels[width*(int)(y) + (int)(x)] == WATER) {
+      } else if (pixels[width*(int)(y-camR) + (int)(x-camC)] == WATER) {
         damageMultiplier = 0.67;
       } else {
         damageMultiplier = 1;
       }
     }
     if (weaponMode == 3) {
-      if (pixels[width*(int)(y) + (int)(x)] == AIR) {
+      if (pixels[width*(int)(y-camR) + (int)(x-camC)] == AIR) {
         damageMultiplier = 1.5;
-      } else if (pixels[width*(int)(y) + (int)(x)] == EARTH) {
+      } else if (pixels[width*(int)(y-camR) + (int)(x-camC)] == EARTH) {
         damageMultiplier = 0.67;
       } else {
         damageMultiplier = 1;
@@ -87,9 +87,9 @@ public class Player implements Character {
 
   void attack() {
     if (attackCD == 0) {
-      float bulletX = (mouseX - x) * 7.0/dist(x,y,mouseX,mouseY);
-      float bulletY = (mouseY - y) * 7.0/dist(x,y,mouseX,mouseY);
-      r.playerBullets.add(new Bullet(x+camC, y+camR, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true));
+      float bulletX = (mouseX - x + camC) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
+      float bulletY = (mouseY - y + camR) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
+      r.playerBullets.add(new Bullet(x, y, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true));
       attackCD = 15;
     }
   }
@@ -102,9 +102,10 @@ public class Player implements Character {
         vx = Math.min(maxV, vx+a);
       }
       if (camC == r.COLS-width || x < width/2) {
-        x = Math.min(x + vx, width-radius-wt);
+        x = Math.min(x + vx, r.COLS-radius-wt);
       } else {
         camC = Math.min(r.COLS-width, camC+vx);
+        x = Math.min(x + vx, r.COLS-radius-wt);
       }
     }
 
@@ -112,10 +113,11 @@ public class Player implements Character {
       if (vx != -maxV) {
         vx = Math.max(-maxV, vx-a);
       }
-      if (camC == 0 || x > width/2) {
+      if (camC == 0 || x-camC > width/2) {
         x = Math.max(x + vx, radius+wt);
       } else {
         camC = Math.max(0, camC+vx);
+        x = Math.max(x + vx, radius+wt);
       }
     }
 
@@ -123,10 +125,11 @@ public class Player implements Character {
       if (vy != -maxV) {
         vy = Math.max(-maxV, vy-a);
       }
-      if (camR == 0 || y > height/2) {
+      if (camR == 0 || y-camR > height/2) {
         y = Math.max(y + vy, radius+wt);
       } else {
         camR = Math.max(0, camR+vy);
+        y = Math.max(y + vy, radius+wt);
       }
     }
 
@@ -135,9 +138,10 @@ public class Player implements Character {
         vy = Math.min(maxV, vy+a);
       }
       if (camR == r.ROWS-height || y < height/2) {
-        y = Math.min(y + vy, height-radius-wt);
+        y = Math.min(y + vy, r.ROWS-radius-wt);
       } else {
         camR = Math.min(r.ROWS-height, camR+vy);
+        y = Math.min(y + vy, r.ROWS-radius-wt);
       }
     }
 
@@ -145,40 +149,44 @@ public class Player implements Character {
     if (vx < 0) {
       vx = Math.min(0, vx+f);
 
-      if (camC == 0 || x > width/2) {
+      if (camC == 0 || x-camC > width/2) {
         x = Math.max(x + vx, radius+wt);
       } else {
         camC = Math.max(0, camC+vx);
+        x = Math.max(x + vx, radius+wt);
       }
     }
 
     if (vx > 0) {
       vx = Math.max(0, vx-f);
 
-      if (camC == r.COLS-width || x < width/2) {
-        x = Math.min(x + vx, width-radius-wt);
+      if (camC == r.COLS-width || x-camC < width/2) {
+        x = Math.min(x + vx, r.COLS-radius-wt);
       } else {
         camC = Math.min(r.COLS-width, camC+vx);
+        x = Math.min(x + vx, r.COLS-radius-wt);
       }
     }
 
     if (vy < 0) {
       vy = Math.min(0, vy+f);
 
-      if (camR == 0 || y > height/2) {
+      if (camR == 0 || y-camR > height/2) {
         y = Math.max(y + vy, radius+wt);
       } else {
         camR = Math.max(0, camR+vy);
+        y = Math.max(y + vy, radius+wt);
       }
     }
 
     if (vy > 0) {
       vy = Math.max(0, vy-f);
 
-      if (camR == r.ROWS-height || y < height/2) {
-        y = Math.min(y + vy, height-radius-wt);
+      if (camR == r.ROWS-height || y-camR < height/2) {
+        y = Math.min(y + vy, r.ROWS-radius-wt);
       } else {
         camR = Math.min(r.ROWS-height, camR+vy);
+        y = Math.min(y + vy, r.ROWS-radius-wt);
       }
     }
 
@@ -198,7 +206,7 @@ public class Player implements Character {
     text(weaponMode + " " + damageMultiplier, 40, 780); //   remove later    //
 
     fill(255, 0, 0);
-    ellipse(x, y, 2*radius, 2*radius);
+    ellipse(x-camC, y-camR, 2*radius, 2*radius);
 
     //    display hitbox. DEBUG PURPOSES ONLY    //
     //fill(0,0,255);
@@ -258,11 +266,11 @@ public class Player implements Character {
 
 
   void decrementStun() {
-    stunTimer = Math.max(stunTimer-1,0);
+    stunTimer = Math.max(stunTimer-1, 0);
   }
-  
+
   void decrementAttackCD() {
-    attackCD = Math.max(attackCD-1,0);
+    attackCD = Math.max(attackCD-1, 0);
   }
 
   float getX() {
