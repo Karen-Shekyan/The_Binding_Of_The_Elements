@@ -40,3 +40,8 @@ Karen Shekyan:
 - Added Dungeon class. It generates properly, allegedly. Special rooms generate as they should.
 - Debug methods and print statements added.
 - Game now generates dungeon on setup.
+
+###### 5/23/22
+Jonathan Shavit:
+- fixed bug where bullets wouldn't move
+- made the bullets fire in the direction of the mouse 
