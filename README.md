@@ -47,4 +47,4 @@ Karen Shekyan:
 - Fixed bullets, now functional. Move properly and deal damage.
 - Player attacks aim at mouse.
 - Changed control scheme: use WASD and mouse now.
-- Strange bug with Touchy. To be fixed today.
+- Strange bug with Touchy. ~~To be fixed today.~~ Touchy now takes proper damage, but the hitbox doesn't detect distance correctly. This is the result of using a different coordinate system for the Player. Must **carefully** read code and change this everywhere.
