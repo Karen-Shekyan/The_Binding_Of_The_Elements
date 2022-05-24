@@ -48,3 +48,8 @@ Karen Shekyan:
 - Player attacks aim at mouse.
 - Changed control scheme: use WASD and mouse now.
 - Strange bug with Touchy. ~~To be fixed today.~~ Touchy now takes proper damage, but the hitbox doesn't detect distance correctly. This is the result of using a different coordinate system for the Player. Must **carefully** read code and change this everywhere.
+
+###### 5/24/22
+
+Karen Shekyan:
+- Fixed Touchy and the coordinate system. Now ALL positions are relative to the ROOM.
