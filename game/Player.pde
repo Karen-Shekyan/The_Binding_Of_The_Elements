@@ -9,7 +9,7 @@ public class Player implements Character {
   private float x;
   private float y;
   private int stunTimer = 0;
-  private float damageMultiplier = 1;
+  public float damageMultiplier = 1;
   public ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   public int weaponMode;// 0 = water, 1 = earth, 2 = fire, 3 = air
   private int radius = 20; //          remove later         //
@@ -89,7 +89,7 @@ public class Player implements Character {
     if (attackCD == 0) {
       float bulletX = (mouseX - x + camC) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
       float bulletY = (mouseY - y + camR) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
-      r.playerBullets.add(new Bullet(x, y, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true));
+      r.playerBullets.add(new Bullet(x, y, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true, (int)(attack*damageMultiplier)));
       attackCD = 15;
     }
   }

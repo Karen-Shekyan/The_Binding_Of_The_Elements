@@ -1,8 +1,7 @@
 class TouchyEnemy implements Enemy {
   private int health;
   private float radius = 20;
-  private float attack;
-  //    NOTE THIS IS THE POSITION IN THE ROOM, NOT ON THE SCREEN    //
+  public float attack;
   private float xPos;
   private float yPos;
   private int stunTimer = 0;

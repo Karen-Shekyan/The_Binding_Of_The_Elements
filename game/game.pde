@@ -40,7 +40,7 @@ void draw() {
     dead = false;
     size(1000, 800);
     loadPixels();
-    r = new Room(1);//  change later  //
+    r = LEVEL.get(35);//  change later  //
     Aang = new Player();
   }
 
@@ -62,7 +62,7 @@ void draw() {
 
   updatePixels();
 
-  for (int i = 0; i < r.enemies.size(); i++) {
+  for (int i = 0; i < r.enemies.size(); i++) {//this is contact damage. Always deals 1.
     Enemy guy = r.enemies.get(i);
     guy.move();
     guy.display();
@@ -81,7 +81,7 @@ void draw() {
       Enemy guy = r.enemies.get(i);
 
       if (bullet.isTouching(guy)) {
-        guy.takeDamage(Aang.attack);
+        guy.takeDamage(bullet.getDam());
         r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
       }
     }
@@ -129,19 +129,9 @@ void keyReleased() {
 }
 
 void mousePressed() {
-  if (lastFired==firingLimit-1 || !gunJustFired) {
-    MOUSE = true;
-    gunJustFired=true;;
-    lastFired++;
-    lastFired%=firingLimit;
-  } else {
-    MOUSE= false;
-    lastFired++;
-    gunJustFired=false;
-  }
+  MOUSE = true;
 }
 
 void mouseReleased() {
   MOUSE = false;
-  gunJustFired=false;
 }
