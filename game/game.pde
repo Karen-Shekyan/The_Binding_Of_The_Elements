@@ -80,6 +80,7 @@ void draw() {
       
       if (bullet.isTouching(guy)) {
         guy.takeDamage(10);
+        r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
       }
       
     }

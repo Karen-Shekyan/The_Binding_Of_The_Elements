@@ -52,6 +52,7 @@ class DummyEnemy implements Enemy {
   void display() {
     fill(255, 150, 10);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    
     fill(0);
     textSize(10);
     text(""+health,xPos-camC, yPos-camR);
