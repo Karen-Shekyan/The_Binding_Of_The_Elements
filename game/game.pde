@@ -46,6 +46,7 @@ void draw() {
     //menu screen
   } else if (pause) {
     //pause screen
+    pauseGame();
   } else {
 
     for (int i = (int)camR; i < height+(int)camR; i++) {
@@ -115,6 +116,10 @@ void keyPressed() {
   }
   if (key == 's') {
     D = true;
+  }
+  if (key == 'p') { //i'll find a diff/better key later. esc, maybe?
+    background(20,20,20,20);
+    pause=!pause;
   }
 }
 
