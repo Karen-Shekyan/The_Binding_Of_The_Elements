@@ -1,5 +1,3 @@
-//UPDATE MOVEMENT TO WASD. BIND PLAYER ATTACKS TO MOUSEPRESS AND MOUSE COORDS
-
 int wt = 100;
 float camR = 200;//corresponds to y
 float camC = 250;//corresponds to x
