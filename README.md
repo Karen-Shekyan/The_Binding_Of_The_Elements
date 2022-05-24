@@ -53,9 +53,10 @@ Karen Shekyan:
 
 ###### 5/24/22
 
-
 Jonathan Shavit:
 - made a death screen, a pause screen, and a menu screen (really a title screen)
 
 Karen Shekyan:
 - Fixed Touchy and the coordinate system. Now ALL positions are relative to the ROOM.
+- ShootyEnemy implemented. Attacks properly. Moves and strafes but very jittery, polish later.
+- Made bullets store the damage they deal. They also get placed into the proper room list when created (need to remove an unnecessary feature later).
