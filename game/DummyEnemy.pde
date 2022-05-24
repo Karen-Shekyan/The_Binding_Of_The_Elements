@@ -14,8 +14,8 @@ class DummyEnemy implements Enemy {
     xPos = 300;
     yPos = 300;
     health = 50;
-    //for when it deletes itself later
     room = a;
+    
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
   }
@@ -76,7 +76,7 @@ class DummyEnemy implements Enemy {
   }
   
   void decrementStun() {
-    stunTimer--;
+    stunTimer = Math.max(0,stunTimer-1);
   }
   
   void dropLoot() {

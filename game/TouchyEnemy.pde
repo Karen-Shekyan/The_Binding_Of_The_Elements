@@ -13,8 +13,7 @@ class TouchyEnemy implements Enemy {
     attack = 1;
     xPos = 350;
     yPos = 350;
-    health = 50;
-    //for when it deletes itself later
+    health = 30;
     room = a;
 
     body.add(new Hurtbox(xPos, yPos, radius));
@@ -49,7 +48,6 @@ class TouchyEnemy implements Enemy {
   }
 
   void die() {
-    //no loot to speak of yet, but the method should sit here just in case;
     dropLoot();
 
     //enemy removes itself from the enemies list of the room it's in
@@ -80,7 +78,6 @@ class TouchyEnemy implements Enemy {
     for (int i = 0; i < body.size(); i++) {
       body.get(i).setX(getX());
       body.get(i).setY(getY());
-      //body.get(i).debugShowHurtbox();
     }
   }
 
@@ -98,7 +95,7 @@ class TouchyEnemy implements Enemy {
   }
 
   void decrementStun() {
-    stunTimer--;
+    stunTimer = Math.max(0,stunTimer-1);
   }
 
   void dropLoot() {
