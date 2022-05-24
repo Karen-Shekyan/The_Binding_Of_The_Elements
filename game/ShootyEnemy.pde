@@ -1,13 +1,14 @@
 class ShootyEnemy implements Enemy {
   private int health;
   private float radius = 20;
-  public float attack;
+  public int attack;
   private float xPos;
   private float yPos;
   private int stunTimer = 0;
   private ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   private Hitbox touchZone;
   public Room room;
+  private int attackCD = 0;
 
   public ShootyEnemy (Room a) {
     attack = 1;
@@ -27,8 +28,17 @@ class ShootyEnemy implements Enemy {
     }
   }
   
+  void decrementAttackCD() {
+    attackCD = Math.max(attackCD-1, 0);
+  }
+  
   void attack() {///////////////////////
-    
+    if (attackCD == 0) {
+      float bulletX = (Aang.getX() - xPos) * 7.0/dist(Aang.getX(), Aang.getY(), xPos, yPos);
+      float bulletY = (Aang.getY() - yPos) * 7.0/dist(Aang.getX(), Aang.getY(), xPos, yPos);
+      r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true, attack));
+      attackCD = 20;//    longer than player's CD    //
+    }
   }
   
   void move() {/////////////////////////
@@ -49,6 +59,7 @@ class ShootyEnemy implements Enemy {
     fill(0);
     textSize(10);
     text(""+health,xPos-camC, yPos-camR);
+    decrementAttackCD();
   }
   
   void knockback(float x, float y) {
