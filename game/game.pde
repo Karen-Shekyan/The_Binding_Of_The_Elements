@@ -26,6 +26,7 @@ color FIRE = color(212, 8, 8);
 color WATER = color(54, 143, 199);
 color AIR = color(212, 236, 250);
 Dungeon LEVEL;
+int menuTextMode = 0;
 
 final int firingLimit=30;
 int lastFired=0;
@@ -33,10 +34,12 @@ boolean gunJustFired;
 
 void setup() {
   size(1000, 800);
-  loadPixels();
-  r = new Room(1);//  change later  //
-  Aang = new Player();
-  LEVEL = new Dungeon(1);
+  startNewGame();
+  //size(1000, 800);
+  //loadPixels();
+  //r = new Room(1);//  change later  //
+  //Aang = new Player();
+  //LEVEL = new Dungeon(1);
 }
 
 void draw() {
@@ -44,6 +47,7 @@ void draw() {
     showDeathScreen();
   } else if (menu) {
     //menu screen
+    menu();
   } else if (pause) {
     //pause screen
     pauseGame();
@@ -157,7 +161,15 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  //if (menu) {}
+  if (menu) {
+    if (mouseX > width/2-55 && mouseX < width/2+30 && mouseY > 3*height/5-40 & mouseY < 3*height/5+5) {
+      menu=false;
+      startNewGame();
+    }
+    if (mouseX > width/2-65 && mouseX < width/2+25 && mouseY > 3*height/4-40 & mouseY < 3*height/4+5) {
+      exit();
+    }
+  }
   if (dead) {
     //the part of the screen where the menu button is
     if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < 2*height/3 + 5 && mouseY > 2*height/3 - 40) {
@@ -167,12 +179,16 @@ void mouseClicked() {
     //the part of the screen where the retry button is
     if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < height/2 + 55 && mouseY > height/2 + 20) {
       dead=false;
-      size(1000, 800);
-      loadPixels();
-      r = new Room(1);//  change later  //
-      Aang = new Player();
-      LEVEL = new Dungeon(1);
+      startNewGame();
     }
   }
   //if (pause) {}
+}
+
+void startNewGame() {
+  size(1000, 800); //this is terrible form i think ...but...
+  loadPixels();
+  r = new Room(1);//  change later  //
+  Aang = new Player();
+  LEVEL = new Dungeon(1);
 }
