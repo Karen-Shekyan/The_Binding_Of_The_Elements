@@ -118,7 +118,7 @@ void keyPressed() {
     D = true;
   }
   if (key == 'p') { //i'll find a diff/better key later. esc, maybe?
-    background(20,20,20,20);
+    //background(90);
     pause=!pause;
   }
 }
@@ -157,8 +157,7 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  if (menu) {
-  }
+  //if (menu) {}
   if (dead) {
     //the part of the screen where the menu button is
     if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < 2*height/3 + 5 && mouseY > 2*height/3 - 40) {
@@ -175,6 +174,5 @@ void mouseClicked() {
       LEVEL = new Dungeon(1);
     }
   }
-  if (pause) {
-  }
+  //if (pause) {}
 }
