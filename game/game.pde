@@ -4,6 +4,8 @@ int wt = 100;
 float camR = 200;//corresponds to y
 float camC = 250;//corresponds to x
 boolean dead = false;
+boolean menu; //set to true by default later
+boolean pause; //for a pause if i ever make one
 //control movement for Player
 boolean R = false;
 boolean L = false;
@@ -39,64 +41,77 @@ void setup() {
 
 void draw() {
   if (dead) {
-    dead = false;
-    size(1000, 800);
-    loadPixels();
-    r = new Room(1);//  change later  //
-    Aang = new Player();
-  }
+    //dead = false;
+    //size(1000, 800);
+    //loadPixels();
+    //r = new Room(1);//  change later  //
+    //Aang = new Player();
+    showDeathScreen();
+    //if (!dead) {
+    //  size(1000, 800);
+    //  loadPixels();
+    //  r = new Room(1);//  change later  //
+    //  Aang = new Player();
+    //  LEVEL = new Dungeon(1);
+    //}
+  } else if (menu) {
+    //menu screen
+  } else if (pause) {
+    //pause screen
+  } else {
 
-  for (int i = (int)camR; i < height+(int)camR; i++) {
-    for (int j = (int)camC; j < width+(int)camC; j++) {
-      if (r.floor[i][j] == -1) {//make 6 sections, not 4
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = color(0);
-      } else if (r.floor[i][j] > 0.70) {//earth
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = EARTH;
-      } else if (r.floor[i][j] > 0.5) {//fire
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = FIRE;
-      } else if (r.floor[i][j] > 0.30) {//water
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = WATER;
-      } else {//air
-        pixels[width*(i-(int)camR) + (j-(int)camC)] = AIR;
+    for (int i = (int)camR; i < height+(int)camR; i++) {
+      for (int j = (int)camC; j < width+(int)camC; j++) {
+        if (r.floor[i][j] == -1) {//make 6 sections, not 4
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = color(0);
+        } else if (r.floor[i][j] > 0.70) {//earth
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = EARTH;
+        } else if (r.floor[i][j] > 0.5) {//fire
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = FIRE;
+        } else if (r.floor[i][j] > 0.30) {//water
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = WATER;
+        } else {//air
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = AIR;
+        }
       }
     }
-  }
 
-  updatePixels();
-
-  for (int i = 0; i < r.enemies.size(); i++) {
-    Enemy guy = r.enemies.get(i);
-    guy.move();
-    guy.display();
-    if (guy.getTouchZone().isTouching(Aang)) {
-      Aang.takeDamage(1);
-    }
-  }
-
-
-  for (int j = 0; j < r.playerBullets.size(); j++) {
-    Bullet bullet = r.playerBullets.get(j);
-    //not working rn, bullet gets no velocity
-    bullet.move();
+    updatePixels();
 
     for (int i = 0; i < r.enemies.size(); i++) {
       Enemy guy = r.enemies.get(i);
-
-      if (bullet.isTouching(guy)) {
-        guy.takeDamage(10);
-        r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
+      guy.move();
+      guy.display();
+      if (guy.getTouchZone().isTouching(Aang)) {
+        Aang.takeDamage(1);
       }
     }
 
-    bullet.display();
-  }
 
-  Aang.move();
-  Aang.display();
-  if (MOUSE) {
-    Aang.attack();
+    for (int j = 0; j < r.playerBullets.size(); j++) {
+      Bullet bullet = r.playerBullets.get(j);
+      //not working rn, bullet gets no velocity
+      bullet.move();
+
+      for (int i = 0; i < r.enemies.size(); i++) {
+        Enemy guy = r.enemies.get(i);
+
+        if (bullet.isTouching(guy)) {
+          guy.takeDamage(10);
+          r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
+        }
+      }
+
+      bullet.display();
+    }
+
+    Aang.move();
+    Aang.display();
+    if (MOUSE) {
+      Aang.attack();
+    }
+    Aang.decrementAttackCD();
   }
-  Aang.decrementAttackCD();
 }
 
 //updating booleans for each arrow key
@@ -133,7 +148,7 @@ void keyReleased() {
 void mousePressed() {
   if (lastFired==firingLimit-1 || !gunJustFired) {
     MOUSE = true;
-    gunJustFired=true;;
+    gunJustFired=true;
     lastFired++;
     lastFired%=firingLimit;
   } else {
@@ -146,4 +161,20 @@ void mousePressed() {
 void mouseReleased() {
   MOUSE = false;
   gunJustFired=false;
+}
+
+void mouseClicked() {
+  if (menu) {
+  }
+  if (dead) {
+    if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < 2*height/3 + 5 && mouseY > 2*height/3 - 40) {
+      menu=true;
+      dead=false;
+    }
+    if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < height/2 + 55 && mouseY > height/2 + 20) {
+      dead=false;
+    }
+  }
+  if (pause) {
+  }
 }
