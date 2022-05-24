@@ -49,7 +49,6 @@ class Hitbox {//consider making these smaller than projectiles look
     float d = Integer.MAX_VALUE;
     for (int i = 0; i < body.size(); i++) {
       d = distance(body.get(i));
-      println(d);
       if (d <= getR() + body.get(i).getR()) {
         return true;
       }
