@@ -31,8 +31,8 @@ class Bullet extends Hitbox {
 
   void move() {
     //they're 0 for some reason
-    xPos += vx;
-    yPos += vy;
+    xPos += super.vx;
+    yPos += super.vy;
 
     if (xPos <= wt || yPos <= wt || xPos >= r.COLS-wt || yPos >= r.ROWS-wt) {
       if (playerBullet) {

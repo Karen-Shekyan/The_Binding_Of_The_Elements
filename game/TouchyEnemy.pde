@@ -18,8 +18,8 @@ class TouchyEnemy implements Enemy {
     //for when it deletes itself later
     room = a;
     hurtboxes = new Hurtbox[1];
-    hurtboxes[0] = new Hurtbox(xPos, yPos, radius);
-    touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
+    hurtboxes[0] = new Hurtbox(xPos-camC, yPos-camR, radius);
+    touchZone = new Hitbox(xPos-camC, yPos-camR, radius, 0, 0, room);
   }
 
   Hitbox getTouchZone() {
@@ -72,6 +72,9 @@ class TouchyEnemy implements Enemy {
     //this should be looping through all the Hurtboxes in hurtboxes, i'll get back to that later
     hurtboxes[0].setX(getX()-camC);
     hurtboxes[0].setY(getY()-camR);
+    
+    //hurtbox movement is messed up
+    hurtboxes[0].debugShowHurtbox();
   }
 
   void moveHit() {
