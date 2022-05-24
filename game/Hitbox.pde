@@ -59,7 +59,7 @@ class Hitbox {//consider making these smaller than projectiles look
 
   //we didn't really need a separate method for this
   float distance(Hurtbox other) {
-    float d = dist(getX(), getY(), other.getX(), other.getY());// this is really messed up. player uses different coord system.
+    float d = dist(getX(), getY(), other.getX(), other.getY());
     return d;
   }
   
