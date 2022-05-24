@@ -41,19 +41,7 @@ void setup() {
 
 void draw() {
   if (dead) {
-    //dead = false;
-    //size(1000, 800);
-    //loadPixels();
-    //r = new Room(1);//  change later  //
-    //Aang = new Player();
     showDeathScreen();
-    //if (!dead) {
-    //  size(1000, 800);
-    //  loadPixels();
-    //  r = new Room(1);//  change later  //
-    //  Aang = new Player();
-    //  LEVEL = new Dungeon(1);
-    //}
   } else if (menu) {
     //menu screen
   } else if (pause) {
@@ -167,12 +155,19 @@ void mouseClicked() {
   if (menu) {
   }
   if (dead) {
+    //the part of the screen where the menu button is
     if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < 2*height/3 + 5 && mouseY > 2*height/3 - 40) {
       menu=true;
       dead=false;
     }
+    //the part of the screen where the retry button is
     if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < height/2 + 55 && mouseY > height/2 + 20) {
       dead=false;
+      size(1000, 800);
+      loadPixels();
+      r = new Room(1);//  change later  //
+      Aang = new Player();
+      LEVEL = new Dungeon(1);
     }
   }
   if (pause) {
