@@ -13,6 +13,7 @@ public class Player implements Character {
   public ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   public int weaponMode;// 0 = water, 1 = earth, 2 = fire, 3 = air
   private int radius = 20; //          remove later         //
+  private int attackCD = 0;
 
   public Player () {
     health = 6;
@@ -23,6 +24,10 @@ public class Player implements Character {
     //consider making the body smaller than the player appears to be. games often do this
     body.add(new Hurtbox(x, y, radius));//   change later with radius    //
     weaponMode = (int)(Math.random()*4); //    change later    //
+  }
+
+  ArrayList<Hurtbox> getHurtboxes() {
+    return body;
   }
 
   void calculateMultiplier() {
@@ -81,11 +86,12 @@ public class Player implements Character {
 
 
   void attack() {
-    //i should add to the Player's current room, but for now that is just r, so...
-    //bullets don't even get placed in the right location... what am i doing wrong?
-    float d = dist(x,y,mouseX,mouseY);
-    
-    r.playerBullets.add(new Bullet(x+camC, y+camR, 10, 5*(mouseX-x)/d, 5*(mouseY-y)/d, r, color(255, 255, 255, 170), true));
+    if (attackCD == 0) {
+      float bulletX = (mouseX - x) * 7.0/dist(x,y,mouseX,mouseY);
+      float bulletY = (mouseY - y) * 7.0/dist(x,y,mouseX,mouseY);
+      r.playerBullets.add(new Bullet(x+camC, y+camR, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true));
+      attackCD = 15;
+    }
   }
 
 
@@ -252,7 +258,11 @@ public class Player implements Character {
 
 
   void decrementStun() {
-    stunTimer -= 1;
+    stunTimer = Math.max(stunTimer-1,0);
+  }
+  
+  void decrementAttackCD() {
+    attackCD = Math.max(attackCD-1,0);
   }
 
   float getX() {

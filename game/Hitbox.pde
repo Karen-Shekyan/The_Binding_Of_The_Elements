@@ -1,5 +1,4 @@
 //THESE ARE CONTACT BOXES AND BULLETS. NOT SWORDS
-//SEPARATE ENEMY AND PLAYER HITBOXES.
 class Hitbox {//consider making these smaller than projectiles look
   float radius;
   float xPos;
@@ -45,11 +44,13 @@ class Hitbox {//consider making these smaller than projectiles look
   }
 
   //Enemy hitboxes and player hitboxes MUST be separated.
-  boolean isTouching(Player other) {
+  boolean isTouching(Character other) {
+    ArrayList<Hurtbox> body = other.getHurtboxes();
     float d = Integer.MAX_VALUE;
-    for (int i = 0; i < other.body.size(); i++) {
-      d = distance(other.body.get(i));
-      if (d <= getR() + other.body.get(i).getR()) {
+    for (int i = 0; i < body.size(); i++) {
+      d = distance(body.get(i));
+      println(d);
+      if (d <= getR() + body.get(i).getR()) {
         return true;
       }
     }
@@ -58,7 +59,7 @@ class Hitbox {//consider making these smaller than projectiles look
 
   //we didn't really need a separate method for this
   float distance(Hurtbox other) {
-    float d = dist(getX(), getY(), other.getX(), other.getY());
+    float d = dist(getX(), getY(), other.getX(), other.getY());// this is really messed up. player uses different coord system.
     return d;
   }
   

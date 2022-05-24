@@ -43,6 +43,10 @@ Karen Shekyan:
 
 ###### 5/23/22
 Jonathan Shavit:
-- (technically pushed after midnight on 5/24, but i started coding before midnight and just forgot to commit until after i played around with testing and tried to fix the hitboxes)
-- fixed bug where bullets wouldn't move
-- made the bullets fire in the direction of the mouse
+- thought i pulled, but didn't, and ended up basically coding what Karen did
+
+Karen Shekyan:
+- Fixed bullets, now functional. Move properly and deal damage.
+- Player attacks aim at mouse.
+- Changed control scheme: use WASD and mouse now.
+- Strange bug with Touchy. ~~To be fixed today.~~ Touchy now takes proper damage, but the hitbox doesn't detect distance correctly. This is the result of using a different coordinate system for the Player. Must **carefully** read code and change this everywhere.
