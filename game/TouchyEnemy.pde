@@ -11,9 +11,9 @@ class TouchyEnemy implements Enemy {
   public Room room;
 
   public TouchyEnemy(Room a) {
-    attack=1;
-    xPos = 400;
-    yPos = 300;
+    attack = 1;
+    xPos = 350;
+    yPos = 350;
     health = 50;
     //for when it deletes itself later
     room = a;
@@ -40,10 +40,9 @@ class TouchyEnemy implements Enemy {
   }
 
   void move() {
-    float distance = dist(Aang.getX(), Aang.getY(), getX()-camC, getY()-camR);
-    float movementScale = 3;
-    xPos+=movementScale*(Aang.getX()-getX()+camC)/distance;
-    yPos+=movementScale*(Aang.getY()-getY()+camR)/distance;
+    float d = dist(Aang.getX()+camC,Aang.getY()+camR,getX(),getY());
+    xPos += 3.0 * (Aang.getX()+camC-getX())/d;
+    yPos += 3.0 * (Aang.getY()+camR-getY())/d;
     moveHurt();
     moveHit();
   }
@@ -59,28 +58,33 @@ class TouchyEnemy implements Enemy {
   void display() {
     fill(105, 66, 245);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    
+    fill(255);//    draw hurtbox    //
+    ellipse(body.get(0).getX()-camC,body.get(0).getY()-camR,2*radius,2*radius);
+    
+    //    draw hitbox    //
+    fill(0,255,0);
+    ellipse(touchZone.getX()-camC,touchZone.getY()-camR,2*radius,2*radius);
 
     fill(0);
     textSize(10);
     text(""+health,xPos-camC, yPos-camR);
   }
 
-  void knockback(float x, float y) {// NOT HOW THIS WORKS. FIX LATER //
+  void knockback(float x, float y) {
     //not working on this yet
   }
 
   void moveHurt() {
-    //this should be looping through all the Hurtboxes in hurtboxes, i'll get back to that later
     for (int i = 0; i < body.size(); i++) {
-      body.get(i).setX(getX()-camC);
-      body.get(i).setY(getY()-camR);
+      body.get(i).setX(getX());
+      body.get(i).setY(getY());
     }
   }
 
   void moveHit() {
-    touchZone.setX(getX()-camC);
-    touchZone.setY(getY()-camR);
-    
+    touchZone.setX(getX());
+    touchZone.setY(getY());
   }
 
   void setStun(int stun) {
