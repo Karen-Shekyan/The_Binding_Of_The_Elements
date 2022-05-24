@@ -43,5 +43,6 @@ Karen Shekyan:
 
 ###### 5/23/22
 Jonathan Shavit:
+- (technically pushed after midnight on 5/24, but i started coding before midnight and just forgot to commit until after i played around with testing and tried to fix the hitboxes)
 - fixed bug where bullets wouldn't move
-- made the bullets fire in the direction of the mouse 
+- made the bullets fire in the direction of the mouse
