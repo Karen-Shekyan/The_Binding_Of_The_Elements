@@ -117,7 +117,7 @@ public class Player implements Character {
         x = Math.max(x + vx, radius+wt);
       } else {
         camC = Math.max(0, camC+vx);
-        x = camC+width/2;
+        x = Math.max(x + vx, radius+wt);
       }
     }
 
