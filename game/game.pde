@@ -4,7 +4,7 @@ int wt = 100;
 float camR = 200;//corresponds to y
 float camC = 250;//corresponds to x
 boolean dead = false;
-boolean menu; //set to true by default later
+boolean menu = true; //set to true by default later
 boolean pause; //for a pause if i ever make one
 //control movement for Player
 boolean R = false;
