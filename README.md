@@ -42,6 +42,8 @@ Karen Shekyan:
 - Game now generates dungeon on setup.
 
 ###### 5/23/22
+Jonathan Shavit:
+- thought i pulled, but didn't, and ended up basically coding what Karen did
 
 Karen Shekyan:
 - Fixed bullets, now functional. Move properly and deal damage.
