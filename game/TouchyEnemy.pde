@@ -40,9 +40,9 @@ class TouchyEnemy implements Enemy {
   }
 
   void move() {
-    float d = dist(Aang.getX()+camC,Aang.getY()+camR,getX(),getY());
-    xPos += 3.0 * (Aang.getX()+camC-getX())/d;
-    yPos += 3.0 * (Aang.getY()+camR-getY())/d;
+    float d = dist(Aang.getX(),Aang.getY(),getX(),getY());
+    xPos += 3.0 * (Aang.getX()-getX())/d;
+    yPos += 3.0 * (Aang.getY()-getY())/d;
     moveHurt();
     moveHit();
   }
@@ -59,12 +59,12 @@ class TouchyEnemy implements Enemy {
     fill(105, 66, 245);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
     
-    fill(255);//    draw hurtbox    //
-    ellipse(body.get(0).getX()-camC,body.get(0).getY()-camR,2*radius,2*radius);
+    //fill(255);//    draw hurtbox    //
+    //ellipse(body.get(0).getX()-camC,body.get(0).getY()-camR,2*radius,2*radius);
     
-    //    draw hitbox    //
-    fill(0,255,0);
-    ellipse(touchZone.getX()-camC,touchZone.getY()-camR,2*radius,2*radius);
+    ////    draw hitbox    //
+    //fill(0,255,0);
+    //ellipse(touchZone.getX()-camC,touchZone.getY()-camR,2*radius,2*radius);
 
     fill(0);
     textSize(10);

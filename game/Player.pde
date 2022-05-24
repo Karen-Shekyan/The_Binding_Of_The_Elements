@@ -5,7 +5,7 @@ public class Player implements Character {
   private int health;
   private int maxHealth;
   private int tempHealth = 0;
-  private int attack;
+  public int attack;
   private float x;
   private float y;
   private int stunTimer = 0;
