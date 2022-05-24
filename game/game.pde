@@ -25,6 +25,10 @@ color WATER = color(54, 143, 199);
 color AIR = color(212, 236, 250);
 Dungeon LEVEL;
 
+final int firingLimit=30;
+int lastFired=0;
+boolean gunJustFired;
+
 void setup() {
   size(1000, 800);
   loadPixels();
@@ -68,8 +72,8 @@ void draw() {
       Aang.takeDamage(1);
     }
   }
-  
-  
+
+
   for (int j = 0; j < r.playerBullets.size(); j++) {
     Bullet bullet = r.playerBullets.get(j);
     //not working rn, bullet gets no velocity
@@ -77,12 +81,11 @@ void draw() {
 
     for (int i = 0; i < r.enemies.size(); i++) {
       Enemy guy = r.enemies.get(i);
-      
+
       if (bullet.isTouching(guy)) {
         guy.takeDamage(Aang.attack);
         r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
       }
-      
     }
 
     bullet.display();
@@ -128,9 +131,19 @@ void keyReleased() {
 }
 
 void mousePressed() {
-  MOUSE = true;
+  if (lastFired==firingLimit-1 || !gunJustFired) {
+    MOUSE = true;
+    gunJustFired=true;;
+    lastFired++;
+    lastFired%=firingLimit;
+  } else {
+    MOUSE= false;
+    lastFired++;
+    gunJustFired=false;
+  }
 }
 
 void mouseReleased() {
   MOUSE = false;
+  gunJustFired=false;
 }
