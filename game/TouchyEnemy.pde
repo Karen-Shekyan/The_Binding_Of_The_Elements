@@ -17,8 +17,10 @@ class TouchyEnemy implements Enemy {
     health = 50;
     //for when it deletes itself later
     room = a;
+
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
+
   }
 
   Hitbox getTouchZone() {
@@ -79,6 +81,7 @@ class TouchyEnemy implements Enemy {
     for (int i = 0; i < body.size(); i++) {
       body.get(i).setX(getX());
       body.get(i).setY(getY());
+      //body.get(i).debugShowHurtbox();
     }
   }
 

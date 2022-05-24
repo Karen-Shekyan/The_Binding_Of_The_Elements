@@ -11,6 +11,10 @@ class Hurtbox {
     radius = r;
   }
 
+  void debugShowHurtbox(){
+    fill(255);
+    ellipse(xPos,yPos,2*radius,2*radius);
+  }
   
   float getX(){
     return xPos;
