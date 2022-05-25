@@ -2,38 +2,41 @@ int wt = 100;
 float camR = 200;//corresponds to y
 float camC = 250;//corresponds to x
 boolean dead = false;
-boolean menu = true; //set to true by default later
+boolean menu = true;
 boolean pause;
-//control movement for Player
+
+//controls for Player
 boolean R = false;
 boolean L = false;
 boolean U = false;
 boolean D = false;
 boolean MOUSE = false;
+
 //speeds of the Player
 float vx = 0.0;
 float vy = 0.0;
 float maxV = 2.5;
-// forces on Player
+
+//forces on Player
 float a = 0.3;//acceleration
 float f = 0.2;//frictional force
-Room r;
-Player Aang;
+
+//constants
 color EARTH = color(87, 62, 29);
 color FIRE = color(212, 8, 8);
 color WATER = color(54, 143, 199);
 color AIR = color(212, 236, 250);
+
+//initialization stuff
+Room r;
+Player Aang;
 Dungeon LEVEL;
 int menuTextMode = 0;
 int currentRoom = 35; //there's no way to tell the starting pos fro a get method, so i'm using the hard-coded start of generation
 
-final int firingLimit=30;
-int lastFired=0;
-boolean gunJustFired;
-
 void setup() {
   size(1000, 800);
-  startNewGame();
+  //startNewGame();
   //size(1000, 800);
   //loadPixels();
   //r = new Room(1);//  change later  //
@@ -43,12 +46,12 @@ void setup() {
 
 void draw() {
   if (dead) {
-    dead = false;
-    size(1000, 800);
-    loadPixels();
-    //LEVEL = new Dungeon(1);
-    r = LEVEL.get(35);//  change later  //
-    Aang = new Player();
+    //dead = false;
+    //size(1000, 800);
+    //loadPixels();
+    ////LEVEL = new Dungeon(1);
+    //r = LEVEL.get(35);//  change later  //
+    //Aang = new Player();
     showDeathScreen();
   } else if (menu) {
     //menu screen
@@ -79,8 +82,6 @@ void draw() {
     if (LEVEL.explored[currentRoom%10-1][currentRoom/10]==null) {
       LEVEL.explored[currentRoom%10-1][currentRoom/10] = r;
     }
-
-    LEVEL.displayMiniMap();
 
     for (int i = 0; i < r.enemies.size(); i++) {//this is contact damage. Always deals 1.
       Enemy guy = r.enemies.get(i);
@@ -127,6 +128,8 @@ void draw() {
       Aang.attack();
     }
     Aang.decrementAttackCD();
+    
+    LEVEL.displayMiniMap();
   }
 }
 
@@ -148,6 +151,7 @@ void keyPressed() {
     //background(90);
     pause=!pause;
   }
+  //need map key
 }
 
 void keyReleased() {
@@ -199,9 +203,10 @@ void mouseClicked() {
 }
 
 void startNewGame() {
-  size(1000, 800); //this is terrible form i think ...but...
   loadPixels();
-  LEVEL = new Dungeon(1);
-  r = LEVEL.get(currentRoom%10-1,currentRoom/10);//  change later  //
+  LEVEL = new Dungeon(2);
+  r = LEVEL.get(currentRoom);//  change later  //
+  camR = 200;
+  camC = 250;
   Aang = new Player();
 }
