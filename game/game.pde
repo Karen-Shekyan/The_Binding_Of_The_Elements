@@ -27,13 +27,9 @@ Dungeon LEVEL;
 int menuTextMode = 0;
 int currentRoom = 35; //there's no way to tell the starting pos fro a get method, so i'm using the hard-coded start of generation
 
-final int firingLimit=30;
-int lastFired=0;
-boolean gunJustFired;
-
 void setup() {
   size(1000, 800);
-  startNewGame();
+  //startNewGame();
   //size(1000, 800);
   //loadPixels();
   //r = new Room(1);//  change later  //
@@ -199,7 +195,6 @@ void mouseClicked() {
 }
 
 void startNewGame() {
-  size(1000, 800); //this is terrible form i think ...but...
   loadPixels();
   LEVEL = new Dungeon(1);
   r = LEVEL.get(currentRoom%10-1,currentRoom/10);//  change later  //
