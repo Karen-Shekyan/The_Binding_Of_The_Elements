@@ -9,6 +9,10 @@ class ShootyEnemy implements Enemy {
   private Hitbox touchZone;
   public Room room;
   private int attackCD = 30;
+  //states
+  private boolean chasing = false;
+  private boolean running = false;
+  private boolean strafing = true; //starts here
 
   public ShootyEnemy (Room a) {
     attack = 1;

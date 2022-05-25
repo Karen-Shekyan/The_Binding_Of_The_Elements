@@ -83,8 +83,6 @@ void draw() {
       LEVEL.explored[currentRoom%10-1][currentRoom/10] = r;
     }
 
-    LEVEL.displayMiniMap();
-
     for (int i = 0; i < r.enemies.size(); i++) {//this is contact damage. Always deals 1.
       Enemy guy = r.enemies.get(i);
       guy.move();
@@ -130,6 +128,8 @@ void draw() {
       Aang.attack();
     }
     Aang.decrementAttackCD();
+    
+    LEVEL.displayMiniMap();
   }
 }
 
@@ -151,6 +151,7 @@ void keyPressed() {
     //background(90);
     pause=!pause;
   }
+  //need map key
 }
 
 void keyReleased() {
@@ -203,7 +204,7 @@ void mouseClicked() {
 
 void startNewGame() {
   loadPixels();
-  LEVEL = new Dungeon(1);
+  LEVEL = new Dungeon(2);
   r = LEVEL.get(currentRoom);//  change later  //
   camR = 200;
   camC = 250;

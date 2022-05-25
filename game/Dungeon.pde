@@ -128,21 +128,23 @@ public class Dungeon {
   }
   
   void displayMiniMap(){
-    noStroke(); //do i need this?
-    //int roomCode = 10*roomY+roomX+1
-    for (int i=(currentRoom%10-1)-2; i<3+(currentRoom%10-1); i++){
-      for (int j=(currentRoom/10)-2; j<3+(currentRoom/10); j++){
+    noStroke();
+    //background of minimap
+    fill(30,30,30,150);
+    rect(width-250,5,width-5, 10+30*level.length);
+    
+    for (int i = 0; i < level.length; i++) {
+      for (int j = 0; j < level[i].length; j++) {
         if (get(10*j+i+1)==null){
           noFill();
-        } else if (j==(currentRoom/10) && i==(currentRoom%10-1)){
-          fill(200);
-        } else if (get(10*j+i+1)==explored[i][j]) {
+        } else if (i==(currentRoom%10-1) && j==(currentRoom/10)){
+          fill(220);
+        } else if (explored[i][j] != null) {
           fill(150);
-        } else {
+        } else {// unexplored rooms should be invisible.
           fill(100);
         }
-        //fill(20);
-        rect(width-170+30*(i+2-(currentRoom%10-1)),20+30*(j+2-(currentRoom/10)),27,27);
+        rect(width - 245 + 30*(j), 10 + 30*(i), 27, 27);
       }
     }
   }
