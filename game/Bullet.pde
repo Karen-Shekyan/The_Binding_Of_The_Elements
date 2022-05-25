@@ -34,7 +34,7 @@ class Bullet extends Hitbox {
     yPos += vy;
 
     if (xPos <= wt+getR() || yPos <= wt+getR() || xPos >= r.COLS-wt-getR() || yPos >= r.ROWS-wt-getR()) {
-      if (playerBullet) { //<>//
+      if (playerBullet) { //<>// //<>//
         r.playerBullets.remove(this);
       } else {
         r.enemyBullets.remove(this);
@@ -51,10 +51,5 @@ class Bullet extends Hitbox {
       }
     }
     return false;
-  }
-
-  //instead of separate enemyBullet and playerBullet classes, i made a nifty boolean! we probably won't even use it since the bullets are in separate lists based on type (well they will be, we still don't have enemy bullets)
-  boolean isPlayerBullet() {
-    return playerBullet;
   }
 }
