@@ -55,6 +55,7 @@ Karen Shekyan:
 
 Jonathan Shavit:
 - made a death screen, a pause screen, and a menu screen (really a title screen)
+- made a minimap that shows dungeon layout, current room, and explored rooms (no indicators for special rooms and the like yet though)
 
 Karen Shekyan:
 - Fixed Touchy and the coordinate system. Now ALL positions are relative to the ROOM.
