@@ -126,4 +126,24 @@ public class Dungeon {
     }
     return ans;
   }
+  
+  void displayMiniMap(){
+    noStroke(); //do i need this?
+    //int roomCode = 10*roomY+roomX+1
+    for (int i=(currentRoom%10-1)-2; i<3+(currentRoom%10-1); i++){
+      for (int j=(currentRoom/10)-2; j<3+(currentRoom/10); j++){
+        if (get(10*j+i+1)==null){
+          noFill();
+        } else if (j==(currentRoom/10) && i==(currentRoom%10-1)){
+          fill(200);
+        } else if (get(10*j+i+1)==explored[i][j]) {
+          fill(150);
+        } else {
+          fill(100);
+        }
+        //fill(20);
+        rect(width-170+30*(i+2-(currentRoom%10-1)),20+30*(j+2-(currentRoom/10)),27,27);
+      }
+    }
+  }
 }
