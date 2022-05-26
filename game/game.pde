@@ -4,6 +4,7 @@ float camC = 250;//corresponds to x
 boolean dead = false;
 boolean menu = true;
 boolean pause;
+boolean gameSaved;
 
 //controls for Player
 boolean R = false;
@@ -52,6 +53,7 @@ void draw() {
     ////LEVEL = new Dungeon(1);
     //r = LEVEL.get(35);//  change later  //
     //Aang = new Player();
+    gameSaved=false;//should move that to the player's die method, honestly, but then it's two files to push
     showDeathScreen();
   } else if (menu) {
     //menu screen
@@ -181,7 +183,9 @@ void mouseClicked() {
   if (menu) {
     if (mouseX > width/2-55 && mouseX < width/2+30 && mouseY > 3*height/5-40 & mouseY < 3*height/5+5) {
       menu=false;
-      startNewGame();
+      if (!gameSaved){
+        startNewGame();
+      }
     }
     if (mouseX > width/2-65 && mouseX < width/2+25 && mouseY > 3*height/4-40 & mouseY < 3*height/4+5) {
       exit();
@@ -199,7 +203,13 @@ void mouseClicked() {
       startNewGame();
     }
   }
-  //if (pause) {}
+  if (pause) {
+    if (mouseX > width/2-110 && mouseX < width/2+105 && mouseY > 3*height/5-30 & mouseY < 3*height/5+5) {
+      gameSaved=true;
+      pause=false;
+      menu=true;
+    } 
+  }
 }
 
 void startNewGame() {
