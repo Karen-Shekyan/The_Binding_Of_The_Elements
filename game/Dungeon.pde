@@ -160,6 +160,7 @@ public class Dungeon {
         drawSkull(width - 245 + 30*(j)+13, 10 + 20*(i)+7);
       }
     }
+    stroke(1);
   }
   
   void drawSkull(int x, int y){

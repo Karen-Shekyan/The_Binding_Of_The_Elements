@@ -30,7 +30,7 @@ public class Player implements Character {
     return body;
   }
 
-  void calculateMultiplier() {
+  void calculateMultiplier() {//based on mode and terrain
     if (weaponMode == 0) {
       if (pixels[width*(int)(y-camR) + (int)(x-camC)] == WATER) {
         damageMultiplier = 1.5;

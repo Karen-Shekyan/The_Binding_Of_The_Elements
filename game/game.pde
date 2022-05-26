@@ -149,7 +149,7 @@ void keyPressed() {
   if (key == 's') {
     D = true;
   }
-  if (key == 'p') { //i'll find a diff/better key later. esc, maybe?
+  if (key == 'p' && !dead && !menu) { //i'll find a diff/better key later. esc, maybe?
     //background(90);
     pause=!pause;
   }
