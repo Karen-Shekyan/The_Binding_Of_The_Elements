@@ -64,6 +64,13 @@ Karen Shekyan:
 
 ###### 5/25/22
 
+Jonathan Shavit:
+- slightly altered minimap to better match the original game's style
+- added markers to the minimap (boss, treasure, shop), which i stupidly hard-coded
+- modified the pause menu to include the option to quit to menu
+- made the game load your previous run when you click play after quitting to menu
+- made some heart sprites. i spent way too long on those
+
 Karen Shekyan:
 - Fixed Dungeon generating twice on start.
 - Fixed minimap. Added translucent background to it. Made is display on top of everything else.
