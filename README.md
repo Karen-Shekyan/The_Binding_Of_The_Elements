@@ -66,4 +66,4 @@ Karen Shekyan:
 
 Karen Shekyan:
 - Fixed Dungeon generating twice on start.
-- Fixed minimap. Added translucent background to it. Made is display on top of everything else.
+- Fixed minimap. Added translucent background to it. Made it display on top of everything else.
