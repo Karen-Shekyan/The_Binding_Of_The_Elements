@@ -74,3 +74,8 @@ Jonathan Shavit:
 Karen Shekyan:
 - Fixed Dungeon generating twice on start.
 - Fixed minimap. Added translucent background to it. Made it display on top of everything else.
+
+###### 5/26/22
+
+Jonathan Shavit:
+- changed the HUD so it displays the heart sprites instead of using circles
