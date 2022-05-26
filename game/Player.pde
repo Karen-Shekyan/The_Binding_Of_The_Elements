@@ -218,10 +218,10 @@ public class Player implements Character {
     //display health
     for (int i = 0; i < maxHealth; i++) {
       if (i < health) {
-        if (i%2 == 0) {//left
-          shape(halfHeart, 10+(i+1)*30, 10,44,44);
-        } else {//right
+        if (i%2 == 1) {
           shape(redHeart, 10+i*30, 10,44,44);
+        } else if (i+1==health) {
+          shape(halfHeart, 10+(i+1)*30, 10,44,44);
         }
       } else if (i%2==0) {
         shape(emptyHeart, 10+(i+1)*30, 10,44,44);
@@ -229,10 +229,10 @@ public class Player implements Character {
     }
     for (int i = 0; i < tempHealth; i++) {
       fill(135);
-      if (i%2 == 0) {//left
-          shape(halfSpiritHeart, 30*maxHealth+10+(i+1)*30, 10,44,44);
-        } else {//right
+      if (i%2 == 1) {
           shape(spiritHeart, 30*maxHealth+10+i*30, 10,44,44);
+        } else if (i+1==tempHealth){
+          shape(halfSpiritHeart, 30*maxHealth+10+(i+1)*30, 10,44,44);
         }
     }
   }
