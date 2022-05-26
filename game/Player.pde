@@ -18,6 +18,7 @@ public class Player implements Character {
   public Player () {
     health = 6;
     maxHealth = 6;
+    //tempHealth = 5;
     attack = 3;//subject to change
     x = 500+camC;
     y = 400+camR;
@@ -217,24 +218,22 @@ public class Player implements Character {
     //display health
     for (int i = 0; i < maxHealth; i++) {
       if (i < health) {
-        fill(186, 39, 22);
-      } else {
-        noFill();
-      }
-
-      if (i%2 == 0) {//left
-        arc(40+i*30, 40, 30, 30, HALF_PI, 3*HALF_PI);
-      } else {//right
-        arc(40+(i-1)*30, 40, 30, 30, 3*HALF_PI, 5*HALF_PI);
+        if (i%2 == 0) {//left
+          shape(halfHeart, 10+(i+1)*30, 10,44,44);
+        } else {//right
+          shape(redHeart, 10+i*30, 10,44,44);
+        }
+      } else if (i%2==0) {
+        shape(emptyHeart, 10+(i+1)*30, 10,44,44);
       }
     }
     for (int i = 0; i < tempHealth; i++) {
       fill(135);
       if (i%2 == 0) {//left
-        arc((maxHealth)*40+i*30-20, 40, 30, 30, HALF_PI, 3*HALF_PI);
-      } else {//right
-        arc((maxHealth)*40+(i-1)*30-20, 40, 30, 30, 3*HALF_PI, 5*HALF_PI);
-      }
+          shape(halfSpiritHeart, 30*maxHealth+10+(i+1)*30, 10,44,44);
+        } else {//right
+          shape(spiritHeart, 30*maxHealth+10+i*30, 10,44,44);
+        }
     }
   }
 
