@@ -131,7 +131,7 @@ public class Dungeon {
     noStroke();
     //background of minimap
     fill(30,30,30,150);
-    rect(width-250,5,width-5, 10+30*level.length);
+    rect(width-250, 5, width-5, 10+30*level.length);
     
     for (int i = 0; i < level.length; i++) {
       for (int j = 0; j < level[i].length; j++) {
@@ -147,5 +147,6 @@ public class Dungeon {
         rect(width - 245 + 30*(j), 10 + 30*(i), 27, 27);
       }
     }
+    stroke(1);
   }
 }

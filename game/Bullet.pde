@@ -1,5 +1,3 @@
-//its a separate class so i can color it
-
 class Bullet extends Hitbox {
   color col;
   boolean playerBullet;
@@ -36,7 +34,7 @@ class Bullet extends Hitbox {
     if (xPos <= wt+getR() || yPos <= wt+getR() || xPos >= r.COLS-wt-getR() || yPos >= r.ROWS-wt-getR()) {
       if (playerBullet) { //<>// //<>//
         r.playerBullets.remove(this);
-      } else {
+      } else { //<>//
         r.enemyBullets.remove(this);
       }
     }
