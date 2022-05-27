@@ -205,8 +205,6 @@ public class Player implements Character {
 
 
   void display() {
-    stroke(0);
-    strokeWeight(1);
     
     fill(255);
     textSize(20);
