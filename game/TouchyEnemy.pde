@@ -55,6 +55,9 @@ class TouchyEnemy implements Enemy {
   }
 
   void display() {
+    stroke(0);
+    strokeWeight(1);
+    
     fill(105, 66, 245);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
     

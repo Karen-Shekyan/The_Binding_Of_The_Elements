@@ -71,6 +71,9 @@ class ShootyEnemy implements Enemy {
   }
 
   void display() {
+    stroke(0);
+    strokeWeight(1);
+    
     fill(0, 150, 150);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
 

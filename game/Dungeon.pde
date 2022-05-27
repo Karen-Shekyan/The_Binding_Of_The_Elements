@@ -193,15 +193,18 @@ public class Dungeon {
         if (get(10*j+i+1)==null) {
           noStroke();
         } else if (i==(currentRoom%10-1) && j==(currentRoom/10)) {
+          noStroke();
           fill(220);
           rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
           drawPins(i, j);
         } else if (getExplored(10*j+i+1) != null) {
+          noStroke();
           fill(150);
           rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
           drawPins(i, j);
         } else if (getExplored(10*j+i+1)==null  && (getExplored(10*j+i+1+10) != null || getExplored(10*j+i+1-10) != null || getExplored(10*j+i) != null || getExplored(10*j+i+2) != null)) {
           // unexplored rooms should be invisible.
+          noStroke();
           fill(100);
           rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
           drawPins(i, j);
@@ -261,6 +264,8 @@ public class Dungeon {
   }
 
   void drawCoin(int x, int y) {
+    stroke(0);
+    strokeWeight(1);
     fill(170, 140, 130);
     ellipse(x, y, 13, 13);
     textSize(12);
@@ -269,6 +274,8 @@ public class Dungeon {
   }
 
   void drawCrown(int x, int y) {
+    stroke(0);
+    strokeWeight(1);
     fill(255, 240, 50);
     triangle(x, y+13, x+10, y+13, x, y);
     triangle(x, y+13, x+10, y+13, x+10, y);
