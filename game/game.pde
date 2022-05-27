@@ -250,6 +250,7 @@ void mouseClicked() {
 void startNewGame() {
   loadPixels();
   LEVEL = new Dungeon(2);
+  currentRoom = 35;
   r = LEVEL.get(currentRoom);//  change later  //
   camR = 200;
   camC = 250;
