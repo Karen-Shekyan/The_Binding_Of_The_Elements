@@ -22,12 +22,17 @@ public class Room {
     for (int i = 0; i < ROWS; i++) {
       for (int j = 0; j < COLS; j++) {
         //info each element contains
+        //use two waves for better effect
         noiseDetail(1);
         floor[i][j] = noise(j/200.0, i/200.0)*2;
 
         if (i <= wt || j <= wt || j >= COLS-wt || i >= ROWS-wt) {//wall
           floor[i][j] = -1;
         }
+        //door
+        //if ((i <= wt && j <= COLS/2 + 75 && j >= COLS/2 - 75) || (i >= ROWS-wt && j <= COLS/2 + 75 && j >= COLS/2 - 75) || (j <= wt && i <= ROWS/2 + 75 && i >= ROWS/2 - 75) || (j >= COLS-wt && i <= ROWS/2 + 75 && i >= ROWS/2 - 75)) {
+        //  floor[i][j] = -2;
+        //}
       }
     }
 

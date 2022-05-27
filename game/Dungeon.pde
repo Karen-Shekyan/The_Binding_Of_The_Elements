@@ -24,7 +24,12 @@ public class Dungeon {
   }
 
   public Room get(int r, int c) {
-    return level[r][c];
+    try {
+      return level[r][c];
+    } catch (IndexOutOfBoundsException ex) {
+      println("caught");
+      return null;
+    }
   }
 
   public void generate(int n) {
@@ -91,12 +96,54 @@ public class Dungeon {
       println("failed");//    for debugging    //
       generate(n);
     } else {
+      //place special rooms
       int boss = endRooms.get(endRooms.size()-1);
       int shop = endRooms.get(endRooms.size()-2);
       int treasure = endRooms.get(endRooms.size()-3);
       level[boss%10-1][boss/10] = new Room(4);
       level[shop%10-1][shop/10] = new Room(3);
       level[treasure%10-1][treasure/10] = new Room(2);
+      
+      //place doors
+      for (int i = 0; i < level.length; i++) {
+        for (int j = 0; j < level[i].length; j++) {
+          Room at = get(i,j);
+          
+          if (at != null) {
+            if (get(i-1,j) != null) {//up
+              for (int k = 0; k <= wt; k++) {
+                for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
+                  at.floor[k][l] = -2;
+                }
+              }
+            }
+            
+            if (get(i+1,j) != null) {//down
+              for (int k = at.ROWS-wt; k < at.ROWS; k++) {
+                for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
+                  at.floor[k][l] = -2;
+                }
+              }
+            }
+            
+            if (get(i,j-1) != null) {//left
+              for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
+                for (int l = 0; l <= wt; l++) {
+                  at.floor[k][l] = -2;
+                }
+              }
+            }
+            
+            if (get(i,j+1) != null) {//right
+              for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
+                for (int l = at.COLS-wt; l < at.COLS; l++) {
+                  at.floor[k][l] = -2;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -136,6 +183,7 @@ public class Dungeon {
     for (int i = 0; i < level.length; i++) {
       for (int j = 0; j < level[i].length; j++) {
         if (get(10*j+i+1)==null) {
+          noStroke();
           noFill();
         } else if (i==(currentRoom%10-1) && j==(currentRoom/10)) {
           fill(220);
