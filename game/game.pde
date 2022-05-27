@@ -62,12 +62,6 @@ void setup() {
 
 void draw() {
   if (dead) {
-    //dead = false;
-    //size(1000, 800);
-    //loadPixels();
-    ////LEVEL = new Dungeon(1);
-    //r = LEVEL.get(35);//  change later  //
-    //Aang = new Player();
     gameSaved=false;//should move that to the player's die method, honestly, but then it's two files to push
     showDeathScreen();
   } else if (menu) {
@@ -77,10 +71,36 @@ void draw() {
     //pause screen
     pauseGame();
   } else {
-
+    //check for door
+    if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
+      currentRoom += 10;
+      r = LEVEL.get(currentRoom);
+      camC = 0;
+      Aang.setX(wt + Aang.getR() + 2);
+    }
+    if (r.floor[(int)Aang.getY()][(int)Aang.getX() - Aang.getR() - 1] == -2) {//left
+      currentRoom -= 10;
+      r = LEVEL.get(currentRoom);
+      camC = r.COLS-width;
+      Aang.setX(r.COLS - wt - Aang.getR() - 2);
+    }
+    if (r.floor[(int)Aang.getY() + Aang.getR() + 1][(int)Aang.getX()] == -2) {//down
+      currentRoom += 1;
+      r = LEVEL.get(currentRoom);
+      camR = 0;
+      Aang.setY(wt + Aang.getR() + 2);
+    }
+    if (r.floor[(int)Aang.getY() - Aang.getR() - 1][(int)Aang.getX()] == -2) {//up
+      currentRoom -= 1;
+      r = LEVEL.get(currentRoom);
+      camR = r.ROWS-height;
+      Aang.setY(r.ROWS - wt - Aang.getR() - 2);
+    }
+    
+    //display floor
     for (int i = (int)camR; i < height+(int)camR; i++) {
       for (int j = (int)camC; j < width+(int)camC; j++) {
-        if (r.floor[i][j] == -1) {//make 6 sections, not 4
+        if (r.floor[i][j] == -1) {
           pixels[width*(i-(int)camR) + (j-(int)camC)] = color(0);
         } else if (r.floor[i][j] > 0.70) {//earth
           pixels[width*(i-(int)camR) + (j-(int)camC)] = EARTH;
