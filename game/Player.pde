@@ -287,4 +287,12 @@ public class Player implements Character {
   int getR() {
     return radius;
   }
+  
+  void setX(float n) {
+    x = n;
+  }
+  
+  void setY(float n) {
+    y = n;
+  }
 }

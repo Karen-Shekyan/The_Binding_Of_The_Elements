@@ -56,30 +56,33 @@ void draw() {
     //pause screen
     pauseGame();
   } else {
-
     //check for door
-    println(Aang.getY() + " " + Aang.getX());
-    //if (r.floor[(int)Aang.getY()][(int)Aang.getX()] == -2) {
-    //  if (vy < 0) {//up
-    //    currentRoom -= 1;
-    //    r = LEVEL.get(currentRoom);
-    //    camR = r.ROWS-height;
-    //  } else if (vy > 0) {//down
-    //    currentRoom += 1;
-    //    r = LEVEL.get(currentRoom);
-    //    camR = 0;
-    //  } else if (vx < 0) {//left
-    //    currentRoom -= 10;
-    //    r = LEVEL.get(currentRoom);
-    //    camC = r.COLS-width;
-    //  } else if (vx > 0) {//right
-    //    currentRoom += 10;
-    //    r = LEVEL.get(currentRoom);
-    //    camC = 0;
-    //  }
-    //}
-    if (Aang.getX() + 
+    if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
+      currentRoom += 10;
+      r = LEVEL.get(currentRoom);
+      camC = 0;
+      Aang.setX(wt + Aang.getR() + 2);
+    }
+    if (r.floor[(int)Aang.getY()][(int)Aang.getX() - Aang.getR() - 1] == -2) {//left
+      currentRoom -= 10;
+      r = LEVEL.get(currentRoom);
+      camC = r.COLS-width;
+      Aang.setX(r.COLS - wt - Aang.getR() - 2);
+    }
+    if (r.floor[(int)Aang.getY() + Aang.getR() + 1][(int)Aang.getX()] == -2) {//down
+      currentRoom += 1;
+      r = LEVEL.get(currentRoom);
+      camR = 0;
+      Aang.setY(wt + Aang.getR() + 2);
+    }
+    if (r.floor[(int)Aang.getY() - Aang.getR() - 1][(int)Aang.getX()] == -2) {//up
+      currentRoom -= 1;
+      r = LEVEL.get(currentRoom);
+      camR = r.ROWS-height;
+      Aang.setY(r.ROWS - wt - Aang.getR() - 2);
+    }
     
+    //display floor
     for (int i = (int)camR; i < height+(int)camR; i++) {
       for (int j = (int)camC; j < width+(int)camC; j++) {
         if (r.floor[i][j] == -1) {
