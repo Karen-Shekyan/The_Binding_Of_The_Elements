@@ -77,6 +77,10 @@ Karen Shekyan:
 
 ###### 5/26/22
 
+Jonathan Shavit:
+- changed the HUD so it displays the heart sprites instead of using circles
+- changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
+
 Karen Shekyan:
 - Made doors generate in each room upon dungeon generation.
 - Room transitions working properly! Doors have no texture, add later.

@@ -154,6 +154,13 @@ public class Dungeon {
     return level[n%10-1][n/10];
   }
 
+  private Room getExplored(int n) {
+    if (n < 0 || n%10 == 0 || n/10 == -1 || n/10 >= 8) {//bounds check
+      return null;
+    }
+    return explored[n%10-1][n/10];
+  }
+
   private int countNeighbors(int n) {
     if (n < 0) {
       return 2;
@@ -182,14 +189,47 @@ public class Dungeon {
 
     for (int i = 0; i < level.length; i++) {
       for (int j = 0; j < level[i].length; j++) {
+        noFill();
         if (get(10*j+i+1)==null) {
           noStroke();
-          noFill();
+        } else if (i==(currentRoom%10-1) && j==(currentRoom/10)) {
+          noStroke();
+          fill(220);
+          rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
+          drawPins(i, j);
+        } else if (getExplored(10*j+i+1) != null) {
+          noStroke();
+          fill(150);
+          rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
+          drawPins(i, j);
+        } else if (getExplored(10*j+i+1)==null  && (getExplored(10*j+i+1+10) != null || getExplored(10*j+i+1-10) != null || getExplored(10*j+i) != null || getExplored(10*j+i+2) != null)) {
+          // unexplored rooms should be invisible.
+          noStroke();
+          fill(100);
+          rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
+          drawPins(i, j);
+        }
+      }
+    }
+  }
+  
+  void displayMiniMapDebug() {
+    noStroke();
+    //background of minimap
+    fill(30, 30, 30, 150);
+    rect(width-250, 5, width-5, 10+20*level.length);
+
+    for (int i = 0; i < level.length; i++) {
+      for (int j = 0; j < level[i].length; j++) {
+        noFill();
+        if (get(10*j+i+1)==null) {
+          noStroke();
         } else if (i==(currentRoom%10-1) && j==(currentRoom/10)) {
           fill(220);
-        } else if (explored[i][j] != null) {
+        } else if (getExplored(10*j+i+1) != null) {
           fill(150);
-        } else {// unexplored rooms should be invisible.
+        } else if (getExplored(10*j+i+1)==null  && (getExplored(10*j+i+1+10) != null || getExplored(10*j+i+1-10) != null || getExplored(10*j+i) != null || getExplored(10*j+i+2) != null)) {
+          // unexplored rooms should be invisible.
           fill(100);
         }
         rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
@@ -210,31 +250,35 @@ public class Dungeon {
     }
     stroke(1);
   }
-  
-  void drawSkull(int x, int y){
+
+  void drawSkull(int x, int y) {
     fill(150);
-    ellipse(x,y,12,12);
-    rect(x-4,y,8,9);
+    noStroke();
+    ellipse(x, y, 12, 12);
+    rect(x-4, y, 8, 9);
     fill(10);
     stroke(0.5);
-    line(x-4,y+7,x+4,y+5);
-    ellipse(x-3,y,4,3);
-    ellipse(x+3,y,4,3);
-    noStroke();
+    line(x-4, y+7, x+4, y+7);
+    ellipse(x-3, y, 4, 3);
+    ellipse(x+3, y, 4, 3);
   }
-  
-  void drawCoin(int x, int y){
-    fill(170,140,130);
-    ellipse(x,y,13,13);
+
+  void drawCoin(int x, int y) {
+    stroke(0);
+    strokeWeight(1);
+    fill(170, 140, 130);
+    ellipse(x, y, 13, 13);
     textSize(12);
     fill(10);
-    text("¢",x-4,y+4.6);
+    text("¢", x-4, y+4.6);
   }
 
   void drawCrown(int x, int y) {
+    stroke(0);
+    strokeWeight(1);
     fill(255, 240, 50);
     triangle(x, y+13, x+10, y+13, x, y);
-    triangle(x, y+13, x+10, y+13, x+5, y);
     triangle(x, y+13, x+10, y+13, x+10, y);
+    triangle(x, y+13, x+10, y+13, x+5, y-3);
   }
 }

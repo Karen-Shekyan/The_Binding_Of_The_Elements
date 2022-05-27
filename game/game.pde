@@ -35,8 +35,23 @@ Dungeon LEVEL;
 int menuTextMode = 0;
 int currentRoom = 35; //there's no way to tell the starting pos fro a get method, so i'm using the hard-coded start of generation
 
+//sprites
+PShape redHeart;
+PShape halfHeart;
+PShape spiritHeart; //the temp health
+PShape halfSpiritHeart;
+PShape emptyHeart;
+
 void setup() {
   size(1000, 800);
+
+  //for form, i'll initialize them in here but declare them outide
+  redHeart = loadShape("red-heart.svg");
+  halfHeart = loadShape("half-red-heart.svg");
+  spiritHeart = loadShape("blue-heart.svg"); //the temp health
+  halfSpiritHeart = loadShape("half-heart-jagged.svg");
+  emptyHeart = loadShape("empty-heart.svg");
+
   //startNewGame();
   //size(1000, 800);
   //loadPixels();
@@ -150,7 +165,7 @@ void draw() {
       Aang.attack();
     }
     Aang.decrementAttackCD();
-    
+
     LEVEL.displayMiniMap();
   }
 }
@@ -203,7 +218,7 @@ void mouseClicked() {
   if (menu) {
     if (mouseX > width/2-55 && mouseX < width/2+30 && mouseY > 3*height/5-40 & mouseY < 3*height/5+5) {
       menu=false;
-      if (!gameSaved){
+      if (!gameSaved) {
         startNewGame();
       }
     }
@@ -228,13 +243,14 @@ void mouseClicked() {
       gameSaved=true;
       pause=false;
       menu=true;
-    } 
+    }
   }
 }
 
 void startNewGame() {
   loadPixels();
   LEVEL = new Dungeon(2);
+  currentRoom = 35;
   r = LEVEL.get(currentRoom);//  change later  //
   camR = 200;
   camC = 250;
