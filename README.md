@@ -15,10 +15,10 @@ https://docs.google.com/document/d/14aSD5MYKt3-_xdbgievmI_6Ht4iWH8zdrucnTaJyMbY/
 ### Devlog
 ###### 5/20/22
 Jonathan Shavit:
-- wrote Enemy interface, Hitbox class, Hurtbox class, and DummyEnemy class.
-- did not code the isTouching method int Hitbox because an issue with the hitboxes was brought up by Karen
-- did not code die method because some necessary instance variables in the Room class are not properly done (list of enemies)
-- methods in DummyEnemy class were defined as needed for a non-moving test enemy (move is blank, attack is blank, etc.)
+- Wrote Enemy interface, Hitbox class, Hurtbox class, and DummyEnemy class.
+- Did not code the isTouching method int Hitbox because an issue with the hitboxes was brought up by Karen
+- Did not code die method because some necessary instance variables in the Room class are not properly done (list of enemies)
+- Methods in DummyEnemy class were defined as needed for a non-moving test enemy (move is blank, attack is blank, etc.)
 
 Karen Shekyan:
 - Added basic stuff to *game* sketch, made Room class, Character interface, Player class.
@@ -33,8 +33,8 @@ Karen Shekyan:
 
 ###### 5/22/22
 Jonathan Shavit:
-- wrote TouchyEnemy class, which moves towards the player and deals contact damage
-- tried making a Bullet class. they deal damage and are released properly, but don't move (so they're like permanent mines)
+- Wrote TouchyEnemy class, which moves towards the player and deals contact damage
+- Tried making a Bullet class. they deal damage and are released properly, but don't move (so they're like permanent mines)
 
 Karen Shekyan:
 - Added Dungeon class. It generates properly, allegedly. Special rooms generate as they should.
@@ -43,7 +43,7 @@ Karen Shekyan:
 
 ###### 5/23/22
 Jonathan Shavit:
-- thought i pulled, but didn't, and ended up basically coding what Karen did
+- Thought I pulled, but didn't, and ended up basically coding what Karen did
 
 Karen Shekyan:
 - Fixed bullets, now functional. Move properly and deal damage.
@@ -54,8 +54,8 @@ Karen Shekyan:
 ###### 5/24/22
 
 Jonathan Shavit:
-- made a death screen, a pause screen, and a menu screen (really a title screen)
-- made a minimap that shows dungeon layout, current room, and explored rooms (no indicators for special rooms and the like yet though)
+- Made a death screen, a pause screen, and a menu screen (really a title screen)
+- Made a minimap that shows dungeon layout, current room, and explored rooms (no indicators for special rooms and the like yet though)
 
 Karen Shekyan:
 - Fixed Touchy and the coordinate system. Now ALL positions are relative to the ROOM.
@@ -65,11 +65,11 @@ Karen Shekyan:
 ###### 5/25/22
 
 Jonathan Shavit:
-- slightly altered minimap to better match the original game's style
-- added markers to the minimap (boss, treasure, shop), which i stupidly hard-coded
-- modified the pause menu to include the option to quit to menu
-- made the game load your previous run when you click play after quitting to menu
-- made some heart sprites. i spent way too long on those
+- Slightly altered minimap to better match the original game's style
+- Added markers to the minimap (boss, treasure, shop), which I *unwisely* hard-coded
+- Modified the pause menu to include the option to quit to menu
+- Made the game load your previous run when you click play after quitting to menu
+- Made some heart sprites. I spent way too long on those
 
 Karen Shekyan:
 - Fixed Dungeon generating twice on start.
@@ -80,3 +80,7 @@ Karen Shekyan:
 Jonathan Shavit:
 - changed the HUD so it displays the heart sprites instead of using circles
 - changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
+
+Karen Shekyan:
+- Made doors generate in each room upon dungeon generation.
+- Room transitions working properly! Doors have no texture, add later.
