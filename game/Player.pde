@@ -189,6 +189,9 @@ public class Player implements Character {
         y = Math.min(y + vy, r.ROWS-radius-wt);
       }
     }
+    
+    //detect door
+    
 
     calculateMultiplier();
     moveHurt();
@@ -279,5 +282,17 @@ public class Player implements Character {
 
   float getY() {
     return y;
+  }
+  
+  int getR() {
+    return radius;
+  }
+  
+  void setX(float n) {
+    x = n;
+  }
+  
+  void setY(float n) {
+    y = n;
   }
 }
