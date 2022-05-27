@@ -79,3 +79,4 @@ Karen Shekyan:
 
 Jonathan Shavit:
 - changed the HUD so it displays the heart sprites instead of using circles
+- changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
