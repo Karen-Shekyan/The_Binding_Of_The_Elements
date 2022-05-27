@@ -153,6 +153,7 @@ void draw() {
 
       if (bullet.isTouching(Aang)) {
         Aang.takeDamage(bullet.getDam());
+        Aang.knockback(bullet.vx * 0.8, bullet.vy * 0.8);       //knockback applied to player here. Mess with the numbers more.
         r.enemyBullets.remove(bullet);//    put this into hitbox once room is fixed    //
       }
       bullet.display();
@@ -257,4 +258,6 @@ void startNewGame() {
   camR = 200;
   camC = 250;
   Aang = new Player();
+  vx = 0;
+  vy = 0;
 }
