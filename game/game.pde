@@ -165,6 +165,8 @@ void draw() {
       Aang.attack();
     }
     Aang.decrementAttackCD();
+    Aang.decrementStun();
+    Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
   }
