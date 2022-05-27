@@ -5,6 +5,7 @@ boolean dead = false;
 boolean menu = true;
 boolean pause;
 boolean gameSaved;
+boolean bigMap;
 
 //controls for Player
 boolean R = false;
@@ -188,7 +189,9 @@ void keyPressed() {
     //background(90);
     pause=!pause;
   }
-  //need map key
+  if (keyCode == TAB){ //map size toggle
+    bigMap =! bigMap;
+  }
 }
 
 void keyReleased() {

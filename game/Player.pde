@@ -82,6 +82,7 @@ public class Player implements Character {
     }
     if (health <= 0) {
       die();
+      bigMap=false;
     }
   }
 
