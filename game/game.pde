@@ -7,6 +7,7 @@ boolean pause;
 boolean gameSaved;
 boolean bigMap;
 boolean endCredits;
+int endScreenTime;
 
 //controls for Player
 boolean R = false;
@@ -166,6 +167,7 @@ void draw() {
     //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
     if (LEVEL.get(bossRoom).enemies.size()==0) {
       endCredits = true;
+      endScreenTime = 0;
     }
 
     Aang.move();
@@ -256,7 +258,7 @@ void mouseClicked() {
       menu=true;
     }
   }
-  if (endCredits) {
+  if (endCredits && endScreenTime > 365) {
     //button
     if (mouseX > width/2 - 100 && mouseX < width/2+90 && mouseY < 2*height/3 + 65 && mouseY > 2*height/3 + 35) {
       //menu=false;
