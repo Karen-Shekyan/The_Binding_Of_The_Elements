@@ -6,6 +6,7 @@ boolean menu = true;
 boolean pause;
 boolean gameSaved;
 boolean bigMap;
+boolean endCredits;
 
 //controls for Player
 boolean R = false;
@@ -68,6 +69,8 @@ void draw() {
   } else if (menu) {
     //menu screen
     menu();
+  } else if (endCredits) {
+    showEndScreen();
   } else if (pause) {
     //pause screen
     pauseGame();
@@ -246,6 +249,19 @@ void mouseClicked() {
       gameSaved=true;
       pause=false;
       menu=true;
+    }
+  }
+  if (endCredits) {
+    //button
+    if (mouseX > width/2 - 100 && mouseX < width/2+90 && mouseY < 2*height/3 + 65 && mouseY > 2*height/3 + 35) {
+      //menu=false;
+      startNewGame();
+      endCredits = false;
+    }
+    //button
+    if (mouseX > width/2 - 125 && mouseX < width/2+110 && mouseY < 4*height/5 + 35 && mouseY > 4*height/5 + 5) {
+      menu = true;
+      endCredits = false;
     }
   }
 }
