@@ -102,6 +102,7 @@ public class Dungeon {
       int shop = endRooms.get(endRooms.size()-2);
       int treasure = endRooms.get(endRooms.size()-3);
       level[boss%10-1][boss/10] = new Room(4);
+      bossRoom = boss;
       level[shop%10-1][shop/10] = new Room(3);
       level[treasure%10-1][treasure/10] = new Room(2);
 

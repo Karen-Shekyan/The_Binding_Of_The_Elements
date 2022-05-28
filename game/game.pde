@@ -36,6 +36,7 @@ Player Aang;
 Dungeon LEVEL;
 int menuTextMode = 0;
 int currentRoom = 35; //there's no way to tell the starting pos fro a get method, so i'm using the hard-coded start of generation
+int bossRoom;
 
 //sprites
 PShape redHeart;
@@ -162,6 +163,10 @@ void draw() {
       bullet.display();
     }
 
+    //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
+    if (LEVEL.get(bossRoom).enemies.size()==0) {
+      endCredits = true;
+    }
 
     Aang.move();
     Aang.display();
