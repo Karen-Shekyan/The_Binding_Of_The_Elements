@@ -92,3 +92,4 @@ Jonathan Shavit:
 - wrote an end screen and made it trigger when all enemies in the boss room are killed
 - made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
 - uploaded sprites for the minimap's pins/markers
+- replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
