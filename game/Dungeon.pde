@@ -275,19 +275,23 @@ public class Dungeon {
       if (big) {
         //rect(width - 395 + 40*(j), 10 + 35*(i), 37, 32);
         if (get(10*j+i+1).roomType==2) {
-          drawCrown(width - 395 + 40*(j)+12, 10 + 35*(i)+9);
+          //drawCrown(width - 395 + 40*(j)+12, 10 + 35*(i)+9);
+          shape(crown, width - 395 + 40*(j)+8, 10 + 35*(i)+5, 20, 20);
         } else if (get(10*j+i+1).roomType==3) {
           drawCoin(width - 395 + 40*(j)+18, 10 + 35*(i)+16);
         } else if (get(10*j+i+1).roomType==4) {
-          drawSkull(width - 395 + 40*(j)+18, 10 + 35*(i)+14);
+          //drawSkull(width - 395 + 40*(j)+18, 10 + 35*(i)+14);
+          shape(skull, width - 395 + 40*(j)+8, 10 + 35*(i)+5, 20, 20);
         }
       } else { 
         if (get(10*j+i+1).roomType==2) {
-          drawCrown(width - 245 + 30*(j)+8, 10 + 20*(i)+2);
+          //drawCrown(width - 245 + 30*(j)+8, 10 + 20*(i)+2);
+          shape(crown, width - 245 + 30*(j)+7, 10 + 20*(i));
         } else if (get(10*j+i+1).roomType==3) {
           drawCoin(width - 245 + 30*(j)+13, 10 + 20*(i)+9);
         } else if (get(10*j+i+1).roomType==4) {
-          drawSkull(width - 245 + 30*(j)+13, 10 + 20*(i)+7);
+          //drawSkull(width - 245 + 30*(j)+13, 10 + 20*(i)+7);
+          shape(skull, width - 245 + 30*(j)+7, 10 + 20*(i));
         }
       }
     }

@@ -45,6 +45,9 @@ PShape halfHeart;
 PShape spiritHeart; //the temp health
 PShape halfSpiritHeart;
 PShape emptyHeart;
+PShape coin;
+PShape crown;
+PShape skull;
 
 void setup() {
   size(1000, 800);
@@ -55,6 +58,10 @@ void setup() {
   spiritHeart = loadShape("blue-heart.svg"); //the temp health
   halfSpiritHeart = loadShape("half-heart-jagged.svg");
   emptyHeart = loadShape("empty-heart.svg");
+  
+  //coin = loadShape("treasureCoin.svg");
+  crown = loadShape("crown.svg");
+  skull = loadShape("skull.svg");
 
   //startNewGame();
   //size(1000, 800);
