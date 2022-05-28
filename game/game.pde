@@ -5,6 +5,9 @@ boolean dead = false;
 boolean menu = true;
 boolean pause;
 boolean gameSaved;
+boolean bigMap;
+boolean endCredits;
+int endScreenTime;
 
 //controls for Player
 boolean R = false;
@@ -34,6 +37,7 @@ Player Aang;
 Dungeon LEVEL;
 int menuTextMode = 0;
 int currentRoom = 35; //there's no way to tell the starting pos fro a get method, so i'm using the hard-coded start of generation
+int bossRoom;
 
 //sprites
 PShape redHeart;
@@ -41,6 +45,9 @@ PShape halfHeart;
 PShape spiritHeart; //the temp health
 PShape halfSpiritHeart;
 PShape emptyHeart;
+PShape coin;
+PShape crown;
+PShape skull;
 
 void setup() {
   size(1000, 800);
@@ -51,6 +58,10 @@ void setup() {
   spiritHeart = loadShape("blue-heart.svg"); //the temp health
   halfSpiritHeart = loadShape("half-heart-jagged.svg");
   emptyHeart = loadShape("empty-heart.svg");
+  
+  //coin = loadShape("treasureCoin.svg");
+  crown = loadShape("crown.svg");
+  skull = loadShape("skull.svg");
 
   //startNewGame();
   //size(1000, 800);
@@ -67,6 +78,8 @@ void draw() {
   } else if (menu) {
     //menu screen
     menu();
+  } else if (endCredits) {
+    showEndScreen();
   } else if (pause) {
     //pause screen
     pauseGame();
@@ -158,6 +171,11 @@ void draw() {
       bullet.display();
     }
 
+    //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
+    if (LEVEL.get(bossRoom).enemies.size()==0) {
+      endCredits = true;
+      endScreenTime = 0;
+    }
 
     Aang.move();
     Aang.display();
@@ -188,7 +206,9 @@ void keyPressed() {
     //background(90);
     pause=!pause;
   }
-  //need map key
+  if (keyCode == TAB){ //map size toggle
+    bigMap =! bigMap;
+  }
 }
 
 void keyReleased() {
@@ -243,6 +263,19 @@ void mouseClicked() {
       gameSaved=true;
       pause=false;
       menu=true;
+    }
+  }
+  if (endCredits && endScreenTime > 365) {
+    //button
+    if (mouseX > width/2 - 100 && mouseX < width/2+90 && mouseY < 2*height/3 + 65 && mouseY > 2*height/3 + 35) {
+      //menu=false;
+      startNewGame();
+      endCredits = false;
+    }
+    //button
+    if (mouseX > width/2 - 125 && mouseX < width/2+110 && mouseY < 4*height/5 + 35 && mouseY > 4*height/5 + 5) {
+      menu = true;
+      endCredits = false;
     }
   }
 }
