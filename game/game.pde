@@ -59,7 +59,7 @@ void setup() {
   halfSpiritHeart = loadShape("half-heart-jagged.svg");
   emptyHeart = loadShape("empty-heart.svg");
   
-  //coin = loadShape("treasureCoin.svg");
+  coin = loadShape("textless-coin.svg");
   crown = loadShape("crown.svg");
   skull = loadShape("skull.svg");
 
