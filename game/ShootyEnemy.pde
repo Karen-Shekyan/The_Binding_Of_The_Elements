@@ -30,6 +30,7 @@ class ShootyEnemy implements Enemy {
     if (health <= 0) {
       die();
     }
+    setStun(10);
   }
 
   void decrementAttackCD() {
@@ -46,21 +47,23 @@ class ShootyEnemy implements Enemy {
   }
 
   void move() {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    float strafeDist = 200;
-    float distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
-    float error = 5;
-    if (distToPlayer > strafeDist + error) {//get closer
-      xPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
-      yPos += 3.0 * (Aang.getY()-getY())/distToPlayer;
-    } else if (distToPlayer < strafeDist - error) {//move away//  THIS IS VERY JITTERY. use states to better control.
-      xPos += -7.0 * (Aang.getX()-getX())/distToPlayer;
-      yPos += -7.0 * (Aang.getY()-getY())/distToPlayer;
-    } else {//strafe 
-      xPos += -3.0 * (Aang.getY()-getY())/distToPlayer;
-      yPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
+    if (stunTimer == 0) {
+      float strafeDist = 200;
+      float distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
+      float error = 5;
+      if (distToPlayer > strafeDist + error) {//get closer
+        xPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
+        yPos += 3.0 * (Aang.getY()-getY())/distToPlayer;
+      } else if (distToPlayer < strafeDist - error) {//move away//  THIS IS VERY JITTERY. use states to better control.
+        xPos += -7.0 * (Aang.getX()-getX())/distToPlayer;
+        yPos += -7.0 * (Aang.getY()-getY())/distToPlayer;
+      } else {//strafe 
+        xPos += -3.0 * (Aang.getY()-getY())/distToPlayer;
+        yPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
+      }
+      moveHurt();
+      moveHit();
     }
-    moveHurt();
-    moveHit();
   }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   void die() {
@@ -73,7 +76,7 @@ class ShootyEnemy implements Enemy {
   void display() {
     stroke(0);
     strokeWeight(1);
-    
+
     fill(0, 150, 150);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
 
@@ -124,7 +127,7 @@ class ShootyEnemy implements Enemy {
 
   void dropLoot() {
   }
-  
+
   Hitbox getTouchZone() {
     return touchZone;
   }

@@ -137,11 +137,14 @@ void draw() {
       Enemy guy = r.enemies.get(i);
       guy.move();
       guy.display();
-      if (guy.getTouchZone().isTouching(Aang)) {
+      if (guy.getTouchZone().isTouching(Aang)) {//             contact knockback HERE             //
         Aang.takeDamage(1);
-        Aang.knockback(vx * -2.5, vy * -2.5);
+        float dx = (Aang.getX() - guy.getX()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        float dy = (Aang.getY() - guy.getY()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        Aang.knockback(dx * 4.0, dy * 4.0);
       }
       guy.attack();
+      guy.decrementStun();
     }
 
 
