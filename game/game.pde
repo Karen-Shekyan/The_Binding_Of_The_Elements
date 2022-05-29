@@ -139,6 +139,7 @@ void draw() {
       guy.display();
       if (guy.getTouchZone().isTouching(Aang)) {
         Aang.takeDamage(1);
+        Aang.knockback(vx * -2.5, vy * -2.5);
       }
       guy.attack();
     }
@@ -166,6 +167,7 @@ void draw() {
 
       if (bullet.isTouching(Aang)) {
         Aang.takeDamage(bullet.getDam());
+        Aang.knockback(bullet.vx * 0.8, bullet.vy * 0.8);       //knockback applied to player here. Mess with the numbers more.
         r.enemyBullets.remove(bullet);//    put this into hitbox once room is fixed    //
       }
       bullet.display();
@@ -183,6 +185,8 @@ void draw() {
       Aang.attack();
     }
     Aang.decrementAttackCD();
+    Aang.decrementStun();
+    Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
   }
@@ -288,4 +292,6 @@ void startNewGame() {
   camR = 200;
   camC = 250;
   Aang = new Player();
+  vx = 0;
+  vy = 0;
 }
