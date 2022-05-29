@@ -97,7 +97,7 @@ public class Player implements Character {
       float bulletX = (mouseX - x + camC) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
       float bulletY = (mouseY - y + camR) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
       r.playerBullets.add(new Bullet(x, y, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true, (int)(attack*damageMultiplier)));
-      attackCD = 15;
+      attackCD = 20;
     }
   }
 

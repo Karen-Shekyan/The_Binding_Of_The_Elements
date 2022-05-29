@@ -78,8 +78,8 @@ Karen Shekyan:
 ###### 5/26/22
 
 Jonathan Shavit:
-- changed the HUD so it displays the heart sprites instead of using circles
-- changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
+- Changed the HUD so it displays the heart sprites instead of using circles
+- Changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
 
 Karen Shekyan:
 - Made doors generate in each room upon dungeon generation.
@@ -87,13 +87,18 @@ Karen Shekyan:
 
 ###### 5/27/22
 
+Jonathan Shavit:
+- Added a toggleable (on TAB press) expansion of the minimap
+- Wrote an end screen and made it trigger when all enemies in the boss room are killed
+- Made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
+- Uploaded sprites for the minimap's pins/markers
+- Replaced some markers on the map with the appropriate sprites (I would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
+
 Karen Shekyan:
 - Made player get invincibility frames and get stunned upon taking damage.
 - Made player receive knockback from bullets and from contact damage. The latter must be fixed.
 
-Jonathan Shavit:
-- added a toggleable (on TAB press) expansion of the minimap
-- wrote an end screen and made it trigger when all enemies in the boss room are killed
-- made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
-- uploaded sprites for the minimap's pins/markers
-- replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
+###### 5/28/22
+
+Karen Shekyan:
+- Improved player knockback.
