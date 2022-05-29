@@ -26,7 +26,8 @@ public class Dungeon {
   public Room get(int r, int c) {
     try {
       return level[r][c];
-    } catch (IndexOutOfBoundsException ex) {
+    } 
+    catch (IndexOutOfBoundsException ex) {
       println("caught");
       return null;
     }
@@ -101,40 +102,41 @@ public class Dungeon {
       int shop = endRooms.get(endRooms.size()-2);
       int treasure = endRooms.get(endRooms.size()-3);
       level[boss%10-1][boss/10] = new Room(4);
+      bossRoom = boss;
       level[shop%10-1][shop/10] = new Room(3);
       level[treasure%10-1][treasure/10] = new Room(2);
-      
+
       //place doors
       for (int i = 0; i < level.length; i++) {
         for (int j = 0; j < level[i].length; j++) {
-          Room at = get(i,j);
-          
+          Room at = get(i, j);
+
           if (at != null) {
-            if (get(i-1,j) != null) {//up
+            if (get(i-1, j) != null) {//up
               for (int k = 0; k <= wt; k++) {
                 for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
                   at.floor[k][l] = -2;
                 }
               }
             }
-            
-            if (get(i+1,j) != null) {//down
+
+            if (get(i+1, j) != null) {//down
               for (int k = at.ROWS-wt; k < at.ROWS; k++) {
                 for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
                   at.floor[k][l] = -2;
                 }
               }
             }
-            
-            if (get(i,j-1) != null) {//left
+
+            if (get(i, j-1) != null) {//left
               for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
                 for (int l = 0; l <= wt; l++) {
                   at.floor[k][l] = -2;
                 }
               }
             }
-            
-            if (get(i,j+1) != null) {//right
+
+            if (get(i, j+1) != null) {//right
               for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
                 for (int l = at.COLS-wt; l < at.COLS; l++) {
                   at.floor[k][l] = -2;
@@ -185,34 +187,64 @@ public class Dungeon {
     noStroke();
     //background of minimap
     fill(30, 30, 30, 150);
-    rect(width-250, 5, width-5, 10+20*level.length);
 
-    for (int i = 0; i < level.length; i++) {
-      for (int j = 0; j < level[i].length; j++) {
-        noFill();
-        if (get(10*j+i+1)==null) {
-          noStroke();
-        } else if (i==(currentRoom%10-1) && j==(currentRoom/10)) {
-          noStroke();
-          fill(220);
-          rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
-          drawPins(i, j);
-        } else if (getExplored(10*j+i+1) != null) {
-          noStroke();
-          fill(150);
-          rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
-          drawPins(i, j);
-        } else if (getExplored(10*j+i+1)==null  && (getExplored(10*j+i+1+10) != null || getExplored(10*j+i+1-10) != null || getExplored(10*j+i) != null || getExplored(10*j+i+2) != null)) {
-          // unexplored rooms should be invisible.
-          noStroke();
-          fill(100);
-          rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
-          drawPins(i, j);
+    if (bigMap) {
+      rect(width-400, 5, width-5, 10+35*level.length);
+
+      for (int i = 0; i < level.length; i++) {
+        for (int j = 0; j < level[i].length; j++) {
+          noFill();
+          if (get(10*j+i+1)==null) {
+            noStroke();
+          } else if (i==(currentRoom%10-1) && j==(currentRoom/10)) {
+            noStroke();
+            fill(220);
+            rect(width - 395 + 40*(j), 10 + 35*(i), 37, 32);
+            drawPins(i, j, bigMap);
+          } else if (getExplored(10*j+i+1) != null) {
+            noStroke();
+            fill(150);
+            rect(width - 395 + 40*(j), 10 + 35*(i), 37, 32);
+            drawPins(i, j, bigMap);
+          } else if (getExplored(10*j+i+1)==null  && (getExplored(10*j+i+1+10) != null || getExplored(10*j+i+1-10) != null || getExplored(10*j+i) != null || getExplored(10*j+i+2) != null)) {
+            // unexplored rooms should be invisible.
+            noStroke();
+            fill(100);
+            rect(width - 395 + 40*(j), 10 + 35*(i), 37, 32);
+            drawPins(i, j, bigMap);
+          }
+        }
+      }
+    } else {
+      rect(width-250, 5, width-5, 10+20*level.length);
+
+      for (int i = 0; i < level.length; i++) {
+        for (int j = 0; j < level[i].length; j++) {
+          noFill();
+          if (get(10*j+i+1)==null) {
+            noStroke();
+          } else if (i==(currentRoom%10-1) && j==(currentRoom/10)) {
+            noStroke();
+            fill(220);
+            rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
+            drawPins(i, j, bigMap);
+          } else if (getExplored(10*j+i+1) != null) {
+            noStroke();
+            fill(150);
+            rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
+            drawPins(i, j, bigMap);
+          } else if (getExplored(10*j+i+1)==null  && (getExplored(10*j+i+1+10) != null || getExplored(10*j+i+1-10) != null || getExplored(10*j+i) != null || getExplored(10*j+i+2) != null)) {
+            // unexplored rooms should be invisible.
+            noStroke();
+            fill(100);
+            rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
+            drawPins(i, j, bigMap);
+          }
         }
       }
     }
   }
-  
+
   void displayMiniMapDebug() {
     noStroke();
     //background of minimap
@@ -233,19 +265,34 @@ public class Dungeon {
           fill(100);
         }
         rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
-        drawPins(i,j);
+        drawPins(i, j, bigMap);
       }
     }
   }
 
-  void drawPins(int i, int j) {
+  void drawPins(int i, int j, boolean big) {
     if (get(10*j+i+1)!=null) {
-      if (get(10*j+i+1).roomType==2) {
-        drawCrown(width - 245 + 30*(j)+9, 10 + 20*(i)+2);
-      } else if (get(10*j+i+1).roomType==3) {
-        drawCoin(width - 245 + 30*(j)+13, 10 + 20*(i)+9);
-      } else if (get(10*j+i+1).roomType==4) {
-        drawSkull(width - 245 + 30*(j)+13, 10 + 20*(i)+7);
+      if (big) {
+        //rect(width - 395 + 40*(j), 10 + 35*(i), 37, 32);
+        if (get(10*j+i+1).roomType==2) {
+          //drawCrown(width - 395 + 40*(j)+12, 10 + 35*(i)+9);
+          shape(crown, width - 395 + 40*(j)+8, 10 + 35*(i)+5, 20, 20);
+        } else if (get(10*j+i+1).roomType==3) {
+          drawCoin(width - 395 + 40*(j)+18, 10 + 35*(i)+16);
+        } else if (get(10*j+i+1).roomType==4) {
+          //drawSkull(width - 395 + 40*(j)+18, 10 + 35*(i)+14);
+          shape(skull, width - 395 + 40*(j)+8, 10 + 35*(i)+5, 20, 20);
+        }
+      } else { 
+        if (get(10*j+i+1).roomType==2) {
+          //drawCrown(width - 245 + 30*(j)+8, 10 + 20*(i)+2);
+          shape(crown, width - 245 + 30*(j)+7, 10 + 20*(i));
+        } else if (get(10*j+i+1).roomType==3) {
+          drawCoin(width - 245 + 30*(j)+13, 10 + 20*(i)+9);
+        } else if (get(10*j+i+1).roomType==4) {
+          //drawSkull(width - 245 + 30*(j)+13, 10 + 20*(i)+7);
+          shape(skull, width - 245 + 30*(j)+7, 10 + 20*(i));
+        }
       }
     }
     stroke(1);

@@ -72,7 +72,7 @@ public class Player implements Character {
   }
 
   void takeDamage(int damage) {
-    if (invinTimer == 0) {
+      if (invinTimer == 0) {
       if (tempHealth > 0) {
         tempHealth -= damage;
       } else {
@@ -87,6 +87,7 @@ public class Player implements Character {
       }
       setStun(25);                                                          /////////////////////set stun here/////////////////////
       setInvin(45);
+      bigMap=false;
     }
   }
 
