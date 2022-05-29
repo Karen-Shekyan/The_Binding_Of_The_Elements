@@ -93,3 +93,9 @@ Jonathan Shavit:
 - made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
 - uploaded sprites for the minimap's pins/markers
 - replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
+
+###### 5/28/22
+
+JonathanShavit:
+- figured out why the coin sprite wouldn't load in and fixed that (now the mimimap only uses sprites)
+- discovered a bug in the drawing of the 'crown' marker of the minimap (a small line is drawn diagonally from the 'crown' marker across the screen - it isn't intrusive, but it's there)
