@@ -276,7 +276,7 @@ public class Dungeon {
         //rect(width - 395 + 40*(j), 10 + 35*(i), 37, 32);
         if (get(10*j+i+1).roomType==2) {
           //drawCrown(width - 395 + 40*(j)+12, 10 + 35*(i)+9);
-          shape(crown, width - 395 + 40*(j)+8, 10 + 35*(i)+5, 20, 20);
+          shape(crown, width - 395 + 40*(j)+9, 10 + 35*(i)+5, 20, 20);
         } else if (get(10*j+i+1).roomType==3) {
           //drawCoin(width - 395 + 40*(j)+18, 10 + 35*(i)+16);
           shape(coin, width - 395 + 40*(j)+6, 10 + 35*(i)+4, 24, 24);
@@ -299,35 +299,35 @@ public class Dungeon {
     }
     stroke(1);
   }
+  
+  //void drawSkull(int x, int y) {
+  //  fill(150);
+  //  noStroke();
+  //  ellipse(x, y, 12, 12);
+  //  rect(x-4, y, 8, 9);
+  //  fill(10);
+  //  stroke(0.5);
+  //  line(x-4, y+7, x+4, y+7);
+  //  ellipse(x-3, y, 4, 3);
+  //  ellipse(x+3, y, 4, 3);
+  //}
 
-  void drawSkull(int x, int y) {
-    fill(150);
-    noStroke();
-    ellipse(x, y, 12, 12);
-    rect(x-4, y, 8, 9);
-    fill(10);
-    stroke(0.5);
-    line(x-4, y+7, x+4, y+7);
-    ellipse(x-3, y, 4, 3);
-    ellipse(x+3, y, 4, 3);
-  }
+  //void drawCoin(int x, int y) {
+  //  stroke(0);
+  //  strokeWeight(1);
+  //  fill(170, 140, 130);
+  //  ellipse(x, y, 13, 13);
+  //  textSize(12);
+  //  fill(10);
+  //  text("¢", x-4, y+4.6);
+  //}
 
-  void drawCoin(int x, int y) {
-    stroke(0);
-    strokeWeight(1);
-    fill(170, 140, 130);
-    ellipse(x, y, 13, 13);
-    textSize(12);
-    fill(10);
-    text("¢", x-4, y+4.6);
-  }
-
-  void drawCrown(int x, int y) {
-    stroke(0);
-    strokeWeight(1);
-    fill(255, 240, 50);
-    triangle(x, y+13, x+10, y+13, x, y);
-    triangle(x, y+13, x+10, y+13, x+10, y);
-    triangle(x, y+13, x+10, y+13, x+5, y-3);
-  }
+  //void drawCrown(int x, int y) {
+  //  stroke(0);
+  //  strokeWeight(1);
+  //  fill(255, 240, 50);
+  //  triangle(x, y+13, x+10, y+13, x, y);
+  //  triangle(x, y+13, x+10, y+13, x+10, y);
+  //  triangle(x, y+13, x+10, y+13, x+5, y-3);
+  //}
 }
