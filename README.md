@@ -88,17 +88,21 @@ Karen Shekyan:
 ###### 5/27/22
 
 Jonathan Shavit:
-- Added a toggleable (on TAB press) expansion of the minimap
-- Wrote an end screen and made it trigger when all enemies in the boss room are killed
-- Made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
-- Uploaded sprites for the minimap's pins/markers
-- Replaced some markers on the map with the appropriate sprites (I would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
+- added a toggleable (on TAB press) expansion of the minimap
+- wrote an end screen and made it trigger when all enemies in the boss room are killed
+- made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
+- uploaded sprites for the minimap's pins/markers
+- replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
 
 Karen Shekyan:
 - Made player get invincibility frames and get stunned upon taking damage.
 - Made player receive knockback from bullets and from contact damage. The latter must be fixed.
 
 ###### 5/28/22
+
+JonathanShavit:
+- figured out why the coin sprite wouldn't load in and fixed that (now the mimimap only uses sprites)
+- discovered a bug in the drawing of the 'crown' marker of the minimap (a small line is drawn diagonally from the 'crown' marker across the screen - it isn't intrusive, but it's there)
 
 Karen Shekyan:
 - Improved player knockback.
