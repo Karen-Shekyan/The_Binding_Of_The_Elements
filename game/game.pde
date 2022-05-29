@@ -137,10 +137,14 @@ void draw() {
       Enemy guy = r.enemies.get(i);
       guy.move();
       guy.display();
-      if (guy.getTouchZone().isTouching(Aang)) {
+      if (guy.getTouchZone().isTouching(Aang)) {//             contact knockback HERE             //
         Aang.takeDamage(1);
+        float dx = (Aang.getX() - guy.getX()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        float dy = (Aang.getY() - guy.getY()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        Aang.knockback(dx * 4.0, dy * 4.0);
       }
       guy.attack();
+      guy.decrementStun();
     }
 
 
@@ -166,6 +170,7 @@ void draw() {
 
       if (bullet.isTouching(Aang)) {
         Aang.takeDamage(bullet.getDam());
+        Aang.knockback(bullet.vx * 0.8, bullet.vy * 0.8);       //knockback applied to player here. Mess with the numbers more.
         r.enemyBullets.remove(bullet);//    put this into hitbox once room is fixed    //
       }
       bullet.display();
@@ -183,6 +188,8 @@ void draw() {
       Aang.attack();
     }
     Aang.decrementAttackCD();
+    Aang.decrementStun();
+    Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
   }
@@ -288,4 +295,6 @@ void startNewGame() {
   camR = 200;
   camC = 250;
   Aang = new Player();
+  vx = 0;
+  vy = 0;
 }

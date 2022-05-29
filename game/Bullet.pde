@@ -34,7 +34,7 @@ class Bullet extends Hitbox {
     if (xPos <= wt+getR() || yPos <= wt+getR() || xPos >= r.COLS-wt-getR() || yPos >= r.ROWS-wt-getR()) {
       if (playerBullet) { //<>// //<>//
         r.playerBullets.remove(this);
-      } else { //<>//
+      } else { //<>// //<>//
         r.enemyBullets.remove(this);
       }
     }

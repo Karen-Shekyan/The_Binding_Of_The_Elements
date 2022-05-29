@@ -9,6 +9,7 @@ public class Player implements Character {
   private float x;
   private float y;
   private int stunTimer = 0;
+  private int invinTimer = 0;
   public float damageMultiplier = 1;
   public ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   public int weaponMode;// 0 = water, 1 = earth, 2 = fire, 3 = air
@@ -71,82 +72,87 @@ public class Player implements Character {
   }
 
   void takeDamage(int damage) {
-    if (tempHealth > 0) {
-      tempHealth -= damage;
-    } else {
-      health -= damage;
-    }
-    if (tempHealth < 0) {
-      health += tempHealth;
-      tempHealth = 0;
-    }
-    if (health <= 0) {
-      die();
+      if (invinTimer == 0) {
+      if (tempHealth > 0) {
+        tempHealth -= damage;
+      } else {
+        health -= damage;
+      }
+      if (tempHealth < 0) {
+        health += tempHealth;
+        tempHealth = 0;
+      }
+      if (health <= 0) {
+        die();
+      }
+      setStun(25);                                                          /////////////////////set stun here/////////////////////
+      setInvin(45);
       bigMap=false;
     }
   }
 
 
   void attack() {
-    if (attackCD == 0) {
+    if (attackCD == 0 && getStun() == 0) {
       float bulletX = (mouseX - x + camC) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
       float bulletY = (mouseY - y + camR) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
       r.playerBullets.add(new Bullet(x, y, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true, (int)(attack*damageMultiplier)));
-      attackCD = 15;
+      attackCD = 20;
     }
   }
 
 
   void move() {
     //move player
-    if (R) {
-      if (vx != maxV) {
-        vx = Math.min(maxV, vx+a);
+    if (getStun() == 0) {
+      if (R) {
+        if (vx != maxV) {
+          vx = Math.min(maxV, vx+a);
+        }
+        if (camC == r.COLS-width || x < width/2) {
+          x = Math.min(x + vx, r.COLS-radius-wt);
+        } else {
+          camC = Math.min(r.COLS-width, camC+vx);
+          x = Math.min(x + vx, r.COLS-radius-wt);
+        }
       }
-      if (camC == r.COLS-width || x < width/2) {
-        x = Math.min(x + vx, r.COLS-radius-wt);
-      } else {
-        camC = Math.min(r.COLS-width, camC+vx);
-        x = Math.min(x + vx, r.COLS-radius-wt);
+
+      if (L) {
+        if (vx != -maxV) {
+          vx = Math.max(-maxV, vx-a);
+        }
+        if (camC == 0 || x-camC > width/2) {
+          x = Math.max(x + vx, radius+wt);
+        } else {
+          camC = Math.max(0, camC+vx);
+          x = Math.max(x + vx, radius+wt);
+        }
+      }
+
+      if (U) {
+        if (vy != -maxV) {
+          vy = Math.max(-maxV, vy-a);
+        }
+        if (camR == 0 || y-camR > height/2) {
+          y = Math.max(y + vy, radius+wt);
+        } else {
+          camR = Math.max(0, camR+vy);
+          y = Math.max(y + vy, radius+wt);
+        }
+      }
+
+      if (D) {
+        if (vy != maxV) {
+          vy = Math.min(maxV, vy+a);
+        }
+        if (camR == r.ROWS-height || y < height/2) {
+          y = Math.min(y + vy, r.ROWS-radius-wt);
+        } else {
+          camR = Math.min(r.ROWS-height, camR+vy);
+          y = Math.min(y + vy, r.ROWS-radius-wt);
+        }
       }
     }
-
-    if (L) {
-      if (vx != -maxV) {
-        vx = Math.max(-maxV, vx-a);
-      }
-      if (camC == 0 || x-camC > width/2) {
-        x = Math.max(x + vx, radius+wt);
-      } else {
-        camC = Math.max(0, camC+vx);
-        x = Math.max(x + vx, radius+wt);
-      }
-    }
-
-    if (U) {
-      if (vy != -maxV) {
-        vy = Math.max(-maxV, vy-a);
-      }
-      if (camR == 0 || y-camR > height/2) {
-        y = Math.max(y + vy, radius+wt);
-      } else {
-        camR = Math.max(0, camR+vy);
-        y = Math.max(y + vy, radius+wt);
-      }
-    }
-
-    if (D) {
-      if (vy != maxV) {
-        vy = Math.min(maxV, vy+a);
-      }
-      if (camR == r.ROWS-height || y < height/2) {
-        y = Math.min(y + vy, r.ROWS-radius-wt);
-      } else {
-        camR = Math.min(r.ROWS-height, camR+vy);
-        y = Math.min(y + vy, r.ROWS-radius-wt);
-      }
-    }
-
 
     if (vx < 0) {
       vx = Math.min(0, vx+f);
@@ -191,10 +197,6 @@ public class Player implements Character {
         y = Math.min(y + vy, r.ROWS-radius-wt);
       }
     }
-    
-    //detect door
-    
-
     calculateMultiplier();
     moveHurt();
   }
@@ -206,9 +208,7 @@ public class Player implements Character {
 
 
   void display() {
-    stroke(0);
-    strokeWeight(1);
-    
+
     fill(255);
     textSize(20);
     text(weaponMode + " " + damageMultiplier, 40, 780); //   remove later    //
@@ -226,26 +226,28 @@ public class Player implements Character {
     for (int i = 0; i < maxHealth; i++) {
       if (i < health) {
         if (i%2 == 1) {
-          shape(redHeart, 10+i*30, 10,44,44);
+          shape(redHeart, 10+i*30, 10, 44, 44);
         } else if (i+1==health) {
-          shape(halfHeart, 10+(i+1)*30, 10,44,44);
+          shape(halfHeart, 10+(i+1)*30, 10, 44, 44);
         }
       } else if (i%2==0) {
-        shape(emptyHeart, 10+(i+1)*30, 10,44,44);
+        shape(emptyHeart, 10+(i+1)*30, 10, 44, 44);
       }
     }
     for (int i = 0; i < tempHealth; i++) {
       fill(135);
       if (i%2 == 1) {
-          shape(spiritHeart, 30*maxHealth+10+i*30, 10,44,44);
-        } else if (i+1==tempHealth){
-          shape(halfSpiritHeart, 30*maxHealth+10+(i+1)*30, 10,44,44);
-        }
+        shape(spiritHeart, 30*maxHealth+10+i*30, 10, 44, 44);
+      } else if (i+1==tempHealth) {
+        shape(halfSpiritHeart, 30*maxHealth+10+(i+1)*30, 10, 44, 44);
+      }
     }
   }
 
 
   void knockback(float x, float y) {
+    vx += x;
+    vy += y;
   }
 
 
@@ -279,6 +281,18 @@ public class Player implements Character {
     attackCD = Math.max(attackCD-1, 0);
   }
 
+  void setInvin(int invin) {
+    invinTimer = invin;
+  }
+
+  int getInvin() {
+    return invinTimer;
+  }
+
+  void decrementInvin() {
+    invinTimer = Math.max(invinTimer-1, 0);
+  }
+
   float getX() {
     return x;
   }
@@ -286,15 +300,15 @@ public class Player implements Character {
   float getY() {
     return y;
   }
-  
+
   int getR() {
     return radius;
   }
-  
+
   void setX(float n) {
     x = n;
   }
-  
+
   void setY(float n) {
     y = n;
   }

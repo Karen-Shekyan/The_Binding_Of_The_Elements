@@ -18,14 +18,13 @@ class TouchyEnemy implements Enemy {
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
-
   }
 
   Hitbox getTouchZone() {
     return touchZone;
   }
-  
-  ArrayList<Hurtbox> getHurtboxes(){
+
+  ArrayList<Hurtbox> getHurtboxes() {
     return body;
   }
 
@@ -34,17 +33,20 @@ class TouchyEnemy implements Enemy {
     if (health <= 0) {
       die();
     }
+    setStun(10);
   }
 
   void attack() {
   }
 
   void move() {
-    float d = dist(Aang.getX(),Aang.getY(),getX(),getY());
-    xPos += 3.0 * (Aang.getX()-getX())/d;
-    yPos += 3.0 * (Aang.getY()-getY())/d;
-    moveHurt();
-    moveHit();
+    if (stunTimer == 0) {
+      float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
+      xPos += 3.0 * (Aang.getX()-getX())/d;
+      yPos += 3.0 * (Aang.getY()-getY())/d;
+      moveHurt();
+      moveHit();
+    }
   }
 
   void die() {
@@ -57,20 +59,20 @@ class TouchyEnemy implements Enemy {
   void display() {
     stroke(0);
     strokeWeight(1);
-    
+
     fill(105, 66, 245);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
-    
+
     //fill(255);//    draw hurtbox    //
     //ellipse(body.get(0).getX()-camC,body.get(0).getY()-camR,2*radius,2*radius);
-    
+
     ////    draw hitbox    //
     //fill(0,255,0);
     //ellipse(touchZone.getX()-camC,touchZone.getY()-camR,2*radius,2*radius);
 
     fill(0);
     textSize(10);
-    text(""+health,xPos-camC, yPos-camR);
+    text(""+health, xPos-camC, yPos-camR);
   }
 
   void knockback(float x, float y) {
@@ -98,7 +100,7 @@ class TouchyEnemy implements Enemy {
   }
 
   void decrementStun() {
-    stunTimer = Math.max(0,stunTimer-1);
+    stunTimer = Math.max(0, stunTimer-1);
   }
 
   void dropLoot() {

@@ -78,8 +78,8 @@ Karen Shekyan:
 ###### 5/26/22
 
 Jonathan Shavit:
-- changed the HUD so it displays the heart sprites instead of using circles
-- changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
+- Changed the HUD so it displays the heart sprites instead of using circles
+- Changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
 
 Karen Shekyan:
 - Made doors generate in each room upon dungeon generation.
@@ -94,8 +94,15 @@ Jonathan Shavit:
 - uploaded sprites for the minimap's pins/markers
 - replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
 
+Karen Shekyan:
+- Made player get invincibility frames and get stunned upon taking damage.
+- Made player receive knockback from bullets and from contact damage. The latter must be fixed.
+
 ###### 5/28/22
 
 JonathanShavit:
 - figured out why the coin sprite wouldn't load in and fixed that (now the mimimap only uses sprites)
 - discovered a bug in the drawing of the 'crown' marker of the minimap (a small line is drawn diagonally from the 'crown' marker across the screen - it isn't intrusive, but it's there)
+
+Karen Shekyan:
+- Improved player knockback.
