@@ -87,6 +87,10 @@ Karen Shekyan:
 
 ###### 5/27/22
 
+Karen Shekyan:
+- Made player get invincibility frames and get stunned upon taking damage.
+- Made player receive knockback from bullets and from contact damage. The latter must be fixed.
+
 Jonathan Shavit:
 - added a toggleable (on TAB press) expansion of the minimap
 - wrote an end screen and made it trigger when all enemies in the boss room are killed

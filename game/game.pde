@@ -137,7 +137,7 @@ void draw() {
       Enemy guy = r.enemies.get(i);
       guy.move();
       guy.display();
-      if (guy.getTouchZone().isTouching(Aang)) {
+      if (guy.getTouchZone().isTouching(Aang)) {//             contact knockback HERE             //
         Aang.takeDamage(1);
         Aang.knockback(vx * -2.5, vy * -2.5);
       }
