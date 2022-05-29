@@ -126,6 +126,7 @@ void draw() {
       guy.display();
       if (guy.getTouchZone().isTouching(Aang)) {
         Aang.takeDamage(1);
+        Aang.knockback(vx * -2.5, vy * -2.5);
       }
       guy.attack();
     }
