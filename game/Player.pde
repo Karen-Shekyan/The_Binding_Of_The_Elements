@@ -217,6 +217,22 @@ public class Player implements Character {
 
     fill(255, 0, 0);
     ellipse(x-camC, y-camR, 2*radius, 2*radius);
+    
+    switch (weaponMode){
+      case 0:
+        fill(WATER);
+      break;
+      case 1:
+        fill(EARTH);
+      break;
+      case 2:
+        fill(FIRE);
+      break;
+      case 3:
+        fill(AIR);
+      break;
+    }
+    ellipse(x-camC, y-camR, 4*radius/5, 4*radius/5);
 
     //    display hitbox. DEBUG PURPOSES ONLY    //
     //fill(0,0,255);
