@@ -1,17 +1,17 @@
 void showInstructions() {
-  shape(wasd, 550-camC, 250-camR, 400, 400);
+  shape(wasd, 550-camC, 200-camR, 400, 400);
   fill(20);
   textSize(40);
-  text("WASD to move", 600-camC, 550-camR);
+  text("WASD to move", 600-camC, 500-camR);
   
-  shape(mouseAim, 1050-camC, 250-camR, 225, 225);
+  shape(mouseAim, 1050-camC, 200-camR, 225, 225);
   textSize(30);
-  text("Aim with your\nmouse/trackpad and\nclick to fire", 1050-camC, 550-camR);
+  text("Aim with your\nmouse/trackpad and\nclick to fire", 1050-camC, 500-camR);
   
-  shape(weaponIndicator, 150-camC, 250-camR, 250, 250);
+  shape(weaponIndicator, 150-camC, 200-camR, 250, 250);
   //textSize(30);
   //fill(20);
-  text("Weapon mode indicated\n by circle in character", 125-camC, 550-camR);
+  text("Weapon mode indicated\n by circle in character", 125-camC, 500-camR);
   
   shape(typeWeakness, 150-camC, 650-camR, 400, 400);
   shape(typeStrength, 600-camC, 650-camR, 400, 400);
