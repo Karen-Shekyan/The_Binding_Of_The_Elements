@@ -112,3 +112,11 @@ Karen Shekyan:
 Jonathan Shavit:
 - fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
 - added some images to use in game instructions
+
+
+###### 5/30/22
+
+Jonathan Shavit:
+- added an indicator of the player's weapon mode/type to the player's display method (a little colored circle on the player)
+- added more images to use in game instructions
+- filled the first room with game instructions
