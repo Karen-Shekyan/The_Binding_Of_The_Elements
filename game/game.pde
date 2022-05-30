@@ -60,7 +60,7 @@ void setup() {
   emptyHeart = loadShape("empty-heart.svg");
   
   coin = loadShape("textless-coin.svg");
-  crown = loadShape("crown.svg");
+  crown = loadShape("crownyy.svg");
   skull = loadShape("skull.svg");
 
   //startNewGame();
