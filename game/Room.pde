@@ -36,13 +36,15 @@ public class Room {
       }
     }
 
-    //enemy generation. EXPAND THIS SECTION
-    enemies.add(new DummyEnemy(this));
-    enemies.add(new TouchyEnemy(this));
-    //enemies.add(new ShootyEnemy(this));
+    if (roomType>0) {
+      //enemy generation. EXPAND THIS SECTION
+      enemies.add(new DummyEnemy(this));
+      enemies.add(new TouchyEnemy(this));
+      //enemies.add(new ShootyEnemy(this));
+    }
   }
 
-//for debugging
+  //for debugging
   public String toString() {
     return "" + roomType;
   }

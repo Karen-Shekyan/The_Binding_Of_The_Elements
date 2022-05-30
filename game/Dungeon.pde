@@ -45,7 +45,7 @@ public class Dungeon {
     ArrayList<Integer> endRooms = new ArrayList<Integer>();
     ArrayDeque<Integer> queue = new ArrayDeque<Integer>();
     queue.add(35);
-    level[4][3] = new Room(1);
+    level[4][3] = new Room(-1);
     roomsLeft--;
 
     while (queue.size() != 0) {
