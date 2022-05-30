@@ -52,6 +52,7 @@ PShape wasd;
 PShape mouseAim;
 PShape typeWeakness;
 PShape weaponIndicator;
+PShape typeStrength;
 
 void setup() {
   size(1000, 800);
@@ -71,6 +72,7 @@ void setup() {
   mouseAim = loadShape("mouse-aim.svg");
   typeWeakness = loadShape("attribute chart-2.svg");
   weaponIndicator = loadShape("weaponType.svg");
+  typeStrength = loadShape("attribute chart-3.svg");
 
   //startNewGame();
   //size(1000, 800);
@@ -137,6 +139,10 @@ void draw() {
     }
 
     updatePixels();
+    
+    if (r.roomType < 0) {
+      showInstructions();
+    }
 
     if (LEVEL.explored[currentRoom%10-1][currentRoom/10]==null) {
       LEVEL.explored[currentRoom%10-1][currentRoom/10] = r;
