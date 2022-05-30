@@ -48,6 +48,11 @@ PShape emptyHeart;
 PShape coin;
 PShape crown;
 PShape skull;
+PShape wasd;
+PShape mouseAim;
+PShape typeWeakness;
+PShape weaponIndicator;
+PShape typeStrength;
 
 void setup() {
   size(1000, 800);
@@ -58,10 +63,16 @@ void setup() {
   spiritHeart = loadShape("blue-heart.svg"); //the temp health
   halfSpiritHeart = loadShape("half-heart-jagged.svg");
   emptyHeart = loadShape("empty-heart.svg");
-  
+
   coin = loadShape("textless-coin.svg");
-  crown = loadShape("crown.svg");
+  crown = loadShape("crownyy.svg");
   skull = loadShape("skull.svg");
+
+  wasd = loadShape("was.svg");
+  mouseAim = loadShape("mouse-aim.svg");
+  typeWeakness = loadShape("attribute chart-2.svg");
+  weaponIndicator = loadShape("weaponType.svg");
+  typeStrength = loadShape("attribute chart-3.svg");
 
   //startNewGame();
   //size(1000, 800);
@@ -109,7 +120,7 @@ void draw() {
       camR = r.ROWS-height;
       Aang.setY(r.ROWS - wt - Aang.getR() - 2);
     }
-    
+
     //display floor
     for (int i = (int)camR; i < height+(int)camR; i++) {
       for (int j = (int)camC; j < width+(int)camC; j++) {
@@ -128,6 +139,10 @@ void draw() {
     }
 
     updatePixels();
+    
+    if (r.roomType < 0) {
+      showInstructions();
+    }
 
     if (LEVEL.explored[currentRoom%10-1][currentRoom/10]==null) {
       LEVEL.explored[currentRoom%10-1][currentRoom/10] = r;
@@ -213,7 +228,7 @@ void keyPressed() {
     //background(90);
     pause=!pause;
   }
-  if (keyCode == TAB){ //map size toggle
+  if (keyCode == TAB) { //map size toggle
     bigMap =! bigMap;
   }
 }

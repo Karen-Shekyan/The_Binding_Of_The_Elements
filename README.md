@@ -109,6 +109,17 @@ Karen Shekyan:
 
 ###### 5/29/22
 
+Jonathan Shavit:
+- fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
+- added some images to use in game instructions
+
+###### 5/30/22
+
+Jonathan Shavit:
+- added an indicator of the player's weapon mode/type to the player's display method (a little colored circle on the player)
+- added more images to use in game instructions
+- filled the first room with game instructions
+
 Karen Shekyan:
 - Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
 - The number of enemies in each "normal" room is randomized between 4-6 (on level 1, change later for level 2).

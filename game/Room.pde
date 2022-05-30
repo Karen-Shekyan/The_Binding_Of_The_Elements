@@ -35,7 +35,8 @@ public class Room {
         //}
       }
     }
-
+    
+    
     //enemy generation. EXPAND THIS SECTION
     if (roomType == 1) {                        //normal
       //enemies.add(new DummyEnemy(this));
