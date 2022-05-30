@@ -37,12 +37,22 @@ public class Room {
     }
 
     //enemy generation. EXPAND THIS SECTION
-    enemies.add(new DummyEnemy(this));
-    enemies.add(new TouchyEnemy(this));
-    //enemies.add(new ShootyEnemy(this));
+    if (roomType == 1) {                        //normal
+      enemies.add(new DummyEnemy(this));
+      enemies.add(new TouchyEnemy(this));
+      //enemies.add(new ShootyEnemy(this));
+    } else if (roomType == 2) {                 //treasure
+      
+    } else if (roomType == 3) {                 //shop
+      
+    } else if (roomType == 4) {                 //boss
+      enemies.add(new MiniEnemy(this));
+    } else if (roomType == 5) {                 //secret
+      
+    }
   }
 
-//for debugging
+  //for debugging
   public String toString() {
     return "" + roomType;
   }
