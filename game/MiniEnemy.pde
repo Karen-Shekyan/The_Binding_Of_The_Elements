@@ -1,6 +1,6 @@
-class ShootyEnemy implements Enemy {
+class MiniEnemy implements Enemy {
   private int health;
-  private float radius = 20;
+  private float radius = 50;
   public int attack;
   private float xPos;
   private float yPos;
@@ -14,12 +14,12 @@ class ShootyEnemy implements Enemy {
   private boolean running = false;
   private boolean strafing = true; //starts here
 
-  public ShootyEnemy (Room a) {
+  public MiniEnemy (Room a) {
     room = a;
     attack = 1;
-    xPos = (float)(Math.random()*(a.COLS-2*wt) + wt);
-    yPos = (float)(Math.random()*(a.ROWS-2*wt) + wt);
-    health = 20;
+    xPos = a.COLS/2;
+    yPos = a.ROWS/2;
+    health = 150;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
@@ -39,10 +39,31 @@ class ShootyEnemy implements Enemy {
 
   void attack() {
     if (attackCD == 0) {
-      float bulletX = (Aang.getX() - xPos) * 7.0/dist(Aang.getX(), Aang.getY(), xPos, yPos);
-      float bulletY = (Aang.getY() - yPos) * 7.0/dist(Aang.getX(), Aang.getY(), xPos, yPos);
-      r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX, bulletY, r, color(255, 255, 255, 170), false, attack));
-      attackCD = 90;//    longer than player's CD    //
+      float distToAang = dist(Aang.getX(), Aang.getY(), xPos, yPos);
+      float cosAngle = (Aang.getX() - xPos) * 1.0/distToAang;
+      float sinAngle = (Aang.getY() - yPos) * 1.0/distToAang;
+      
+      float bulletX1 = 7.0 * cosAngle;
+      float bulletY1 = 7.0 * sinAngle;
+      r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX1, bulletY1, r, color(255, 255, 255, 170), false, attack));
+      
+      float bulletX2 = 7.0 * (cosAngle * cos(PI/12) - sinAngle * sin(PI/12));
+      float bulletY2 = 7.0 * (sinAngle * cos(PI/12) + cosAngle * sin(PI/12));
+      r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX2, bulletY2, r, color(255, 255, 255, 170), false, attack));
+      
+      float bulletX3 = 7.0 * (cosAngle * cos(-PI/12) - sinAngle * sin(-PI/12));
+      float bulletY3 = 7.0 * (sinAngle * cos(-PI/12) + cosAngle * sin(-PI/12));
+      r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX3, bulletY3, r, color(255, 255, 255, 170), false, attack));
+      
+      float bulletX4 = 7.0 * (cosAngle * cos(PI/6) - sinAngle * sin(PI/6));
+      float bulletY4 = 7.0 * (sinAngle * cos(PI/6) + cosAngle * sin(PI/6));
+      r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX4, bulletY4, r, color(255, 255, 255, 170), false, attack));
+      
+      float bulletX5 = 7.0 * (cosAngle * cos(-PI/6) - sinAngle * sin(-PI/6));
+      float bulletY5 = 7.0 * (sinAngle * cos(-PI/6) + cosAngle * sin(-PI/6));
+      r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX5, bulletY5, r, color(255, 255, 255, 170), false, attack));
+      
+      attackCD = 50;//    longer than player's CD    //
     }
   }
 
@@ -52,14 +73,14 @@ class ShootyEnemy implements Enemy {
       float distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
       float error = 5;
       if (distToPlayer > strafeDist + error) {//get closer
-        xPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
-        yPos += 3.0 * (Aang.getY()-getY())/distToPlayer;
+        xPos += 1.0 * (Aang.getX()-getX())/distToPlayer;
+        yPos += 1.0 * (Aang.getY()-getY())/distToPlayer;
       } else if (distToPlayer < strafeDist - error) {//move away//  THIS IS VERY JITTERY. use states to better control.
-        xPos += -7.0 * (Aang.getX()-getX())/distToPlayer;
-        yPos += -7.0 * (Aang.getY()-getY())/distToPlayer;
+        xPos += -3.0 * (Aang.getX()-getX())/distToPlayer;
+        yPos += -3.0 * (Aang.getY()-getY())/distToPlayer;
       } else {//strafe 
-        xPos += -3.0 * (Aang.getY()-getY())/distToPlayer;
-        yPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
+        xPos += -1.0 * (Aang.getY()-getY())/distToPlayer;
+        yPos += 1.0 * (Aang.getX()-getX())/distToPlayer;
       }
       moveHurt();
       moveHit();
@@ -77,7 +98,7 @@ class ShootyEnemy implements Enemy {
     stroke(0);
     strokeWeight(1);
 
-    fill(0, 150, 150);
+    fill(0, 150, 0);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
 
     fill(0);
@@ -102,7 +123,6 @@ class ShootyEnemy implements Enemy {
   }
 
   void setStun(int stun) {
-    stunTimer = stun;
   }
 
   int getStun() {
