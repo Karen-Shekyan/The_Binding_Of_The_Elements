@@ -208,7 +208,9 @@ public class Player implements Character {
 
 
   void display() {
-
+    strokeWeight(1);
+    stroke(0);
+    
     fill(255);
     textSize(20);
     text(weaponMode + " " + damageMultiplier, 40, 780); //   remove later    //

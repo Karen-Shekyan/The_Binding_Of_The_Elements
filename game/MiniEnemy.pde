@@ -15,11 +15,11 @@ class MiniEnemy implements Enemy {
   private boolean strafing = true; //starts here
 
   public MiniEnemy (Room a) {
+    room = a;
     attack = 1;
     xPos = 550;
     yPos = 350;
     health = 150;
-    room = a;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);

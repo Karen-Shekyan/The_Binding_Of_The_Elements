@@ -15,11 +15,11 @@ class ShootyEnemy implements Enemy {
   private boolean strafing = true; //starts here
 
   public ShootyEnemy (Room a) {
-    attack = 1;
-    xPos = 550;
-    yPos = 350;
-    health = 20;
     room = a;
+    attack = 1;
+    xPos = (float)(Math.random()*(a.COLS-2*wt) + wt);
+    yPos = (float)(Math.random()*(a.ROWS-2*wt) + wt);
+    health = 20;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);

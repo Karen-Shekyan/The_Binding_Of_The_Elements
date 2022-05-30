@@ -10,11 +10,11 @@ class TouchyEnemy implements Enemy {
   public Room room;
 
   public TouchyEnemy(Room a) {
-    attack = 1;
-    xPos = 350;
-    yPos = 350;
-    health = 30;
     room = a;
+    attack = 1;
+    xPos = (float)(Math.random()*(a.COLS-2*wt) + wt);
+    yPos = (float)(Math.random()*(a.ROWS-2*wt) + wt);
+    health = 30;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
