@@ -106,3 +106,9 @@ JonathanShavit:
 
 Karen Shekyan:
 - Improved player knockback.
+
+###### 5/29/22
+
+Jonathan Shavit:
+- fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
+- added some images to use in game instructions
