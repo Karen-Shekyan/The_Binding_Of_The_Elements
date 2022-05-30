@@ -106,3 +106,10 @@ JonathanShavit:
 
 Karen Shekyan:
 - Improved player knockback.
+
+###### 5/29/22
+
+Karen Shekyan:
+- Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
+- The number of enemies in each "normal" room is randomized between 4-6 (on level 1, change later for level 2).
+- The location of enemies is also randomized.

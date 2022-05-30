@@ -17,8 +17,8 @@ class MiniEnemy implements Enemy {
   public MiniEnemy (Room a) {
     room = a;
     attack = 1;
-    xPos = 550;
-    yPos = 350;
+    xPos = a.COLS/2;
+    yPos = a.ROWS/2;
     health = 150;
 
     body.add(new Hurtbox(xPos, yPos, radius));
@@ -123,7 +123,6 @@ class MiniEnemy implements Enemy {
   }
 
   void setStun(int stun) {
-    stunTimer = stun;
   }
 
   int getStun() {
