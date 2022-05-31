@@ -113,6 +113,11 @@ Jonathan Shavit:
 - fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
 - added some images to use in game instructions
 
+Karen Shekyan:
+- Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
+- The number of enemies in each "normal" room is randomized between 4-6 (on level 1, change later for level 2).
+- The location of enemies is also randomized.
+
 ###### 5/30/22
 
 Jonathan Shavit:
@@ -121,6 +126,4 @@ Jonathan Shavit:
 - filled the first room with game instructions
 
 Karen Shekyan:
-- Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
-- The number of enemies in each "normal" room is randomized between 4-6 (on level 1, change later for level 2).
-- The location of enemies is also randomized.
+- 

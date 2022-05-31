@@ -48,21 +48,41 @@ class ShootyEnemy implements Enemy {
 
   void move() {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if (stunTimer == 0) {
-      float strafeDist = 200;
       float distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
-      float error = 5;
-      if (distToPlayer > strafeDist + error) {//get closer
+      
+      if (chasing) {
         xPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
         yPos += 3.0 * (Aang.getY()-getY())/distToPlayer;
-      } else if (distToPlayer < strafeDist - error) {//move away//  THIS IS VERY JITTERY. use states to better control.
-        xPos += -7.0 * (Aang.getX()-getX())/distToPlayer;
-        yPos += -7.0 * (Aang.getY()-getY())/distToPlayer;
-      } else {//strafe 
+        if (dist(getX(), getY(), Aang.getX(), Aang.getY()) <= 300) {
+          chasing = false;
+          strafing = true;
+        }
+      } else if (running) {
+        xPos += -3.5 * (Aang.getX()-getX())/distToPlayer;
+        yPos += -3.5 * (Aang.getY()-getY())/distToPlayer;
+        if (dist(getX(), getY(), Aang.getX(), Aang.getY()) >= 200) {
+          running = false;
+          strafing = true;
+        }
+      } else if (strafing) {
         xPos += -3.0 * (Aang.getY()-getY())/distToPlayer;
         yPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
+        distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
+        if (distToPlayer <= 150) {
+          strafing = false;
+          running = true;
+        } else if (distToPlayer >= 350) {
+          strafing = false;
+          chasing = true;
+        }
       }
+      
+      xPos = Math.min(room.COLS-wt-radius, Math.max(wt+radius, xPos));
+      yPos = Math.min(room.ROWS-wt-radius, Math.max(wt+radius, yPos));
+      
       moveHurt();
       moveHit();
+      //println(dist(getX(), getY(), Aang.getX(), Aang.getY()));
     }
   }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
