@@ -126,4 +126,5 @@ Jonathan Shavit:
 - filled the first room with game instructions
 
 Karen Shekyan:
-- 
+- Polished Shooty's and Mini's brains. They are no longer jittery.
+- Shooty and Mini also have collision detection with the walls.
