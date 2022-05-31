@@ -42,50 +42,70 @@ class MiniEnemy implements Enemy {
       float distToAang = dist(Aang.getX(), Aang.getY(), xPos, yPos);
       float cosAngle = (Aang.getX() - xPos) * 1.0/distToAang;
       float sinAngle = (Aang.getY() - yPos) * 1.0/distToAang;
-      
+
       float bulletX1 = 7.0 * cosAngle;
       float bulletY1 = 7.0 * sinAngle;
       r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX1, bulletY1, r, color(255, 255, 255, 170), false, attack));
-      
+
       float bulletX2 = 7.0 * (cosAngle * cos(PI/12) - sinAngle * sin(PI/12));
       float bulletY2 = 7.0 * (sinAngle * cos(PI/12) + cosAngle * sin(PI/12));
       r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX2, bulletY2, r, color(255, 255, 255, 170), false, attack));
-      
+
       float bulletX3 = 7.0 * (cosAngle * cos(-PI/12) - sinAngle * sin(-PI/12));
       float bulletY3 = 7.0 * (sinAngle * cos(-PI/12) + cosAngle * sin(-PI/12));
       r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX3, bulletY3, r, color(255, 255, 255, 170), false, attack));
-      
+
       float bulletX4 = 7.0 * (cosAngle * cos(PI/6) - sinAngle * sin(PI/6));
       float bulletY4 = 7.0 * (sinAngle * cos(PI/6) + cosAngle * sin(PI/6));
       r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX4, bulletY4, r, color(255, 255, 255, 170), false, attack));
-      
+
       float bulletX5 = 7.0 * (cosAngle * cos(-PI/6) - sinAngle * sin(-PI/6));
       float bulletY5 = 7.0 * (sinAngle * cos(-PI/6) + cosAngle * sin(-PI/6));
       r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX5, bulletY5, r, color(255, 255, 255, 170), false, attack));
-      
+
       attackCD = 50;//    longer than player's CD    //
     }
   }
 
   void move() {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if (stunTimer == 0) {
-      float strafeDist = 200;
       float distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
-      float error = 5;
-      if (distToPlayer > strafeDist + error) {//get closer
-        xPos += 1.0 * (Aang.getX()-getX())/distToPlayer;
-        yPos += 1.0 * (Aang.getY()-getY())/distToPlayer;
-      } else if (distToPlayer < strafeDist - error) {//move away//  THIS IS VERY JITTERY. use states to better control.
-        xPos += -3.0 * (Aang.getX()-getX())/distToPlayer;
-        yPos += -3.0 * (Aang.getY()-getY())/distToPlayer;
-      } else {//strafe 
-        xPos += -1.0 * (Aang.getY()-getY())/distToPlayer;
-        yPos += 1.0 * (Aang.getX()-getX())/distToPlayer;
+      
+      if (chasing) {
+        xPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
+        yPos += 3.0 * (Aang.getY()-getY())/distToPlayer;
+        if (dist(getX(), getY(), Aang.getX(), Aang.getY()) <= 300) {
+          chasing = false;
+          strafing = true;
+        }
+      } else if (running) {
+        xPos += -3.5 * (Aang.getX()-getX())/distToPlayer;
+        yPos += -3.5 * (Aang.getY()-getY())/distToPlayer;
+        if (dist(getX(), getY(), Aang.getX(), Aang.getY()) >= 200) {
+          running = false;
+          strafing = true;
+        }
+      } else if (strafing) {
+        xPos += -3.0 * (Aang.getY()-getY())/distToPlayer;
+        yPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
+        distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
+        if (distToPlayer <= 150) {
+          strafing = false;
+          running = true;
+        } else if (distToPlayer >= 350) {
+          strafing = false;
+          chasing = true;
+        }
       }
+      
+      xPos = Math.min(room.COLS-wt-radius, Math.max(wt+radius, xPos));
+      yPos = Math.min(room.ROWS-wt-radius, Math.max(wt+radius, yPos));
+      
       moveHurt();
       moveHit();
+      //println(dist(getX(), getY(), Aang.getX(), Aang.getY()));
     }
-  }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   void die() {
     dropLoot();

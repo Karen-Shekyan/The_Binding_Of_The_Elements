@@ -3,7 +3,7 @@ import java.util.*;
 public class Room {
 
   public final float[][] floor;
-  public final int roomType;//1 = normal, 2 = treasure, 3 = shop, 4 = boss, 5 = secret
+  public final int roomType;//-1 = starting //1 = normal, 2 = treasure, 3 = shop, 4 = boss, 5 = secret
   public final int ROWS;
   public final int COLS;
   public LinkedList<Bullet> enemyBullets = new LinkedList<Bullet>();
@@ -39,7 +39,11 @@ public class Room {
     
     //enemy generation. EXPAND THIS SECTION
     if (roomType == 1) {                        //normal
+    //   FOR TESTING   //
       //enemies.add(new DummyEnemy(this));
+      //enemies.add(new ShootyEnemy(this));
+    //
+    
       int numEnemies = (int)(Math.random()*3 + 4);
       for (int i = 0; i < numEnemies; i++) {
         if (Math.random() > 0.5) {
