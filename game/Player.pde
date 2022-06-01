@@ -264,8 +264,11 @@ public class Player implements Character {
 
 
   void knockback(float x, float y) {
-    vx += x;
-    vy += y;
+    //vx += x;
+    //vy += y;
+    vx = Math.max(-5, Math.min(vx + x, 5));
+    vy = Math.max(-5, Math.min(vy + y, 5));
+    println(vx + " " + vy);
   }
 
 

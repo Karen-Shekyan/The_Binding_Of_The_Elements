@@ -59,7 +59,7 @@ class StabbyEnemy implements Enemy {
       if (chasing) {
         xPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
         yPos += 3.0 * (Aang.getY()-getY())/distToPlayer;
-        if (dist(getX(), getY(), Aang.getX(), Aang.getY()) <= 20) {
+        if (dist(getX(), getY(), Aang.getX(), Aang.getY()) <= 80) {
           chasing = false;
           strafing = true;
         }
@@ -67,7 +67,7 @@ class StabbyEnemy implements Enemy {
         xPos += -2.0 * (Aang.getY()-getY())/distToPlayer;
         yPos += 2.0 * (Aang.getX()-getX())/distToPlayer;
         distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
-        if (distToPlayer >= 50) {
+        if (distToPlayer >= 100) {
           strafing = false;
           chasing = true;
         }
@@ -90,16 +90,16 @@ class StabbyEnemy implements Enemy {
   }
 
   void display() {
-    println(attacking);
     if (attacking) {
+      println(attackDX + " " + attackDY);
       attackFrame += 1;
       //display weapon
       stroke(1);
       strokeWeight(5);
       fill(171, 184, 186);
-      line(getX()-camC, getY()-camR, getX()-camC + attackDX * 20*abs(attackFrame - 5), getY()-camR + attackDY * 20*abs(attackFrame - 5));
+      line(getX()-camC, getY()-camR, getX()-camC + attackDX * 20*(5-abs(attackFrame - 5)), getY()-camR + attackDY * 20*(5-abs(attackFrame - 5)));
       //hit player
-      if (Aang.getX() - getX() < attackDX * 20*abs(attackFrame - 5) && Aang.getY() - getY() < attackDY * 20*abs(attackFrame - 5)) {
+      if (Aang.getX() - getX() < attackDX * 20*(5-abs(attackFrame - 5)) && Aang.getY() - getY() < attackDY * 20*(5-abs(attackFrame - 5))) {
         Aang.takeDamage(1);
         Aang.knockback(attackDX*3.0, attackDY*3.0);
       }
