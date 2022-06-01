@@ -10,7 +10,7 @@ class StabbyEnemy implements Enemy {
   public Room room;
   //attack variables
   private int attackCD = 30;
-  private float attackRange = 50;
+  private float attackRange = 100;
   private boolean attacking = false;
   private int attackFrame = 0;         //    the attack occurs over 10 frames    //
   private float attackDX;
@@ -90,17 +90,18 @@ class StabbyEnemy implements Enemy {
   }
 
   void display() {
+    println(attacking);
     if (attacking) {
       attackFrame += 1;
       //display weapon
       stroke(1);
       strokeWeight(5);
       fill(171, 184, 186);
-      line(getX() + radius*attackDX, getY() + radius*attackDY, );
+      line(getX()-camC, getY()-camR, getX()-camC + attackDX * 20*abs(attackFrame - 5), getY()-camR + attackDY * 20*abs(attackFrame - 5));
       //hit player
-      if (Aang.getX() - getX() < attackDX * 10*abs(attackFrame - 5) && Aang.getY() - getY() < attackDY * 10*abs(attackFrame - 5)) {
+      if (Aang.getX() - getX() < attackDX * 20*abs(attackFrame - 5) && Aang.getY() - getY() < attackDY * 20*abs(attackFrame - 5)) {
         Aang.takeDamage(1);
-        Aang.knockback(attackDX*5.0, attackDY*5.0);
+        Aang.knockback(attackDX*3.0, attackDY*3.0);
       }
     }
 
