@@ -91,13 +91,14 @@ class StabbyEnemy implements Enemy {
 
   void display() {
     if (attacking) {
-      println(attackDX + " " + attackDY);
+      //println(attackDX + " " + attackDY); //debug print statement
       attackFrame += 1;
+      
       //display weapon
-      stroke(1);
+      stroke(171, 184, 186);
       strokeWeight(5);
-      fill(171, 184, 186);
       line(getX()-camC, getY()-camR, getX()-camC + attackDX * 20*(5-abs(attackFrame - 5)), getY()-camR + attackDY * 20*(5-abs(attackFrame - 5)));
+      
       //hit player
       if (Aang.getX() - getX() < attackDX * 20*(5-abs(attackFrame - 5)) + 20 && Aang.getY() - getY() < attackDY * 20*(5-abs(attackFrame - 5)) + 20) {
         Aang.takeDamage(1);
