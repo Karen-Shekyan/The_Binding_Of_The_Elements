@@ -63,7 +63,7 @@ class MiniEnemy implements Enemy {
       float bulletY5 = 7.0 * (sinAngle * cos(-PI/6) + cosAngle * sin(-PI/6));
       r.enemyBullets.add(new Bullet(xPos, yPos, 10, bulletX5, bulletY5, r, color(255, 255, 255, 170), false, attack));
 
-      attackCD = 50;//    longer than player's CD    //
+      attackCD = 60;
     }
   }
 
