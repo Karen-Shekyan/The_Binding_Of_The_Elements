@@ -78,6 +78,8 @@ void setup() {
   typeStrength = loadShape("attribute chart-3.svg");
   
   playerSprite = loadShape("aang.svg");
+  touchySprite = loadShape("enemyTouch.svg");
+  shootySprite = loadShape("enemyTouch-2.svg");
 
   //startNewGame();
   //size(1000, 800);
