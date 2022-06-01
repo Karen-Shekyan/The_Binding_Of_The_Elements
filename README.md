@@ -128,3 +128,11 @@ Jonathan Shavit:
 Karen Shekyan:
 - Polished Shooty's and Mini's brains. They are no longer jittery.
 - Shooty and Mini also have collision detection with the walls.
+
+###### 6/1/22
+
+Karen Shekyan:
+- Made StabbyEnemy. Behaves somewhat similarly to shooty (chases and strafes the player) but attacks with a "sword".
+- Animated stabby's attacks and made them collide properly with the player.
+- Changed strafe speed in shooty and stabby to be slower than chase speed.
+- Set hard cap on knockback to prevent melee attacks from flinging the player into walls and doors at high speeds.
