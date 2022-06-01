@@ -216,7 +216,8 @@ public class Player implements Character {
     text(weaponMode + " " + damageMultiplier, 40, 780); //   remove later    //
 
     fill(255, 0, 0);
-    ellipse(x-camC, y-camR, 2*radius, 2*radius);
+    //ellipse(x-camC, y-camR, 2*radius, 2*radius);
+    shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
     
     switch (weaponMode){
       case 0:

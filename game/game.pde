@@ -53,6 +53,9 @@ PShape mouseAim;
 PShape typeWeakness;
 PShape weaponIndicator;
 PShape typeStrength;
+PShape playerSprite;
+PShape touchySprite;
+PShape shootySprite;
 
 void setup() {
   size(1000, 800);
@@ -73,6 +76,8 @@ void setup() {
   typeWeakness = loadShape("attribute chart-2.svg");
   weaponIndicator = loadShape("weaponType.svg");
   typeStrength = loadShape("attribute chart-3.svg");
+  
+  playerSprite = loadShape("aang.svg");
 
   //startNewGame();
   //size(1000, 800);
