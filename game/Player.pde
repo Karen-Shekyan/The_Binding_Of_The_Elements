@@ -217,23 +217,27 @@ public class Player implements Character {
 
     fill(255, 0, 0);
     //ellipse(x-camC, y-camR, 2*radius, 2*radius);
-    shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+    //shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
     
     switch (weaponMode){
       case 0:
-        fill(WATER);
+        //fill(WATER);
+        shape(aangWater, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
       break;
       case 1:
-        fill(EARTH);
+        //fill(EARTH);
+        shape(aangEarth, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
       break;
       case 2:
-        fill(FIRE);
+        //fill(FIRE);
+        shape(aangFire, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
       break;
       case 3:
-        fill(AIR);
+        //fill(AIR);
+        shape(aangAir, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
       break;
     }
-    ellipse(x-camC, y-camR, 4*radius/5, 4*radius/5);
+    //ellipse(x-camC, y-camR, 4*radius/5, 4*radius/5);
 
     //    display hitbox. DEBUG PURPOSES ONLY    //
     //fill(0,0,255);

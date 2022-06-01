@@ -56,6 +56,10 @@ PShape typeStrength;
 PShape playerSprite;
 PShape touchySprite;
 PShape shootySprite;
+PShape aangEarth;
+PShape aangFire;
+PShape aangWater;
+PShape aangAir;
 
 void setup() {
   size(1000, 800);
@@ -80,6 +84,10 @@ void setup() {
   playerSprite = loadShape("aang.svg");
   touchySprite = loadShape("enemyTouch.svg");
   shootySprite = loadShape("enemyTouch-2.svg");
+  aangEarth = loadShape("aang-earth.svg");
+  aangWater = loadShape("aang-water.svg");
+  aangFire = loadShape("aang-fire.svg");
+  aangAir = loadShape("aang-air.svg");
 
   //startNewGame();
   //size(1000, 800);
