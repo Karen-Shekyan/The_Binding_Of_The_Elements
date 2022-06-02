@@ -209,42 +209,26 @@ public class Player implements Character {
   }
   
   void changeWeaponMode() {
-    double rng = Math.random();
+    //double rng = Math.random();
     switch (weaponMode) {
       case 0:
-        if (rng < 1/3) {
-          weaponMode = 1;
-        } else if (rng < 2/3) {
-          weaponMode = 2;
-        } else {
-          weaponMode = 3;
+        while (weaponMode==0){
+          weaponMode = (int)(Math.random()*4);
         }
       break;
       case 1:
-        if (rng < 1/3) {
-          weaponMode = 0;
-        } else if (rng < 2/3) {
-          weaponMode = 2;
-        } else {
-          weaponMode = 3;
+        while (weaponMode==1){
+          weaponMode = (int)(Math.random()*4);
         }
       break;
       case 2:
-        if (rng < 1/3) {
-          weaponMode = 0;
-        } else if (rng < 2/3) {
-          weaponMode = 1;
-        } else {
-          weaponMode = 3;
+        while (weaponMode==2){
+          weaponMode = (int)(Math.random()*4);
         }
       break;
       case 3:
-        if (rng < 1/3) {
-          weaponMode = 0;
-        } else if (rng < 2/3) {
-          weaponMode = 1;
-        } else {
-          weaponMode = 2;
+        while (weaponMode==3){
+          weaponMode = (int)(Math.random()*4);
         }
       break;
     }
