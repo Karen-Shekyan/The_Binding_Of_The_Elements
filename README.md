@@ -88,11 +88,11 @@ Karen Shekyan:
 ###### 5/27/22
 
 Jonathan Shavit:
-- added a toggleable (on TAB press) expansion of the minimap
-- wrote an end screen and made it trigger when all enemies in the boss room are killed
-- made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
-- uploaded sprites for the minimap's pins/markers
-- replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
+- Added a toggleable (on TAB press) expansion of the minimap
+- Wrote an end screen and made it trigger when all enemies in the boss room are killed
+- Made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
+- Uploaded sprites for the minimap's pins/markers
+- Replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
 
 Karen Shekyan:
 - Made player get invincibility frames and get stunned upon taking damage.
@@ -101,8 +101,8 @@ Karen Shekyan:
 ###### 5/28/22
 
 JonathanShavit:
-- figured out why the coin sprite wouldn't load in and fixed that (now the mimimap only uses sprites)
-- discovered a bug in the drawing of the 'crown' marker of the minimap (a small line is drawn diagonally from the 'crown' marker across the screen - it isn't intrusive, but it's there)
+- Figured out why the coin sprite wouldn't load in and fixed that (now the mimimap only uses sprites)
+- Discovered a bug in the drawing of the 'crown' marker of the minimap (a small line is drawn diagonally from the 'crown' marker across the screen - it isn't intrusive, but it's there)
 
 Karen Shekyan:
 - Improved player knockback.
@@ -110,8 +110,8 @@ Karen Shekyan:
 ###### 5/29/22
 
 Jonathan Shavit:
-- fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
-- added some images to use in game instructions
+- Fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
+- Added some images to use in game instructions
 
 Karen Shekyan:
 - Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
@@ -121,9 +121,9 @@ Karen Shekyan:
 ###### 5/30/22
 
 Jonathan Shavit:
-- added an indicator of the player's weapon mode/type to the player's display method (a little colored circle on the player)
-- added more images to use in game instructions
-- filled the first room with game instructions
+- Added an indicator of the player's weapon mode/type to the player's display method (a little colored circle on the player)
+- Added more images to use in game instructions
+- Filled the first room with game instructions
 
 Karen Shekyan:
 - Polished Shooty's and Mini's brains. They are no longer jittery.
@@ -132,14 +132,14 @@ Karen Shekyan:
 ###### 5/31/22
 
 Jonathan Shavit:
-- added some enemy and player sprites
+- Added some enemy and player sprites
 
 ###### 6/1/22
 
 Jonathan Shavit:
-- added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames)
-- made the Player stop changing colors in accordance with weaponMode, and instead have a single unchanging sprite
-- added a (tentative) textual display of weaponMode in the bottom left corner of the screen
+- Added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames)
+- Made the Player stop changing colors in accordance with weaponMode, and instead have a single unchanging sprite
+- Added a (tentative) textual display of weaponMode in the bottom left corner of the screen
 
 Karen Shekyan:
 - Made StabbyEnemy. Behaves somewhat similarly to shooty (chases and strafes the player) but attacks with a "sword".
@@ -150,4 +150,4 @@ Karen Shekyan:
 ###### 6/2/22
 
 Jonathan Shavit:
-- added a boolean check that prevents you from leaving the current room if it still has enemies
+- Added a boolean check that prevents you from leaving the current room if it still has enemies
