@@ -80,7 +80,7 @@ void setup() {
   typeWeakness = loadShape("attribute chart-2.svg");
   weaponIndicator = loadShape("weaponType.svg");
   typeStrength = loadShape("attribute chart-3.svg");
-  
+
   playerSprite = loadShape("aang.svg");
   touchySprite = loadShape("enemyTouch.svg");
   shootySprite = loadShape("enemyTouch-2.svg");
@@ -111,29 +111,31 @@ void draw() {
     pauseGame();
   } else {
     //check for door
-    if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
-      currentRoom += 10;
-      r = LEVEL.get(currentRoom);
-      camC = 0;
-      Aang.setX(wt + Aang.getR() + 2);
-    }
-    if (r.floor[(int)Aang.getY()][(int)Aang.getX() - Aang.getR() - 1] == -2) {//left
-      currentRoom -= 10;
-      r = LEVEL.get(currentRoom);
-      camC = r.COLS-width;
-      Aang.setX(r.COLS - wt - Aang.getR() - 2);
-    }
-    if (r.floor[(int)Aang.getY() + Aang.getR() + 1][(int)Aang.getX()] == -2) {//down
-      currentRoom += 1;
-      r = LEVEL.get(currentRoom);
-      camR = 0;
-      Aang.setY(wt + Aang.getR() + 2);
-    }
-    if (r.floor[(int)Aang.getY() - Aang.getR() - 1][(int)Aang.getX()] == -2) {//up
-      currentRoom -= 1;
-      r = LEVEL.get(currentRoom);
-      camR = r.ROWS-height;
-      Aang.setY(r.ROWS - wt - Aang.getR() - 2);
+    if (r.enemies.size() == 0) {
+      if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
+        currentRoom += 10;
+        r = LEVEL.get(currentRoom);
+        camC = 0;
+        Aang.setX(wt + Aang.getR() + 2);
+      }
+      if (r.floor[(int)Aang.getY()][(int)Aang.getX() - Aang.getR() - 1] == -2) {//left
+        currentRoom -= 10;
+        r = LEVEL.get(currentRoom);
+        camC = r.COLS-width;
+        Aang.setX(r.COLS - wt - Aang.getR() - 2);
+      }
+      if (r.floor[(int)Aang.getY() + Aang.getR() + 1][(int)Aang.getX()] == -2) {//down
+        currentRoom += 1;
+        r = LEVEL.get(currentRoom);
+        camR = 0;
+        Aang.setY(wt + Aang.getR() + 2);
+      }
+      if (r.floor[(int)Aang.getY() - Aang.getR() - 1][(int)Aang.getX()] == -2) {//up
+        currentRoom -= 1;
+        r = LEVEL.get(currentRoom);
+        camR = r.ROWS-height;
+        Aang.setY(r.ROWS - wt - Aang.getR() - 2);
+      }
     }
 
     //display floor
@@ -154,7 +156,7 @@ void draw() {
     }
 
     updatePixels();
-    
+
     if (r.roomType < 0) {
       showInstructions();
     }
