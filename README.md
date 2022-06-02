@@ -113,6 +113,11 @@ Jonathan Shavit:
 - fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
 - added some images to use in game instructions
 
+Karen Shekyan:
+- Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
+- The number of enemies in each "normal" room is randomized between 4-6 (on level 1, change later for level 2).
+- The location of enemies is also randomized.
+
 ###### 5/30/22
 
 Jonathan Shavit:
@@ -121,15 +126,13 @@ Jonathan Shavit:
 - filled the first room with game instructions
 
 Karen Shekyan:
-- Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
-- The number of enemies in each "normal" room is randomized between 4-6 (on level 1, change later for level 2).
-- The location of enemies is also randomized.
+- Polished Shooty's and Mini's brains. They are no longer jittery.
+- Shooty and Mini also have collision detection with the walls.
 
 ###### 5/31/22
 
 Jonathan Shavit:
 - added some enemy and player sprites
-
 
 ###### 6/1/22
 
@@ -137,3 +140,9 @@ Jonathan Shavit:
 - added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames)
 - made the Player stop changing colors in accordance with weaponMode, and instead have a single unchanging sprite
 - added a (tentative) textual display of weaponMode in the bottom left corner of the screen
+
+Karen Shekyan:
+- Made StabbyEnemy. Behaves somewhat similarly to shooty (chases and strafes the player) but attacks with a "sword".
+- Animated stabby's attacks and made them collide properly with the player.
+- Changed strafe speed in shooty and stabby to be slower than chase speed.
+- Set hard cap on knockback to prevent melee attacks from flinging the player into walls and doors at high speeds.

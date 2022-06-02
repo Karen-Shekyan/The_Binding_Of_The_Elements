@@ -312,8 +312,9 @@ public class Player implements Character {
 
 
   void knockback(float x, float y) {
-    vx += x;
-    vy += y;
+    vx = Math.max(-5, Math.min(vx + x, 5)); //hard velocity caps here to prevent massive knockback from swords
+    vy = Math.max(-5, Math.min(vy + y, 5));
+    //println(vx + " " + vy); //debug print statement
   }
 
 
