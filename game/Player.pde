@@ -250,26 +250,36 @@ public class Player implements Character {
 
     fill(255, 0, 0);
     //ellipse(x-camC, y-camR, 2*radius, 2*radius);
-    //shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+    shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+    fill(20,170);
+    rect(0,height-50,290,50);
+    textSize(35);
+    fill(255);
+    text("Weapon:",10,height-15);
     
     switch (weaponMode){
       case 0:
-        //fill(WATER);
-        shape(aangWater, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        fill(WATER);
+        //shape(aangWater, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        text("WATER",170,height-15);
       break;
       case 1:
-        //fill(EARTH);
-        shape(aangEarth, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        fill(EARTH);
+        //shape(aangEarth, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        text("EARTH",170,height-15);
       break;
       case 2:
-        //fill(FIRE);
-        shape(aangFire, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        fill(FIRE);
+        //shape(aangFire, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        text("FIRE",170,height-15);
       break;
       case 3:
-        //fill(AIR);
-        shape(aangAir, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        fill(AIR);
+        //shape(aangAir, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        text("AIR",170,height-15);
       break;
     }
+    
     //ellipse(x-camC, y-camR, 4*radius/5, 4*radius/5);
 
     //    display hitbox. DEBUG PURPOSES ONLY    //
