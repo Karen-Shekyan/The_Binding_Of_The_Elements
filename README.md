@@ -146,3 +146,8 @@ Karen Shekyan:
 - Animated stabby's attacks and made them collide properly with the player.
 - Changed strafe speed in shooty and stabby to be slower than chase speed.
 - Set hard cap on knockback to prevent melee attacks from flinging the player into walls and doors at high speeds.
+
+###### 6/2/22
+
+Jonathan Shavit:
+- added a boolean check that prevents you from leaving the current room if it still has enemies
