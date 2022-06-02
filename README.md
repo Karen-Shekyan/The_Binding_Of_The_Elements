@@ -129,7 +129,17 @@ Karen Shekyan:
 - Polished Shooty's and Mini's brains. They are no longer jittery.
 - Shooty and Mini also have collision detection with the walls.
 
+###### 5/31/22
+
+Jonathan Shavit:
+- added some enemy and player sprites
+
 ###### 6/1/22
+
+Jonathan Shavit:
+- added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames)
+- made the Player stop changing colors in accordance with weaponMode, and instead have a single unchanging sprite
+- added a (tentative) textual display of weaponMode in the bottom left corner of the screen
 
 Karen Shekyan:
 - Made StabbyEnemy. Behaves somewhat similarly to shooty (chases and strafes the player) but attacks with a "sword".
