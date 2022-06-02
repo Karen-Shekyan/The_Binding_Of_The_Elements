@@ -15,6 +15,8 @@ public class Player implements Character {
   public int weaponMode;// 0 = water, 1 = earth, 2 = fire, 3 = air
   private int radius = 20; //          remove later         //
   private int attackCD = 0;
+  private int weaponTimer;
+  private final int gunSwitch = 180;
 
   public Player () {
     health = 6;
@@ -199,6 +201,53 @@ public class Player implements Character {
     }
     calculateMultiplier();
     moveHurt();
+    weaponTimer++;
+    if (weaponTimer>gunSwitch) {
+      changeWeaponMode();
+      weaponTimer = 0;
+    }
+  }
+  
+  void changeWeaponMode() {
+    double rng = Math.random();
+    switch (weaponMode) {
+      case 0:
+        if (rng < 1/3) {
+          weaponMode = 1;
+        } else if (rng < 2/3) {
+          weaponMode = 2;
+        } else {
+          weaponMode = 3;
+        }
+      break;
+      case 1:
+        if (rng < 1/3) {
+          weaponMode = 0;
+        } else if (rng < 2/3) {
+          weaponMode = 2;
+        } else {
+          weaponMode = 3;
+        }
+      break;
+      case 2:
+        if (rng < 1/3) {
+          weaponMode = 0;
+        } else if (rng < 2/3) {
+          weaponMode = 1;
+        } else {
+          weaponMode = 3;
+        }
+      break;
+      case 3:
+        if (rng < 1/3) {
+          weaponMode = 0;
+        } else if (rng < 2/3) {
+          weaponMode = 1;
+        } else {
+          weaponMode = 2;
+        }
+      break;
+    }
   }
 
 
