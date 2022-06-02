@@ -124,3 +124,14 @@ Karen Shekyan:
 - Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
 - The number of enemies in each "normal" room is randomized between 4-6 (on level 1, change later for level 2).
 - The location of enemies is also randomized.
+
+###### 5/31/22
+
+Jonathan Shavit:
+- added some enemy and player sprites
+
+
+###### 6/1/22
+
+Jonathan Shavit:
+- added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames)
