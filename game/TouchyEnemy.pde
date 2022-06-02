@@ -48,8 +48,12 @@ class TouchyEnemy implements Enemy {
     if (stunTimer == 0) {
       if (moveTimer == 0) {//choose direction
         float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
-        moveDX = (Aang.getX() - xPos) / d; //randomize these a little
-        moveDY = (Aang.getY() - yPos) / d; //randomize these a little
+        float cosAngle = (Aang.getX() - xPos) / d;
+        float sinAngle = (Aang.getY() - yPos) / d;
+        
+        moveDX = cosAngle*cos((float)Math.random()*PI/6 - PI/12) - sinAngle*sin((float)Math.random()*PI/6 - PI/12);
+        moveDY = sinAngle*cos((float)Math.random()*PI/6 - PI/12) + cosAngle*sin((float)Math.random()*PI/6 - PI/12);
+        
         moveTimer = 50 + (int)(Math.random()*10);
       } else {//move in direction
         xPos += 3.0 * moveDX;

@@ -17,6 +17,7 @@ class ShootyEnemy implements Enemy {
   private int moveTimer = 0;
   private float moveDX;
   private float moveDY;
+  private boolean strafingCW;
 
   public ShootyEnemy (Room a) {
     room = a;
@@ -27,6 +28,12 @@ class ShootyEnemy implements Enemy {
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
+
+    if (Math.random() > 0.5) {
+      strafingCW = true;
+    } else {
+      strafingCW = false;
+    }
   }
 
   void takeDamage(int damage) {
@@ -58,8 +65,12 @@ class ShootyEnemy implements Enemy {
       if (chasing) {
         if (moveTimer == 0) {//choose direction
           float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
-          moveDX = (Aang.getX() - xPos) / d; //randomize these a little
-          moveDY = (Aang.getY() - yPos) / d; //randomize these a little
+          float cosAngle = (Aang.getX() - xPos) / d;
+          float sinAngle = (Aang.getY() - yPos) / d;
+
+          moveDX = cosAngle*cos((float)Math.random()*PI/6 - PI/12) - sinAngle*sin((float)Math.random()*PI/6 - PI/12);
+          moveDY = sinAngle*cos((float)Math.random()*PI/6 - PI/12) + cosAngle*sin((float)Math.random()*PI/6 - PI/12);
+
           moveTimer = 50 + (int)(Math.random()*10);
         } else {//move in direction
           xPos += 3.0 * moveDX;
@@ -84,8 +95,13 @@ class ShootyEnemy implements Enemy {
           strafing = true;
         }
       } else if (strafing) {
-        xPos += -2.0 * (Aang.getY()-getY())/distToPlayer;
-        yPos += 2.0 * (Aang.getX()-getX())/distToPlayer;
+        if (strafingCW) {
+          xPos += 2.0 * (Aang.getY()-getY())/distToPlayer;
+          yPos += -2.0 * (Aang.getX()-getX())/distToPlayer;
+        } else {
+          xPos += -2.0 * (Aang.getY()-getY())/distToPlayer;
+          yPos += 2.0 * (Aang.getX()-getX())/distToPlayer;
+        }
         distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
         if (distToPlayer <= 150) {
           strafing = false;

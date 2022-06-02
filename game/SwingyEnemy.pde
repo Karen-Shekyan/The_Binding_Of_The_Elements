@@ -22,6 +22,7 @@ class SwingyEnemy implements Enemy {
   private int moveTimer = 0; //this is how long until Touchy picks a new direction to move in.
   private float moveDX;
   private float moveDY;
+  private boolean strafingCW;
 
   public SwingyEnemy (Room a) {
     room = a;
@@ -32,6 +33,12 @@ class SwingyEnemy implements Enemy {
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
+
+    if (Math.random() > 0.5) {
+      strafingCW = true;
+    } else {
+      strafingCW = false;
+    }
   }
 
   void takeDamage(int damage) {
@@ -64,8 +71,12 @@ class SwingyEnemy implements Enemy {
       if (chasing) {
         if (moveTimer == 0) {//choose direction
           float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
-          moveDX = (Aang.getX() - xPos) / d; //randomize these a little
-          moveDY = (Aang.getY() - yPos) / d; //randomize these a little
+          float cosAngle = (Aang.getX() - xPos) / d;
+          float sinAngle = (Aang.getY() - yPos) / d;
+
+          moveDX = cosAngle*cos((float)Math.random()*PI/6 - PI/12) - sinAngle*sin((float)Math.random()*PI/6 - PI/12);
+          moveDY = sinAngle*cos((float)Math.random()*PI/6 - PI/12) + cosAngle*sin((float)Math.random()*PI/6 - PI/12);
+
           moveTimer = 50 + (int)(Math.random()*10);
         } else {//move in direction
           xPos += 3.0 * moveDX;
@@ -77,14 +88,19 @@ class SwingyEnemy implements Enemy {
           moveHurt();
           moveHit();
         }
-        
+
         if (dist(getX(), getY(), Aang.getX(), Aang.getY()) <= 80) {
           chasing = false;
           strafing = true;
         }
       } else if (strafing) {
-        xPos += -2.0 * (Aang.getY()-getY())/distToPlayer;
-        yPos += 2.0 * (Aang.getX()-getX())/distToPlayer;
+        if (strafingCW) {
+          xPos += 2.0 * (Aang.getY()-getY())/distToPlayer;
+          yPos += -2.0 * (Aang.getX()-getX())/distToPlayer;
+        } else {
+          xPos += -2.0 * (Aang.getY()-getY())/distToPlayer;
+          yPos += 2.0 * (Aang.getX()-getX())/distToPlayer;
+        }
         distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
         if (distToPlayer >= 100) {
           strafing = false;
@@ -112,12 +128,12 @@ class SwingyEnemy implements Enemy {
     if (attacking) {
       //println(attackDX + " " + attackDY); //debug print statement
       attackFrame += 1;
-      
+
       //display weapon
       stroke(171, 184, 186);
       strokeWeight(5);
       line(getX()-camC, getY()-camR, getX()-camC + attackDX * 20*(5-abs(attackFrame - 5)), getY()-camR + attackDY * 20*(5-abs(attackFrame - 5)));
-      
+
       //hit player
       if (Aang.getX() - getX() < attackDX * 20*(5-abs(attackFrame - 5)) + 20 && Aang.getY() - getY() < attackDY * 20*(5-abs(attackFrame - 5)) + 20) {
         Aang.takeDamage(1);
