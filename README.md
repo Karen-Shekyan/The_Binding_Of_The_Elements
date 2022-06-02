@@ -135,3 +135,5 @@ Jonathan Shavit:
 
 Jonathan Shavit:
 - added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames)
+- made the Player stop changing colors in accordance with weaponMode, and instead have a single unchanging sprite
+- added a (tentative) textual display of weaponMode in the bottom left corner of the screen
