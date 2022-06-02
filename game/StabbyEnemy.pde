@@ -4,7 +4,7 @@ class StabbyEnemy implements Enemy {
   public int attack;
   private float xPos;
   private float yPos;
-  private int stunTimer = 0;
+  private int stunTimer = 20;
   private ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   private Hitbox touchZone;
   public Room room;
@@ -18,13 +18,17 @@ class StabbyEnemy implements Enemy {
   //states
   private boolean chasing = false;
   private boolean strafing = true; //starts here
+  //movement
+  private int moveTimer = 0; //this is how long until Touchy picks a new direction to move in.
+  private float moveDX;
+  private float moveDY;
 
   public StabbyEnemy (Room a) {
     room = a;
     attack = 1;
     xPos = (float)(Math.random()*(a.COLS-4*wt) + 2*wt);
     yPos = (float)(Math.random()*(a.ROWS-4*wt) + 2*wt);
-    health = 20;
+    health = 15;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
@@ -53,12 +57,27 @@ class StabbyEnemy implements Enemy {
   }
 
   void move() {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    moveTimer = Math.max(moveTimer-1, 0);
     if (stunTimer == 0) {
       float distToPlayer = dist(getX(), getY(), Aang.getX(), Aang.getY());
 
       if (chasing) {
-        xPos += 3.0 * (Aang.getX()-getX())/distToPlayer;
-        yPos += 3.0 * (Aang.getY()-getY())/distToPlayer;
+        if (moveTimer == 0) {//choose direction
+          float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
+          moveDX = (Aang.getX() - xPos) / d; //randomize these a little
+          moveDY = (Aang.getY() - yPos) / d; //randomize these a little
+          moveTimer = 50 + (int)(Math.random()*10);
+        } else {//move in direction
+          xPos += 3.0 * moveDX;
+          yPos += 3.0 * moveDY;
+
+          xPos = Math.min(room.COLS-wt-radius, Math.max(wt+radius, xPos));
+          yPos = Math.min(room.ROWS-wt-radius, Math.max(wt+radius, yPos));
+
+          moveHurt();
+          moveHit();
+        }
+
         if (dist(getX(), getY(), Aang.getX(), Aang.getY()) <= 80) {
           chasing = false;
           strafing = true;
@@ -90,26 +109,26 @@ class StabbyEnemy implements Enemy {
   }
 
   void display() {
-    if (attacking) {
+    if (attacking) {////////////////////////////////////////////////////////////////////////////////////////////////
       //println(attackDX + " " + attackDY); //debug print statement
       attackFrame += 1;
-      
+
       //display weapon
       stroke(171, 184, 186);
       strokeWeight(5);
       line(getX()-camC, getY()-camR, getX()-camC + attackDX * 20*(5-abs(attackFrame - 5)), getY()-camR + attackDY * 20*(5-abs(attackFrame - 5)));
-      
+
       //hit player
       if (Aang.getX() - getX() < attackDX * 20*(5-abs(attackFrame - 5)) + 20 && Aang.getY() - getY() < attackDY * 20*(5-abs(attackFrame - 5)) + 20) {
         Aang.takeDamage(1);
         Aang.knockback(attackDX*3.0, attackDY*3.0);
       }
-    }
+    }              ////////////////////////////////////////////////////////////////////////////////////////////////
 
     stroke(0);
     strokeWeight(1);
 
-    fill(0, 150, 150);
+    fill(150, 150, 150);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
 
     fill(0);

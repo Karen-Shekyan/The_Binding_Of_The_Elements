@@ -4,10 +4,14 @@ class TouchyEnemy implements Enemy {
   public float attack;
   private float xPos;
   private float yPos;
-  private int stunTimer = 0;
+  private int stunTimer = 20;
   private ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   private Hitbox touchZone;
   public Room room;
+  //movement
+  private int moveTimer = 0; //this is how long until Touchy picks a new direction to move in.
+  private float moveDX;
+  private float moveDY;
 
   public TouchyEnemy(Room a) {
     room = a;
@@ -40,12 +44,23 @@ class TouchyEnemy implements Enemy {
   }
 
   void move() {
+    moveTimer = Math.max(moveTimer-1, 0);
     if (stunTimer == 0) {
-      float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
-      xPos += 3.0 * (Aang.getX()-getX())/d;
-      yPos += 3.0 * (Aang.getY()-getY())/d;
-      moveHurt();
-      moveHit();
+      if (moveTimer == 0) {//choose direction
+        float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
+        moveDX = (Aang.getX() - xPos) / d; //randomize these a little
+        moveDY = (Aang.getY() - yPos) / d; //randomize these a little
+        moveTimer = 50 + (int)(Math.random()*10);
+      } else {//move in direction
+        xPos += 3.0 * moveDX;
+        yPos += 3.0 * moveDY;
+        
+        xPos = Math.min(room.COLS-wt-radius, Math.max(wt+radius, xPos));
+        yPos = Math.min(room.ROWS-wt-radius, Math.max(wt+radius, yPos));
+        
+        moveHurt();
+        moveHit();
+      }
     }
   }
 

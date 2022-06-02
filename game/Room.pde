@@ -41,18 +41,22 @@ public class Room {
     if (roomType == 1) {                        //normal
     //   FOR TESTING   //
       //enemies.add(new DummyEnemy(this));
+      //enemies.add(new TouchyEnemy(this));
       //enemies.add(new ShootyEnemy(this));
-      enemies.add(new StabbyEnemy(this));
+      //enemies.add(new StabbyEnemy(this));
     //
     
-      //int numEnemies = (int)(Math.random()*3 + 4);
-      //for (int i = 0; i < numEnemies; i++) {
-      //  if (Math.random() > 0.5) {
-      //    enemies.add(new TouchyEnemy(this));
-      //  } else {
-      //    enemies.add(new ShootyEnemy(this));
-      //  }
-      //}
+      int numEnemies = (int)(Math.random()*3 + 4);
+      for (int i = 0; i < numEnemies; i++) {
+        double prob = Math.random();
+        if (prob > 0.7) {
+          enemies.add(new TouchyEnemy(this));
+        } else if (prob > 0.4) {
+          enemies.add(new StabbyEnemy(this));
+        } else {
+          enemies.add(new ShootyEnemy(this));
+        }
+      }
     } else if (roomType == 2) {                 //treasure
       
     } else if (roomType == 3) {                 //shop
