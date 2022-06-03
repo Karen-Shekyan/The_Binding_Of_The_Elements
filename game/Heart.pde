@@ -3,8 +3,10 @@ public class Heart {
   int healthType; /*0 is normal health, 1 is spririt health, used ints because we might have more later */
   float x;
   float y;
+  Hitbox areaOfEffect;
+  Room room;
   
-  public Heart(float x_, float y_) {
+  public Heart(float x_, float y_, Room r) {
     double rng = Math.random();
     if (rng<0.7){
       healthType = 0;
@@ -21,6 +23,9 @@ public class Heart {
     
     x = x_;
     y = y_;
+    
+    room = r;
+    areaOfEffect = new Hitbox(x,y,10,0,0, room);
   }
   
   void display() {
@@ -39,10 +44,17 @@ public class Heart {
   }
   
   void effect(Player p) {
+    println("effect");
     if (healthType==0){
       //heal player
     } else {
       //add to the spirit health
     }
+    room.hearts.remove(this);
+    
+  }
+  
+  boolean isTouching(Player p) {
+    return areaOfEffect.isTouching(p);
   }
 }
