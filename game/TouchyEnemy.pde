@@ -80,7 +80,8 @@ class TouchyEnemy implements Enemy {
     strokeWeight(1);
 
     fill(105, 66, 245);
-    ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    //ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    shape(touchySprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
 
     //fill(255);//    draw hurtbox    //
     //ellipse(body.get(0).getX()-camC,body.get(0).getY()-camR,2*radius,2*radius);
@@ -123,7 +124,10 @@ class TouchyEnemy implements Enemy {
   }
 
   void dropLoot() {
-    //nothing yet
+    double rng = Math.random();
+    if (rng<0.3) {
+      room.hearts.add(new Heart(xPos,yPos,room));
+    }
   }
 
   float getX() {

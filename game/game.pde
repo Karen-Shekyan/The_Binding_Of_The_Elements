@@ -56,6 +56,13 @@ PShape mouseAim;
 PShape typeWeakness;
 PShape weaponIndicator;
 PShape typeStrength;
+PShape playerSprite;
+PShape touchySprite;
+PShape shootySprite;
+PShape aangEarth;
+PShape aangFire;
+PShape aangWater;
+PShape aangAir;
 
 void setup() {
   size(1000, 800);
@@ -76,6 +83,14 @@ void setup() {
   typeWeakness = loadShape("attribute chart-2.svg");
   weaponIndicator = loadShape("weaponType.svg");
   typeStrength = loadShape("attribute chart-3.svg");
+
+  playerSprite = loadShape("aang.svg");
+  touchySprite = loadShape("enemyTouch.svg");
+  shootySprite = loadShape("enemyTouch-2.svg");
+  aangEarth = loadShape("aang-earth.svg");
+  aangWater = loadShape("aang-water.svg");
+  aangFire = loadShape("aang-fire.svg");
+  aangAir = loadShape("aang-air.svg");
 
   //startNewGame();
   //size(1000, 800);
@@ -99,29 +114,31 @@ void draw() {
     pauseGame();
   } else {
     //check for door
-    if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
-      currentRoom += 10;
-      r = LEVEL.get(currentRoom);
-      camC = 0;
-      Aang.setX(wt + Aang.getR() + 2);
-    }
-    if (r.floor[(int)Aang.getY()][(int)Aang.getX() - Aang.getR() - 1] == -2) {//left
-      currentRoom -= 10;
-      r = LEVEL.get(currentRoom);
-      camC = r.COLS-width;
-      Aang.setX(r.COLS - wt - Aang.getR() - 2);
-    }
-    if (r.floor[(int)Aang.getY() + Aang.getR() + 1][(int)Aang.getX()] == -2) {//down
-      currentRoom += 1;
-      r = LEVEL.get(currentRoom);
-      camR = 0;
-      Aang.setY(wt + Aang.getR() + 2);
-    }
-    if (r.floor[(int)Aang.getY() - Aang.getR() - 1][(int)Aang.getX()] == -2) {//up
-      currentRoom -= 1;
-      r = LEVEL.get(currentRoom);
-      camR = r.ROWS-height;
-      Aang.setY(r.ROWS - wt - Aang.getR() - 2);
+    if (r.enemies.size() == 0) {
+      if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
+        currentRoom += 10;
+        r = LEVEL.get(currentRoom);
+        camC = 0;
+        Aang.setX(wt + Aang.getR() + 2);
+      }
+      if (r.floor[(int)Aang.getY()][(int)Aang.getX() - Aang.getR() - 1] == -2) {//left
+        currentRoom -= 10;
+        r = LEVEL.get(currentRoom);
+        camC = r.COLS-width;
+        Aang.setX(r.COLS - wt - Aang.getR() - 2);
+      }
+      if (r.floor[(int)Aang.getY() + Aang.getR() + 1][(int)Aang.getX()] == -2) {//down
+        currentRoom += 1;
+        r = LEVEL.get(currentRoom);
+        camR = 0;
+        Aang.setY(wt + Aang.getR() + 2);
+      }
+      if (r.floor[(int)Aang.getY() - Aang.getR() - 1][(int)Aang.getX()] == -2) {//up
+        currentRoom -= 1;
+        r = LEVEL.get(currentRoom);
+        camR = r.ROWS-height;
+        Aang.setY(r.ROWS - wt - Aang.getR() - 2);
+      }
     }
 
     //display floor
@@ -142,7 +159,7 @@ void draw() {
     }
 
     updatePixels();
-    
+
     if (r.roomType < 0) {
       showInstructions();
     }
@@ -198,6 +215,13 @@ void draw() {
     if (LEVEL.get(bossRoom).enemies.size()==0) {
       endCredits = true;
       endScreenTime = 0;
+    }
+    
+    for (int i=0; i<r.hearts.size(); i++) {
+      r.hearts.get(i).display();
+      if (r.hearts.get(i).isTouching(Aang)) {
+        r.hearts.get(i).effect(Aang);
+      }
     }
 
     Aang.move();
