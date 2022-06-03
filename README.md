@@ -151,3 +151,7 @@ Karen Shekyan:
 
 Jonathan Shavit:
 - Added a boolean check that prevents you from leaving the current room if it still has enemies
+- Added methods to Player for increasing its health (current health) and tempHealth
+- Added a Heart class that makes objects that can restore player health and disappear upon doing so
+- Made enemies have a certain chance of dropping a Heart upon death
+- I plan to make an Item interface to standardize the item methods
