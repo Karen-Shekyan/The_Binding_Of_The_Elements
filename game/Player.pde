@@ -379,4 +379,15 @@ public class Player implements Character {
   void setY(float n) {
     y = n;
   }
+  
+  void heal(int amount) {
+    health+=amount;
+    if (health>maxHealth) {
+      health = maxHealth;
+    }
+  }
+  
+  void addTempHealth(int amount) {
+    tempHealth+=amount;
+  }
 }
