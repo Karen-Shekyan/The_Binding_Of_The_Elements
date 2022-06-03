@@ -163,6 +163,7 @@ class StabbyEnemy implements Enemy {
   }
 
   void dropLoot() {
+    room.hearts.add(new Heart(xPos,yPos,room));
   }
 
   Hitbox getTouchZone() {
