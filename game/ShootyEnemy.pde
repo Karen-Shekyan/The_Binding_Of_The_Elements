@@ -147,6 +147,10 @@ class ShootyEnemy implements Enemy {
   }
 
   void dropLoot() {
+    double rng = Math.random();
+    if (rng<0.3) {
+      room.hearts.add(new Heart(xPos,yPos,room));
+    }
   }
 
   Hitbox getTouchZone() {
