@@ -47,8 +47,10 @@ public class Heart {
     println("effect");
     if (healthType==0){
       //heal player
+      p.heal(health);
     } else {
       //add to the spirit health
+      p.addTempHealth(health);
     }
     room.hearts.remove(this);
     
