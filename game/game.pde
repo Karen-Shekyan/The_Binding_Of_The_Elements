@@ -213,6 +213,13 @@ void draw() {
       endCredits = true;
       endScreenTime = 0;
     }
+    
+    for (int i=0; i<r.hearts.size(); i++) {
+      r.hearts.get(i).display();
+      if (r.hearts.get(i).isTouching(Aang)) {
+        r.hearts.get(i).effect(Aang);
+      }
+    }
 
     Aang.move();
     Aang.display();
