@@ -1,4 +1,4 @@
-class StabbyEnemy implements Enemy {
+class SwingyEnemy implements Enemy {
   private int health;
   private float radius = 20;
   public int attack;
@@ -12,7 +12,7 @@ class StabbyEnemy implements Enemy {
   private int attackCD = 30;
   private float attackRange = 100;
   private boolean attacking = false;
-  private int attackFrame = 0;         //    the attack occurs over 10 frames    //
+  private int attackFrame = 0;         //    the attack occurs over 10 frames. The attack's arc is PI/3 rad    //
   private float attackDX;
   private float attackDY;
   //states
@@ -24,16 +24,16 @@ class StabbyEnemy implements Enemy {
   private float moveDY;
   private boolean strafingCW;
 
-  public StabbyEnemy (Room a) {
+  public SwingyEnemy (Room a) {
     room = a;
     attack = 1;
     xPos = (float)(Math.random()*(a.COLS-4*wt) + 2*wt);
     yPos = (float)(Math.random()*(a.ROWS-4*wt) + 2*wt);
-    health = 15;
+    health = 20;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
-    
+
     if (Math.random() > 0.5) {
       strafingCW = true;
     } else {
@@ -59,7 +59,7 @@ class StabbyEnemy implements Enemy {
       attacking = true;
       attackDX = (Aang.getX() - getX()) / distToPlayer;
       attackDY = (Aang.getY() - getY()) / distToPlayer;
-      attackCD = 90;
+      attackCD = 110;//longer cd than stabby
     }
   }
 
@@ -73,7 +73,7 @@ class StabbyEnemy implements Enemy {
           float d = dist(Aang.getX(), Aang.getY(), getX(), getY());
           float cosAngle = (Aang.getX() - xPos) / d;
           float sinAngle = (Aang.getY() - yPos) / d;
-
+          //randomize direction slightly
           moveDX = cosAngle*cos((float)Math.random()*PI/6 - PI/12) - sinAngle*sin((float)Math.random()*PI/6 - PI/12);
           moveDY = sinAngle*cos((float)Math.random()*PI/6 - PI/12) + cosAngle*sin((float)Math.random()*PI/6 - PI/12);
 
@@ -125,21 +125,41 @@ class StabbyEnemy implements Enemy {
   }
 
   void display() {
-    if (attacking) {////////////////////////////////////////////////////////////////////////////////////////////////
+    if (attacking) {
       //println(attackDX + " " + attackDY); //debug print statement
       attackFrame += 1;
 
       //display weapon
-      stroke(171, 184, 186);
-      strokeWeight(5);
-      line(getX()-camC, getY()-camR, getX()-camC + attackDX * 20*(5-abs(attackFrame - 5)), getY()-camR + attackDY * 20*(5-abs(attackFrame - 5)));
+      float startAngle;
+      if (attackDX > 0) {
+        startAngle = atan(attackDY/attackDX) + (PI/36 * attackFrame - 5*PI/36);
+      } else {
+        startAngle = PI + atan(attackDY/attackDX) + (PI/36 * attackFrame - 5*PI/36);
+      }
+      float endAngle = startAngle + PI/18; //10 degrees apart
+      noStroke();
+      fill(232, 234, 235);
+      for (int i = 0; i < 80; i+=5) {
+        arc(xPos-camC, yPos-camR, 2*(attackRange-i), 2*(attackRange-i), startAngle-PI/6, endAngle, OPEN);
+      }
+      fill(171, 184, 186);
+      arc(xPos-camC, yPos-camR, 2*attackRange, 2*attackRange, startAngle, endAngle, PIE);
 
       //hit player
-      if (Aang.getX() - getX() < attackDX * 20*(5-abs(attackFrame - 5)) + 20 && Aang.getY() - getY() < attackDY * 20*(5-abs(attackFrame - 5)) + 20) {
-        Aang.takeDamage(1);
-        Aang.knockback(attackDX*3.0, attackDY*3.0);
+      if (dist(getX(), getY(), Aang.getX(), Aang.getY()) < attackRange) {
+        float angleToPlayer;
+        if (Aang.getX() - getX() > 0) {
+          angleToPlayer = atan((Aang.getY()-getY())/(Aang.getX()-getX()));
+        } else {
+          angleToPlayer = PI + atan((Aang.getY()-getY())/(Aang.getX()-getX()));
+        }
+
+        if (angleToPlayer < endAngle && angleToPlayer > startAngle) {
+          Aang.takeDamage(1);
+          Aang.knockback(attackDX*3.0, attackDY*3.0);
+        }
       }
-    }              ////////////////////////////////////////////////////////////////////////////////////////////////
+    }
 
     stroke(0);
     strokeWeight(1);
@@ -198,10 +218,6 @@ class StabbyEnemy implements Enemy {
   }
 
   void dropLoot() {
-    double rng = Math.random();
-    if (rng<0.3) {
-      room.hearts.add(new Heart(xPos,yPos,room));
-    }
   }
 
   Hitbox getTouchZone() {
