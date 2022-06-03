@@ -136,3 +136,9 @@ Karen Shekyan:
 - Animated stabby's attacks and made them collide properly with the player.
 - Changed strafe speed in shooty and stabby to be slower than chase speed.
 - Set hard cap on knockback to prevent melee attacks from flinging the player into walls and doors at high speeds.
+
+###### 6/2/22
+
+Karen Shekyan:
+- Randomized movements slightly for all enemies. They pick a direction to move in at random intervals. The direction is slightly randomized too.
+- Made Swingy and animated their attack.
