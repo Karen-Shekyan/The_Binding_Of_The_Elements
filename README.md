@@ -33,8 +33,8 @@ Karen Shekyan:
 
 ###### 5/22/22
 Jonathan Shavit:
-- Wrote TouchyEnemy class, which moves towards the player and deals contact damage
-- Tried making a Bullet class. they deal damage and are released properly, but don't move (so they're like permanent mines)
+- Wrote TouchyEnemy class, which moves towards the player and deals contact damage.
+- Tried making a Bullet class. they deal damage and are released properly, but don't move (so they're like permanent mines).
 
 Karen Shekyan:
 - Added Dungeon class. It generates properly, allegedly. Special rooms generate as they should.
@@ -43,7 +43,7 @@ Karen Shekyan:
 
 ###### 5/23/22
 Jonathan Shavit:
-- Thought I pulled, but didn't, and ended up basically coding what Karen did
+- Thought I pulled, but didn't, and ended up basically coding what Karen did.
 
 Karen Shekyan:
 - Fixed bullets, now functional. Move properly and deal damage.
@@ -54,8 +54,8 @@ Karen Shekyan:
 ###### 5/24/22
 
 Jonathan Shavit:
-- Made a death screen, a pause screen, and a menu screen (really a title screen)
-- Made a minimap that shows dungeon layout, current room, and explored rooms (no indicators for special rooms and the like yet though)
+- Made a death screen, a pause screen, and a menu screen (really a title screen).
+- Made a minimap that shows dungeon layout, current room, and explored rooms (no indicators for special rooms and the like yet though).
 
 Karen Shekyan:
 - Fixed Touchy and the coordinate system. Now ALL positions are relative to the ROOM.
@@ -65,11 +65,11 @@ Karen Shekyan:
 ###### 5/25/22
 
 Jonathan Shavit:
-- Slightly altered minimap to better match the original game's style
-- Added markers to the minimap (boss, treasure, shop), which I *unwisely* hard-coded
-- Modified the pause menu to include the option to quit to menu
-- Made the game load your previous run when you click play after quitting to menu
-- Made some heart sprites. I spent way too long on those
+- Slightly altered minimap to better match the original game's style.
+- Added markers to the minimap (boss, treasure, shop), which I *unwisely* hard-coded.
+- Modified the pause menu to include the option to quit to menu.
+- Made the game load your previous run when you click play after quitting to menu.
+- Made some heart sprites. I spent way too long on those.
 
 Karen Shekyan:
 - Fixed Dungeon generating twice on start.
@@ -78,8 +78,8 @@ Karen Shekyan:
 ###### 5/26/22
 
 Jonathan Shavit:
-- Changed the HUD so it displays the heart sprites instead of using circles
-- Changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins)
+- Changed the HUD so it displays the heart sprites instead of using circles.
+- Changed the minimap so it only displays explored rooms or rooms neighboring explored rooms. also added a debug version of the displayMiniMap method to outline unexplored rooms (and show their pins).
 
 Karen Shekyan:
 - Made doors generate in each room upon dungeon generation.
@@ -88,11 +88,11 @@ Karen Shekyan:
 ###### 5/27/22
 
 Jonathan Shavit:
-- Added a toggleable (on TAB press) expansion of the minimap
-- Wrote an end screen and made it trigger when all enemies in the boss room are killed
-- Made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later
-- Uploaded sprites for the minimap's pins/markers
-- Replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one)
+- Added a toggleable (on TAB press) expansion of the minimap.
+- Wrote an end screen and made it trigger when all enemies in the boss room are killed.
+- Made the end screen do a slow automatic text-progression thing (takes like 5~6 seconds) - might tweak later.
+- Uploaded sprites for the minimap's pins/markers.
+- Replaced some markers on the map with the appropriate sprites (i would've done all of them, but one sprite wouldn't load in. it'd throw a NullPointerException - but just that one).
 
 Karen Shekyan:
 - Made player get invincibility frames and get stunned upon taking damage.
@@ -101,8 +101,8 @@ Karen Shekyan:
 ###### 5/28/22
 
 JonathanShavit:
-- Figured out why the coin sprite wouldn't load in and fixed that (now the mimimap only uses sprites)
-- Discovered a bug in the drawing of the 'crown' marker of the minimap (a small line is drawn diagonally from the 'crown' marker across the screen - it isn't intrusive, but it's there)
+- Figured out why the coin sprite wouldn't load in and fixed that (now the mimimap only uses sprites).
+- Discovered a bug in the drawing of the 'crown' marker of the minimap (a small line is drawn diagonally from the 'crown' marker across the screen - it isn't intrusive, but it's there).
 
 Karen Shekyan:
 - Improved player knockback.
@@ -110,8 +110,8 @@ Karen Shekyan:
 ###### 5/29/22
 
 Jonathan Shavit:
-- Fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite
-- Added some images to use in game instructions
+- Fixed the bug in the crown sprite, but found a similar (but smaller) one in the skull sprite.
+- Added some images to use in game instructions.
 
 Karen Shekyan:
 - Added miniboss. They're slower, larger, have more health, and attack in a unique way. They spawn in the middle of the boss room of level 1. Also, their setStun method does nothing; this is intended.
@@ -121,9 +121,9 @@ Karen Shekyan:
 ###### 5/30/22
 
 Jonathan Shavit:
-- Added an indicator of the player's weapon mode/type to the player's display method (a little colored circle on the player)
-- Added more images to use in game instructions
-- Filled the first room with game instructions
+- Added an indicator of the player's weapon mode/type to the player's display method (a little colored circle on the player).
+- Added more images to use in game instructions.
+- Filled the first room with game instructions.
 
 Karen Shekyan:
 - Polished Shooty's and Mini's brains. They are no longer jittery.
@@ -132,14 +132,14 @@ Karen Shekyan:
 ###### 5/31/22
 
 Jonathan Shavit:
-- Added some enemy and player sprites
+- Added some enemy and player sprites.
 
 ###### 6/1/22
 
 Jonathan Shavit:
-- Added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames)
-- Made the Player stop changing colors in accordance with weaponMode, and instead have a single unchanging sprite
-- Added a (tentative) textual display of weaponMode in the bottom left corner of the screen
+- Added a method, changeWeaponMode(), to Player class, that gets called in its move, and randomly switches the Player's weapon mode every 180 frames (made the Player's weapon change mode after every 180 frames).
+- Made the Player stop changing colors in accordance with weaponMode, and instead have a single unchanging sprite.
+- Added a (tentative) textual display of weaponMode in the bottom left corner of the screen.
 
 Karen Shekyan:
 - Made StabbyEnemy. Behaves somewhat similarly to shooty (chases and strafes the player) but attacks with a "sword".
@@ -150,8 +150,12 @@ Karen Shekyan:
 ###### 6/2/22
 
 Jonathan Shavit:
-- Added a boolean check that prevents you from leaving the current room if it still has enemies
-- Added methods to Player for increasing its health (current health) and tempHealth
-- Added a Heart class that makes objects that can restore player health and disappear upon doing so
-- Made enemies have a certain chance of dropping a Heart upon death
-- I plan to make an Item interface to standardize the item methods
+- Added a boolean check that prevents you from leaving the current room if it still has enemies.
+- Added methods to Player for increasing its health (current health) and tempHealth.
+- Added a Heart class that makes objects that can restore player health and disappear upon doing so.
+- Made enemies have a certain chance of dropping a Heart upon death.
+- I plan to make an Item interface to standardize the item methods.
+
+Karen Shekyan:
+- Randomized movements slightly for all enemies. They pick a direction to move in at random intervals. The direction is slightly randomized too.
+- Made Swingy and animated their attack.

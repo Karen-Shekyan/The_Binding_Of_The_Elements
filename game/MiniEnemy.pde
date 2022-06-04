@@ -4,7 +4,7 @@ class MiniEnemy implements Enemy {
   public int attack;
   private float xPos;
   private float yPos;
-  private int stunTimer = 0;
+  private int stunTimer = 20;
   private ArrayList<Hurtbox> body = new ArrayList<Hurtbox>();
   private Hitbox touchZone;
   public Room room;

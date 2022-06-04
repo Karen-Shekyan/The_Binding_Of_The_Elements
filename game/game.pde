@@ -1,6 +1,9 @@
+//display constants
 int wt = 100;
 float camR = 200;//corresponds to y
 float camC = 250;//corresponds to x
+
+//screen variables
 boolean dead = false;
 boolean menu = true;
 boolean pause;
