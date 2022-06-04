@@ -217,10 +217,10 @@ void draw() {
       endScreenTime = 0;
     }
     
-    for (int i=0; i<r.hearts.size(); i++) {
-      r.hearts.get(i).display();
-      if (r.hearts.get(i).isTouching(Aang)) {
-        r.hearts.get(i).effect(Aang);
+    for (int i=0; i<r.items.size(); i++) {
+      r.items.get(i).display();
+      if (r.items.get(i).isTouching(Aang)) {
+        r.items.get(i).effect(Aang);
       }
     }
 

@@ -52,7 +52,7 @@ public class Heart implements Item {
       //add to the spirit health
       p.addTempHealth(health);
     }
-    room.hearts.remove(this);
+    room.items.remove(this);
     
   }
   
