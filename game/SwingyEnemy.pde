@@ -144,6 +144,7 @@ class SwingyEnemy implements Enemy {
       }
       fill(171, 184, 186);
       arc(xPos-camC, yPos-camR, 2*attackRange, 2*attackRange, startAngle, endAngle, PIE);
+      
 
       //hit player
       if (dist(getX(), getY(), Aang.getX(), Aang.getY()) < attackRange) {
@@ -165,7 +166,8 @@ class SwingyEnemy implements Enemy {
     strokeWeight(1);
 
     fill(150, 150, 150);
-    ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    //ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    shape(swingySprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
 
     fill(0);
     textSize(10);
@@ -218,6 +220,10 @@ class SwingyEnemy implements Enemy {
   }
 
   void dropLoot() {
+    double rng = Math.random();
+    if (rng<0.3) {
+      room.items.add(new Heart(xPos,yPos,room));
+    }
   }
 
   Hitbox getTouchZone() {

@@ -1,4 +1,4 @@
-public class Heart {
+public class Heart implements Item {
   int health;
   int healthType; /*0 is normal health, 1 is spririt health, used ints because we might have more later */
   float x;
@@ -52,7 +52,7 @@ public class Heart {
       //add to the spirit health
       p.addTempHealth(health);
     }
-    room.hearts.remove(this);
+    room.items.remove(this);
     
   }
   
