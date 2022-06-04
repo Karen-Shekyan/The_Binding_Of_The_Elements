@@ -62,10 +62,10 @@ PShape shootySprite;
 PShape stabbySprite;
 PShape swingySprite;
 PShape miniBossSprite;
-PShape aangEarth;
-PShape aangFire;
-PShape aangWater;
-PShape aangAir;
+//PShape aangEarth;
+//PShape aangFire;
+//PShape aangWater;
+//PShape aangAir;
 
 void setup() {
   size(1000, 800);
@@ -93,10 +93,10 @@ void setup() {
   stabbySprite = loadShape("enemyTouch-3.svg");
   swingySprite = loadShape("enemyTouch-4.svg");
   miniBossSprite = loadShape("enemyTouch-5.svg");
-  aangEarth = loadShape("aang-earth.svg");
-  aangWater = loadShape("aang-water.svg");
-  aangFire = loadShape("aang-fire.svg");
-  aangAir = loadShape("aang-air.svg");
+  //aangEarth = loadShape("aang-earth.svg");
+  //aangWater = loadShape("aang-water.svg");
+  //aangFire = loadShape("aang-fire.svg");
+  //aangAir = loadShape("aang-air.svg");
 
   //startNewGame();
   //size(1000, 800);
