@@ -165,3 +165,5 @@ Karen Shekyan:
 Jonathan Shavit:
 - Added Item interface, and made Heart implement it
 - Changed the list of Hearts in Room to a list of Items, and updated code referencing those lists accordingly
+- Added new sprites for Swingy, Stabby, and Mini
+- Removed now unused sprites
