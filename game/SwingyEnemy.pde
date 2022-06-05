@@ -224,6 +224,11 @@ class SwingyEnemy implements Enemy {
     if (rng<0.3) {
       room.items.add(new Heart(xPos,yPos,room));
     }
+    
+    rng = Math.random();
+    if (rng < 0.85) {
+      Aang.increaseWealth();
+    }
   }
 
   Hitbox getTouchZone() {
