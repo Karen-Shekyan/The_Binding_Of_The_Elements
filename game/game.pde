@@ -199,7 +199,7 @@ void draw() {
 
         if (bullet.isTouching(guy)) {
           guy.takeDamage(bullet.getDam());
-          r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
+          r.playerBullets.remove(bullet);
         }
       }
       bullet.display();
@@ -212,7 +212,7 @@ void draw() {
       if (bullet.isTouching(Aang)) {
         Aang.takeDamage(bullet.getDam());
         Aang.knockback(bullet.vx * 0.8, bullet.vy * 0.8);       //knockback applied to player here. Mess with the numbers more.
-        r.enemyBullets.remove(bullet);//    put this into hitbox once room is fixed    //
+        r.enemyBullets.remove(bullet);
       }
       bullet.display();
     }
@@ -240,6 +240,10 @@ void draw() {
     Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
+    
+    for (int i = 0; i < r.activeBombs.size(); i++) {
+      r.activeBombs.get(i).display();
+    }
   }
 }
 
@@ -278,6 +282,9 @@ void keyReleased() {
   }
   if (key == 's') {
     D = false;
+  }
+  if (key == 'f') {
+    Aang.useBomb();
   }
 }
 
