@@ -164,7 +164,7 @@ class SwingyEnemy implements Enemy {
     stroke(0);
     strokeWeight(1);
 
-    fill(150, 150, 150);
+    fill(89, 97, 110);
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
 
     fill(0);
@@ -218,6 +218,10 @@ class SwingyEnemy implements Enemy {
   }
 
   void dropLoot() {
+    double rng = Math.random();
+    if (rng<0.2) {
+      room.hearts.add(new Heart(xPos,yPos,room));
+    }
   }
 
   Hitbox getTouchZone() {

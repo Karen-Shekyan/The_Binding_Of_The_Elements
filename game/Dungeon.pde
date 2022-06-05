@@ -37,9 +37,9 @@ public class Dungeon {
     level = new Room[9][8];
     int roomsLeft;
     if (n == 1) {
-      roomsLeft = 7 + (int)(Math.random()*2);
+      roomsLeft = 10 + (int)(Math.random()*2);
     } else {
-      roomsLeft = 13 + (int)(Math.random()*3);
+      roomsLeft = 15 + (int)(Math.random()*3);
     }
 
     ArrayList<Integer> endRooms = new ArrayList<Integer>();
