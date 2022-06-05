@@ -16,7 +16,7 @@ public class Player implements Character {
   private int radius = 20; //          remove later         //
   private int attackCD = 0;
   private int weaponTimer;
-  private final int gunSwitch = 180;
+  private final int gunSwitch = 900;
   private int money = 0;
 
   public Player () {
@@ -211,7 +211,7 @@ public class Player implements Character {
   
   void changeWeaponMode() {
     //double rng = Math.random();
-    switch (weaponMode) {
+    switch (weaponMode) { //might be bad for calculation time in very rare cases. consider optimizing
       case 0:
         while (weaponMode==0){
           weaponMode = (int)(Math.random()*4);

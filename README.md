@@ -168,9 +168,14 @@ Jonathan Shavit:
 - Added new sprites for Swingy, Stabby, and Mini
 - Removed now unused sprites
 
+Karen Shekyan:
+- Messed around with numbers to make the game play better.
+
 ###### 6/4/22
 
 Jonathan Shavit:
 - Added a variable to the Player to keep track of how much money the Player has, and a method to increase it
 - Added a display of Player's wealth to the HUD
 - Updated enemies so they have an 85% change of increasing the Player's wealth by one unit of currency
+
+###### 6/5/22
