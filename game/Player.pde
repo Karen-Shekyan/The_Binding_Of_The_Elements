@@ -17,6 +17,7 @@ public class Player implements Character {
   private int attackCD = 0;
   private int weaponTimer;
   private final int gunSwitch = 180;
+  private int money = 0;
 
   public Player () {
     health = 6;
@@ -308,6 +309,9 @@ public class Player implements Character {
         shape(halfSpiritHeart, 30*maxHealth+10+(i+1)*30, 10, 44, 44);
       }
     }
+    textSize(25);
+    fill(200);
+    text("Souls: "+money,45,90);
   }
 
 
@@ -389,5 +393,9 @@ public class Player implements Character {
   
   void addTempHealth(int amount) {
     tempHealth+=amount;
+  }
+  
+  void increaseWealth() {
+    money++;
   }
 }
