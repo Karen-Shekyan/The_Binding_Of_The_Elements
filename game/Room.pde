@@ -9,7 +9,7 @@ public class Room {
   public LinkedList<Bullet> enemyBullets = new LinkedList<Bullet>();
   public LinkedList<Bullet> playerBullets = new LinkedList<Bullet>();
   public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
-  public LinkedList<Heart> hearts = new LinkedList<Heart>();
+  public LinkedList<Item> items = new LinkedList<Item>();
   //need to initialize
 
   public Room (int rT) {

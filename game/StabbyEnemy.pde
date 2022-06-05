@@ -145,7 +145,8 @@ class StabbyEnemy implements Enemy {
     strokeWeight(1);
 
     fill(150, 150, 150);
-    ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    //ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+    shape(stabbySprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
 
     fill(0);
     textSize(10);
@@ -200,7 +201,12 @@ class StabbyEnemy implements Enemy {
   void dropLoot() {
     double rng = Math.random();
     if (rng<0.3) {
-      room.hearts.add(new Heart(xPos,yPos,room));
+      room.items.add(new Heart(xPos,yPos,room));
+    }
+    
+    rng = Math.random();
+    if (rng < 0.85) {
+      Aang.increaseWealth();
     }
   }
 

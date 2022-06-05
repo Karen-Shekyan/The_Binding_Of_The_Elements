@@ -17,6 +17,7 @@ public class Player implements Character {
   private int attackCD = 0;
   private int weaponTimer;
   private final int gunSwitch = 900;
+  private int money = 0;
 
   public Player () {
     health = 6;
@@ -250,7 +251,7 @@ public class Player implements Character {
 
     fill(255, 0, 0);
     //ellipse(x-camC, y-camR, 2*radius, 2*radius);
-    //shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+    shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
     fill(20,170);
     rect(0,height-50,290,50);
     textSize(35);
@@ -260,22 +261,22 @@ public class Player implements Character {
     switch (weaponMode){
       case 0:
         fill(WATER);
-        shape(aangWater, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        //shape(aangWater, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("WATER",170,height-15);
       break;
       case 1:
         fill(EARTH);
-        shape(aangEarth, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        //shape(aangEarth, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("EARTH",170,height-15);
       break;
       case 2:
         fill(FIRE);
-        shape(aangFire, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        //shape(aangFire, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("FIRE",170,height-15);
       break;
       case 3:
         fill(AIR);
-        shape(aangAir, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        //shape(aangAir, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("AIR",170,height-15);
       break;
     }
@@ -308,6 +309,9 @@ public class Player implements Character {
         shape(halfSpiritHeart, 30*maxHealth+10+(i+1)*30, 10, 44, 44);
       }
     }
+    textSize(25);
+    fill(200);
+    text("Souls: "+money,45,90);
   }
 
 
@@ -389,5 +393,9 @@ public class Player implements Character {
   
   void addTempHealth(int amount) {
     tempHealth+=amount;
+  }
+  
+  void increaseWealth() {
+    money++;
   }
 }

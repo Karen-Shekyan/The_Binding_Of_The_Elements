@@ -159,3 +159,18 @@ Jonathan Shavit:
 Karen Shekyan:
 - Randomized movements slightly for all enemies. They pick a direction to move in at random intervals. The direction is slightly randomized too.
 - Made Swingy and animated their attack.
+
+###### 6/3/22
+
+Jonathan Shavit:
+- Added Item interface, and made Heart implement it
+- Changed the list of Hearts in Room to a list of Items, and updated code referencing those lists accordingly
+- Added new sprites for Swingy, Stabby, and Mini
+- Removed now unused sprites
+
+###### 6/4/22
+
+Jonathan Shavit:
+- Added a variable to the Player to keep track of how much money the Player has, and a method to increase it
+- Added a display of Player's wealth to the HUD
+- Updated enemies so they have an 85% change of increasing the Player's wealth by one unit of currency
