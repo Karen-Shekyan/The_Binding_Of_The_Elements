@@ -23,7 +23,7 @@ public class Bomb implements Item {
     strokeWeight(1);
     stroke(0);
     fill(0);
-    ellipse(x-camC,y-camR,10,10);
+    ellipse(x-camC,y-camR, 20, 20);
   }
   
   boolean isTouching(Player p) {

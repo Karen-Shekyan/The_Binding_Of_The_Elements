@@ -240,6 +240,10 @@ void draw() {
     Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
+    
+    for (int i = 0; i < r.activeBombs.size(); i++) {
+      r.activeBombs.get(i).display();
+    }
   }
 }
 
@@ -278,6 +282,9 @@ void keyReleased() {
   }
   if (key == 's') {
     D = false;
+  }
+  if (key == 'f') {
+    Aang.useBomb();
   }
 }
 

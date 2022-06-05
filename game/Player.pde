@@ -18,7 +18,7 @@ public class Player implements Character {
   private int weaponTimer;
   private final int gunSwitch = 900;
   private int money = 0;
-  private int bombs = 0;
+  private int bombs = 5;
 
   public Player () {
     health = 6;
@@ -404,5 +404,12 @@ public class Player implements Character {
   
   void addBomb() {
     bombs += 1;
+  }
+  
+  void useBomb() {
+    if (bombs > 0) {
+      bombs -= 1;
+      r.activeBombs.add(new ActiveBomb(x, y, r));
+    }
   }
 }
