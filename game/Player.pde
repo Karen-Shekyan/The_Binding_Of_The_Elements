@@ -18,6 +18,7 @@ public class Player implements Character {
   private int weaponTimer;
   private final int gunSwitch = 900;
   private int money = 0;
+  private int bombs = 0;
 
   public Player () {
     health = 6;
@@ -312,6 +313,8 @@ public class Player implements Character {
     textSize(25);
     fill(200);
     text("Souls: "+money,45,90);
+    
+    text("Bombs: " + bombs, 850,790);
   }
 
 
@@ -397,5 +400,9 @@ public class Player implements Character {
   
   void increaseWealth() {
     money++;
+  }
+  
+  void addBomb() {
+    bombs += 1;
   }
 }

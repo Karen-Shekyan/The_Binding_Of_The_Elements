@@ -183,6 +183,7 @@ class ShootyEnemy implements Enemy {
 
   void dropLoot() {
     double rng = Math.random();
+    room.items.add(new Bomb(xPos,yPos,room));
     if (rng<0.3) {
       room.items.add(new Heart(xPos,yPos,room));
     }
