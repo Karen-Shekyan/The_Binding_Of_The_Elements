@@ -125,9 +125,13 @@ class TouchyEnemy implements Enemy {
 
   void dropLoot() {
     double rng = Math.random();
-    room.items.add(new Bomb(xPos,yPos,room));
-    if (rng<0.3) {
+    if (rng<0.15) {
       room.items.add(new Heart(xPos,yPos,room));
+    }
+    
+    rng = Math.random();
+    if (rng < 0.08) {
+      room.items.add(new Bomb(xPos,yPos,room));
     }
     
     rng = Math.random();

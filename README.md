@@ -179,3 +179,9 @@ Jonathan Shavit:
 - Updated enemies so they have an 85% change of increasing the Player's wealth by one unit of currency
 
 ###### 6/5/22
+
+Karen Shekyan:
+- Added Bomb class and made enemies drop bomb items.
+- Made and animated ActiveBomb class: the type of bomb placed by player.
+- ActiveBombs damage all characters. Currently they immediately kill enemies (not intended).
+- Adjusted drop rates for all items.

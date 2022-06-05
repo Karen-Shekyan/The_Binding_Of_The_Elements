@@ -42,7 +42,7 @@ public class ActiveBomb {
       
       if (touchZone.isTouching(Aang)) {
         Aang.takeDamage(2);
-        float dx = (Aang.getX() - x) / (dist(Aang.getX(), Aang.getY(), x, y)+1);
+        float dx = (Aang.getX() - x) / (dist(Aang.getX(), Aang.getY(), x, y)+1); //the +1 is here to prevent divide-by-zero nonsense
         float dy = (Aang.getY() - y) / (dist(Aang.getX(), Aang.getY(), x, y)+1);
         Aang.knockback(dx * 5.0, dy * 5.0);
       }
