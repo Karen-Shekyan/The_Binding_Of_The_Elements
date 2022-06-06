@@ -105,6 +105,30 @@ public class Dungeon {
       bossRoom = boss;
       level[shop%10-1][shop/10] = new Room(3);
       level[treasure%10-1][treasure/10] = new Room(2);
+      
+      //place secret room
+      boolean done = false;
+      int attempts = 0;
+      while (!done) {
+        int guess = (int)(90*Math.random()+10);
+        if (attempts < 300) {
+          if (get(guess) == null && !endRoomNeighbors(guess,endRooms) && countNeighbors(guess) >= 3) {
+            level[guess%10-1][guess/10] = new Room(5);
+            done = true;
+          }
+        } else if (attempts < 600) {
+          if (get(guess) == null && !endRoomNeighbors(guess,endRooms) && countNeighbors(guess) >= 2) {
+            level[guess%10-1][guess/10] = new Room(5);
+            done = true;
+          }
+        } else {
+          if (get(guess) == null && !endRoomNeighbors(guess,endRooms) && countNeighbors(guess) >= 1) {
+            level[guess%10-1][guess/10] = new Room(5);
+            done = true;
+          }
+        }
+        attempts++;
+      }
 
       //place doors
       for (int i = 0; i < level.length; i++) {
@@ -181,6 +205,10 @@ public class Dungeon {
       ans++;
     }
     return ans;
+  }
+  
+  private boolean endRoomNeighbors(int roomNum, ArrayList<Integer> endRooms) {
+    return endRooms.contains(roomNum - 1) || endRooms.contains(roomNum - 10) || endRooms.contains(roomNum + 1) || endRooms.contains(roomNum + 10);
   }
 
   void displayMiniMap() {
