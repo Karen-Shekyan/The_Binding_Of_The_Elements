@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Room {
 
-  public final float[][] floor;
+  public final float[][] floor;//[0,1) = terrain, -1 = walls, -2 = doors, -3 = hidden doors
   public final int roomType;//-1 = starting //1 = normal, 2 = treasure, 3 = shop, 4 = boss, 5 = secret
   public final int ROWS;
   public final int COLS;
@@ -31,10 +31,6 @@ public class Room {
         if (i <= wt || j <= wt || j >= COLS-wt || i >= ROWS-wt) {//wall
           floor[i][j] = -1;
         }
-        //door
-        //if ((i <= wt && j <= COLS/2 + 75 && j >= COLS/2 - 75) || (i >= ROWS-wt && j <= COLS/2 + 75 && j >= COLS/2 - 75) || (j <= wt && i <= ROWS/2 + 75 && i >= ROWS/2 - 75) || (j >= COLS-wt && i <= ROWS/2 + 75 && i >= ROWS/2 - 75)) {
-        //  floor[i][j] = -2;
-        //}
       }
     }
     
