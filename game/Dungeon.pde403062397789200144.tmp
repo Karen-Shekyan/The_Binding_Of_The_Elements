@@ -37,9 +37,9 @@ public class Dungeon {
     level = new Room[9][8];
     int roomsLeft;
     if (n == 1) {
-      roomsLeft = 10 + (int)(Math.random()*3);
+      roomsLeft = 10 + (int)(Math.random()*2);
     } else {
-      roomsLeft = 15 + (int)(Math.random()*4);
+      roomsLeft = 15 + (int)(Math.random()*3);
     }
 
     ArrayList<Integer> endRooms = new ArrayList<Integer>();
@@ -106,7 +106,7 @@ public class Dungeon {
       level[shop%10-1][shop/10] = new Room(3);
       level[treasure%10-1][treasure/10] = new Room(2);
 
-      //place secret room   cosider trading time for space
+      //place secret room
       boolean done = false;
       int attempts = 0;
       while (!done) {
@@ -198,7 +198,10 @@ public class Dungeon {
                 }
               }
             }
-          } 
+            
+          } else if (at != null && at.roomType == 5) {//doors in secret room have same condition as neighbor
+            
+          }
         }
       }
     }
