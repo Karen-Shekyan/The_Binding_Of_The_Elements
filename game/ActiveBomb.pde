@@ -2,7 +2,7 @@ public class ActiveBomb {
   float x;
   float y;
   Room room;
-  int timer = 0;  //flashes for 30 frames, then blows up over 15 frames
+  int timer = 0;  //flashes for 30 frames, then blows up over 2 frames
   Hitbox touchZone;
 
   public ActiveBomb (float x, float y, Room r) {
@@ -24,19 +24,20 @@ public class ActiveBomb {
       }
     } else {//explode
       float radius;
-      if (timer - 30 < 5) {
-        radius = 15 * (timer - 30);
+      if (timer - 30 == 0) {
+        radius = 100;
+        fill(242, 113, 0);
       } else {
-        radius = 7.5 * (10 - (timer - 35));
+        radius = 75-5*(timer-30);
+        fill(200);
       }
       touchZone = new Hitbox(x, y, radius, 0, 0, room);
-      fill(150 - 7.5 * (timer-30), 75, 75);
       ellipse(x-camC, y-camR, 2*radius, 2*radius);
       
       for (int i = 0; i < room.enemies.size(); i++) {
         Enemy guy = room.enemies.get(i);
         if (touchZone.isTouching(guy)) {
-          guy.takeDamage(15);                         // enemy damaged here //
+          guy.takeDamage(7);                         // enemy damaged here //
         }
       }
       
