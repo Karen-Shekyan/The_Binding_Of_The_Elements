@@ -11,7 +11,7 @@ public class Room {
   public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
   public LinkedList<Item> items = new LinkedList<Item>();
   public LinkedList<ActiveBomb> activeBombs = new LinkedList<ActiveBomb>();
-  //need to initialize
+  public int secretWhere = 0; //1 = up, 2 = down, 3 = left, 4 = right
 
   public Room (int rT) {
     roomType = rT;

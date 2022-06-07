@@ -110,7 +110,8 @@ public class Dungeon {
       boolean done = false;
       int attempts = 0;
       while (!done) {
-        int guess = (int)(90*Math.random()+10);
+        int guess = 10*(int)(Math.random()*8)+(int)(Math.random()*8+1);
+        
         if (attempts < 300) {
           if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 3) {
             level[guess%10-1][guess/10] = new Room(5);
@@ -150,6 +151,7 @@ public class Dungeon {
               for (int k = 0; k <= wt; k++) {
                 for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
                   at.floor[k][l] = -3;
+                  at.secretWhere = 1;
                 }
               }
             }
@@ -165,6 +167,7 @@ public class Dungeon {
               for (int k = at.ROWS-wt; k < at.ROWS; k++) {
                 for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
                   at.floor[k][l] = -3;
+                  at.secretWhere = 2;
                 }
               }
             }
@@ -180,6 +183,7 @@ public class Dungeon {
               for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
                 for (int l = 0; l <= wt; l++) {
                   at.floor[k][l] = -3;
+                  at.secretWhere = 3;
                 }
               }
             }
@@ -195,6 +199,7 @@ public class Dungeon {
               for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
                 for (int l = at.COLS-wt; l < at.COLS; l++) {
                   at.floor[k][l] = -3;
+                  at.secretWhere = 4;
                 }
               }
             }
