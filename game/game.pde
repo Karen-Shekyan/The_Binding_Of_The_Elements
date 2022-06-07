@@ -150,8 +150,12 @@ void draw() {
     //display floor
     for (int i = (int)camR; i < height+(int)camR; i++) {
       for (int j = (int)camC; j < width+(int)camC; j++) {
-        if (r.floor[i][j] == -1) {
+        if (r.floor[i][j] == -1) { //wall
           pixels[width*(i-(int)camR) + (j-(int)camC)] = color(0);
+        } else if (r.floor[i][j] == -2) { //door
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = color(255);
+        } else if (r.floor[i][j] == -3) { //hidden door
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = color(1);
         } else if (r.floor[i][j] > 0.70) {//earth
           pixels[width*(i-(int)camR) + (j-(int)camC)] = EARTH;
         } else if (r.floor[i][j] > 0.5) {//fire
@@ -199,7 +203,7 @@ void draw() {
 
         if (bullet.isTouching(guy)) {
           guy.takeDamage(bullet.getDam());
-          r.playerBullets.remove(bullet);//    put this into hitbox once room is fixed    //
+          r.playerBullets.remove(bullet);
         }
       }
       bullet.display();
@@ -212,7 +216,7 @@ void draw() {
       if (bullet.isTouching(Aang)) {
         Aang.takeDamage(bullet.getDam());
         Aang.knockback(bullet.vx * 0.8, bullet.vy * 0.8);       //knockback applied to player here. Mess with the numbers more.
-        r.enemyBullets.remove(bullet);//    put this into hitbox once room is fixed    //
+        r.enemyBullets.remove(bullet);
       }
       bullet.display();
     }
@@ -240,6 +244,10 @@ void draw() {
     Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
+    
+    for (int i = 0; i < r.activeBombs.size(); i++) {
+      r.activeBombs.get(i).display();
+    }
   }
 }
 
@@ -278,6 +286,9 @@ void keyReleased() {
   }
   if (key == 's') {
     D = false;
+  }
+  if (key == 'f') {
+    Aang.useBomb();
   }
 }
 

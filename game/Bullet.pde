@@ -15,13 +15,17 @@ class Bullet extends Hitbox {
     this(x, y, 10, vx, vy, room, c, b, damage);
     //this may be unnecessary
   }
-  
+
   int getDam() {
     return damage;
   }
 
   void display() {
-    fill(240, 240, 100, 200);
+    if (playerBullet) {
+      fill(240, 240, 100, 200);
+    } else {
+      fill(9, 255, 0);
+    }
     noStroke();
     ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
     stroke(1);
@@ -30,7 +34,7 @@ class Bullet extends Hitbox {
   void move() {
     xPos += vx;
     yPos += vy;
-
+ //<>//
     if (xPos <= wt+getR() || yPos <= wt+getR() || xPos >= r.COLS-wt-getR() || yPos >= r.ROWS-wt-getR()) {
       if (playerBullet) { //<>// //<>//
         r.playerBullets.remove(this);

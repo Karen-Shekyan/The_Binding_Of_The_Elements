@@ -16,8 +16,9 @@ public class Player implements Character {
   private int radius = 20; //          remove later         //
   private int attackCD = 0;
   private int weaponTimer;
-  private final int gunSwitch = 180;
+  private final int gunSwitch = 900;
   private int money = 0;
+  private int bombs = 5;
 
   public Player () {
     health = 6;
@@ -211,7 +212,7 @@ public class Player implements Character {
   
   void changeWeaponMode() {
     //double rng = Math.random();
-    switch (weaponMode) {
+    switch (weaponMode) { //might be bad for calculation time in very rare cases. consider optimizing
       case 0:
         while (weaponMode==0){
           weaponMode = (int)(Math.random()*4);
@@ -312,6 +313,8 @@ public class Player implements Character {
     textSize(25);
     fill(200);
     text("Souls: "+money,45,90);
+    
+    text("Bombs: " + bombs, 850,790);
   }
 
 
@@ -397,5 +400,16 @@ public class Player implements Character {
   
   void increaseWealth() {
     money++;
+  }
+  
+  void addBomb() {
+    bombs += 1;
+  }
+  
+  void useBomb() {
+    if (bombs > 0) {
+      bombs -= 1;
+      r.activeBombs.add(new ActiveBomb(x, y, r));
+    }
   }
 }

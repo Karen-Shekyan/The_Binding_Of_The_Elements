@@ -52,8 +52,7 @@ public class Heart implements Item {
       //add to the spirit health
       p.addTempHealth(health);
     }
-    room.items.remove(this);
-    
+    room.items.remove(this);    
   }
   
   boolean isTouching(Player p) {

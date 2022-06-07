@@ -165,7 +165,7 @@ class SwingyEnemy implements Enemy {
     stroke(0);
     strokeWeight(1);
 
-    fill(150, 150, 150);
+    fill(89, 97, 110);
     //ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
     shape(swingySprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
 
@@ -221,8 +221,13 @@ class SwingyEnemy implements Enemy {
 
   void dropLoot() {
     double rng = Math.random();
-    if (rng<0.3) {
+    if (rng<0.15) {
       room.items.add(new Heart(xPos,yPos,room));
+    }
+    
+    rng = Math.random();
+    if (rng < 0.08) {
+      room.items.add(new Bomb(xPos,yPos,room));
     }
     
     rng = Math.random();

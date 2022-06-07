@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Room {
 
-  public final float[][] floor;
+  public final float[][] floor;//[0,1) = terrain, -1 = walls, -2 = doors, -3 = hidden doors
   public final int roomType;//-1 = starting //1 = normal, 2 = treasure, 3 = shop, 4 = boss, 5 = secret
   public final int ROWS;
   public final int COLS;
@@ -10,7 +10,8 @@ public class Room {
   public LinkedList<Bullet> playerBullets = new LinkedList<Bullet>();
   public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
   public LinkedList<Item> items = new LinkedList<Item>();
-  //need to initialize
+  public LinkedList<ActiveBomb> activeBombs = new LinkedList<ActiveBomb>();
+  public int secretWhere = 0; //1 = up, 2 = down, 3 = left, 4 = right
 
   public Room (int rT) {
     roomType = rT;
@@ -30,10 +31,6 @@ public class Room {
         if (i <= wt || j <= wt || j >= COLS-wt || i >= ROWS-wt) {//wall
           floor[i][j] = -1;
         }
-        //door
-        //if ((i <= wt && j <= COLS/2 + 75 && j >= COLS/2 - 75) || (i >= ROWS-wt && j <= COLS/2 + 75 && j >= COLS/2 - 75) || (j <= wt && i <= ROWS/2 + 75 && i >= ROWS/2 - 75) || (j >= COLS-wt && i <= ROWS/2 + 75 && i >= ROWS/2 - 75)) {
-        //  floor[i][j] = -2;
-        //}
       }
     }
     
@@ -45,20 +42,22 @@ public class Room {
       //enemies.add(new TouchyEnemy(this));
       //enemies.add(new ShootyEnemy(this));
       //enemies.add(new StabbyEnemy(this));
-      enemies.add(new SwingyEnemy(this));
+      //enemies.add(new SwingyEnemy(this));
     //
     
-      //int numEnemies = (int)(Math.random()*3 + 4);
-      //for (int i = 0; i < numEnemies; i++) {
-      //  double prob = Math.random();
-      //  if (prob > 0.7) {
-      //    enemies.add(new TouchyEnemy(this));
-      //  } else if (prob > 0.4) {
-      //    enemies.add(new StabbyEnemy(this));
-      //  } else {
-      //    enemies.add(new ShootyEnemy(this));
-      //  }
-      //}
+      int numEnemies = (int)(Math.random()*3 + 4);
+      for (int i = 0; i < numEnemies; i++) {
+        double prob = Math.random();
+        if (prob > 0.75) {
+          enemies.add(new TouchyEnemy(this));
+        } else if (prob > 0.5) {
+          enemies.add(new StabbyEnemy(this));
+        } else if (prob > 0.25) {
+          enemies.add(new SwingyEnemy(this));
+        } else {
+          enemies.add(new ShootyEnemy(this));
+        }
+      }
     } else if (roomType == 2) {                 //treasure
       
     } else if (roomType == 3) {                 //shop
