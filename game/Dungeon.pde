@@ -37,9 +37,9 @@ public class Dungeon {
     level = new Room[9][8];
     int roomsLeft;
     if (n == 1) {
-      roomsLeft = 10 + (int)(Math.random()*2);
+      roomsLeft = 10 + (int)(Math.random()*3);
     } else {
-      roomsLeft = 15 + (int)(Math.random()*3);
+      roomsLeft = 15 + (int)(Math.random()*4);
     }
 
     ArrayList<Integer> endRooms = new ArrayList<Integer>();
@@ -106,44 +106,99 @@ public class Dungeon {
       level[shop%10-1][shop/10] = new Room(3);
       level[treasure%10-1][treasure/10] = new Room(2);
 
+      //place secret room   cosider trading time for space
+      boolean done = false;
+      int attempts = 0;
+      while (!done) {
+        int guess = (int)(90*Math.random()+10);
+        if (attempts < 300) {
+          if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 3) {
+            level[guess%10-1][guess/10] = new Room(5);
+            done = true;
+            println("under 300");
+          }
+        } else if (attempts < 600) {
+          if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 2) {
+            level[guess%10-1][guess/10] = new Room(5);
+            done = true;
+            println("under 600");
+          }
+        } else {
+          if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 1) {
+            level[guess%10-1][guess/10] = new Room(5);
+            done = true;
+            println("over 600");
+          }
+        }
+        attempts++;
+      }
+
       //place doors
       for (int i = 0; i < level.length; i++) {
         for (int j = 0; j < level[i].length; j++) {
           Room at = get(i, j);
 
-          if (at != null) {
-            if (get(i-1, j) != null) {//up
+          if (at != null && at.roomType != 5) {
+            //up
+            if (get(i-1, j) != null && get(i-1, j).roomType != 5) { //door
               for (int k = 0; k <= wt; k++) {
                 for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
                   at.floor[k][l] = -2;
                 }
               }
+            } else if (get(i-1, j) != null && get(i-1, j).roomType == 5) { //hidden door
+              for (int k = 0; k <= wt; k++) {
+                for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
+                  at.floor[k][l] = -3;
+                }
+              }
             }
-
-            if (get(i+1, j) != null) {//down
+            
+            //down
+            if (get(i+1, j) != null && get(i+1, j).roomType != 5) { //door
+              for (int k = at.ROWS-wt; k < at.ROWS; k++) {
+                for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) { 
+                  at.floor[k][l] = -2;
+                }
+              }
+            } else if (get(i+1, j) != null && get(i+1, j).roomType == 5) { //hidden door
               for (int k = at.ROWS-wt; k < at.ROWS; k++) {
                 for (int l = at.COLS/2 - 75; l <= at.COLS/2 + 75; l++) {
-                  at.floor[k][l] = -2;
+                  at.floor[k][l] = -3;
                 }
               }
             }
 
-            if (get(i, j-1) != null) {//left
+            //left
+            if (get(i, j-1) != null && get(i, j-1).roomType != 5) { //door
               for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
                 for (int l = 0; l <= wt; l++) {
                   at.floor[k][l] = -2;
                 }
               }
+            } else if (get(i, j-1) != null && get(i, j-1).roomType == 5) { //hidden door
+              for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
+                for (int l = 0; l <= wt; l++) {
+                  at.floor[k][l] = -3;
+                }
+              }
             }
 
-            if (get(i, j+1) != null) {//right
+            //right
+            if (get(i, j+1) != null && get(i, j+1).roomType != 5) { //door
               for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
                 for (int l = at.COLS-wt; l < at.COLS; l++) {
                   at.floor[k][l] = -2;
                 }
               }
+            } else if (get(i, j+1) != null && get(i, j+1).roomType == 5) { //hidden door
+              for (int k = at.ROWS/2 - 75; k <= at.ROWS/2 + 75; k++) {
+                for (int l = at.COLS-wt; l < at.COLS; l++) {
+                  at.floor[k][l] = -3;
+                }
+              }
             }
-          }
+          } 
         }
       }
     }
@@ -181,6 +236,10 @@ public class Dungeon {
       ans++;
     }
     return ans;
+  }
+
+  private boolean endRoomNeighbors(int roomNum, ArrayList<Integer> endRooms) {
+    return endRooms.contains(roomNum - 1) || endRooms.contains(roomNum - 10) || endRooms.contains(roomNum + 1) || endRooms.contains(roomNum + 10);
   }
 
   void displayMiniMap() {
@@ -299,7 +358,7 @@ public class Dungeon {
     }
     stroke(1);
   }
-  
+
   //void drawSkull(int x, int y) {
   //  fill(150);
   //  noStroke();

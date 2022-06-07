@@ -150,8 +150,12 @@ void draw() {
     //display floor
     for (int i = (int)camR; i < height+(int)camR; i++) {
       for (int j = (int)camC; j < width+(int)camC; j++) {
-        if (r.floor[i][j] == -1) {
+        if (r.floor[i][j] == -1) { //wall
           pixels[width*(i-(int)camR) + (j-(int)camC)] = color(0);
+        } else if (r.floor[i][j] == -2) { //door
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = color(255);
+        } else if (r.floor[i][j] == -3) { //hidden door
+          pixels[width*(i-(int)camR) + (j-(int)camC)] = color(1);
         } else if (r.floor[i][j] > 0.70) {//earth
           pixels[width*(i-(int)camR) + (j-(int)camC)] = EARTH;
         } else if (r.floor[i][j] > 0.5) {//fire

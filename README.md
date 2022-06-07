@@ -185,3 +185,11 @@ Karen Shekyan:
 - Made and animated ActiveBomb class: the type of bomb placed by player.
 - ActiveBombs damage all characters. Currently they immediately kill enemies (not intended).
 - Adjusted drop rates for all items.
+
+###### 6/6/22
+
+Karen Shekyan:
+- Fixed instant kill bombs.
+- Generated secret room using the original algorithm. Probably will update later to reduce load times.
+- Made hidden doors generate in rooms adjacent to the secret room.
+- Bombs exploding near hidden doors open them.
