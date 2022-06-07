@@ -190,6 +190,7 @@ Karen Shekyan:
 
 Karen Shekyan:
 - Fixed instant kill bombs.
-- Generated secret room using the original algorithm. Probably will update later to reduce load times.
+- Generated secret room using the original algorithm. Probably will update later to reduce load times. It also has no doors yet.
 - Made hidden doors generate in rooms adjacent to the secret room.
 - Bombs exploding near hidden doors open them.
+- Found bug: bombs create doors to rooms that don't exist.
