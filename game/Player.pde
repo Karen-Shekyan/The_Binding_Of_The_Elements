@@ -19,6 +19,7 @@ public class Player implements Character {
   private final int gunSwitch = 900;
   private int money = 0;
   private int bombs = 5;
+  ArrayList<Trinket> trinkets;
 
   public Player () {
     health = 6;
@@ -30,6 +31,7 @@ public class Player implements Character {
     //consider making the body smaller than the player appears to be. games often do this
     body.add(new Hurtbox(x, y, radius));//   change later with radius    //
     weaponMode = (int)(Math.random()*4); //    change later    //
+    trinkets = new ArrayList<Trinket>();
   }
 
   ArrayList<Hurtbox> getHurtboxes() {
