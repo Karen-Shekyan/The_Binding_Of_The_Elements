@@ -29,7 +29,7 @@ public class Player implements Character {
   float damageIncrease = 1;
   float tearCooldownMultiplier = 1;
   float tearSpeedMultiplier = 1;
-  float tearSizeMultiplier = 10;
+  float tearSizeMultiplier = 1;
   //character size multiplier?
 
   public Player () {
