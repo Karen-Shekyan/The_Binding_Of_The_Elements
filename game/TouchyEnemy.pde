@@ -140,7 +140,7 @@ class TouchyEnemy implements Enemy {
     }
     
     //add probability checks later
-    room.items.add(new Trinket(xPos, yPos, room, 0)); //change the 0 lster
+    room.items.add(new Trinket(xPos, yPos, room, 1)); //change the 0 lster
   }
 
   float getX() {
