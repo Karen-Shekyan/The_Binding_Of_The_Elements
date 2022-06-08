@@ -411,6 +411,10 @@ public class Player implements Character {
     tempHealth+=amount;
   }
   
+  void increaseMaxHearts(int number) {
+    maxHealth+=2*number;
+  }
+  
   void increaseWealth() {
     money++;
   }
