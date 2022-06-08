@@ -194,3 +194,13 @@ Karen Shekyan:
 - Made hidden doors generate in rooms adjacent to the secret room.
 - Bombs exploding near hidden doors open them.
 - Found bug: bombs create doors to rooms that don't exist.
+
+###### 6/7/22
+
+Jonathan Shavit:
+- Started coding Trinket class
+
+###### 6/8/22
+
+Jonathan Shavit:
+- Finished coding Trinket class for now, might add more trinkets later.
