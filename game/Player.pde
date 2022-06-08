@@ -19,6 +19,18 @@ public class Player implements Character {
   private final int gunSwitch = 900;
   private int money = 0;
   private int bombs = 5;
+  ArrayList<Trinket> trinkets;
+  
+  //modifier variables for various stats/timers:
+  //these should be private with accessor methods tbh
+  float invinFactor = 1;
+  float speedMultiplier = 1; //might be harder than i thought
+  int damageFlatIncrease = 0;
+  float damageIncrease = 1;
+  float tearCooldownMultiplier = 1;
+  float tearSpeedMultiplier = 1;
+  float tearSizeMultiplier = 1;
+  //character size multiplier?
 
   public Player () {
     health = 6;
@@ -30,6 +42,7 @@ public class Player implements Character {
     //consider making the body smaller than the player appears to be. games often do this
     body.add(new Hurtbox(x, y, radius));//   change later with radius    //
     weaponMode = (int)(Math.random()*4); //    change later    //
+    trinkets = new ArrayList<Trinket>();
   }
 
   ArrayList<Hurtbox> getHurtboxes() {
@@ -90,7 +103,7 @@ public class Player implements Character {
         die();
       }
       setStun(25);                                                          /////////////////////set stun here/////////////////////
-      setInvin(45);
+      setInvin((int)(invinFactor*45));
       bigMap=false;
     }
   }
@@ -98,10 +111,10 @@ public class Player implements Character {
 
   void attack() {
     if (attackCD == 0 && getStun() == 0) {
-      float bulletX = (mouseX - x + camC) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
-      float bulletY = (mouseY - y + camR) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
-      r.playerBullets.add(new Bullet(x, y, 10, bulletX, bulletY, r, color(255, 255, 255, 170), true, (int)(attack*damageMultiplier)));
-      attackCD = 20;
+      float bulletX = tearSpeedMultiplier * (mouseX - x + camC) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
+      float bulletY = tearSpeedMultiplier * (mouseY - y + camR) * 7.0/dist(x-camC, y-camR, mouseX, mouseY);
+      r.playerBullets.add(new Bullet(x, y, tearSizeMultiplier*10, bulletX, bulletY, r, color(255, 255, 255, 170), true, (int)(attack*damageMultiplier*damageIncrease+damageFlatIncrease)));
+      attackCD = (int)(20*tearCooldownMultiplier);
     }
   }
 
@@ -396,6 +409,10 @@ public class Player implements Character {
   
   void addTempHealth(int amount) {
     tempHealth+=amount;
+  }
+  
+  void increaseMaxHearts(int number) {
+    maxHealth+=2*number;
   }
   
   void increaseWealth() {
