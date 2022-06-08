@@ -138,6 +138,9 @@ class TouchyEnemy implements Enemy {
     if (rng < 0.85) {
       Aang.increaseWealth();
     }
+    
+    //add probability checks later
+    room.items.add(new Trinket(xPos, yPos, room, 0)); //change the 0 lster
   }
 
   float getX() {
