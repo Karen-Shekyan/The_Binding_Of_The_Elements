@@ -169,6 +169,7 @@ class MiniEnemy implements Enemy {
   }
 
   void dropLoot() {
+    Aang.increaseWealth((int)(Math.random()*11)+5);
   }
 
   Hitbox getTouchZone() {
