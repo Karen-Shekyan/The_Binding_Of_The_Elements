@@ -204,3 +204,6 @@ Jonathan Shavit:
 
 Jonathan Shavit:
 - Finished coding Trinket class for now, might add more trinkets later.
+
+Karen Shekyan:
+- Made randomized loot spawn in the treasure room.
