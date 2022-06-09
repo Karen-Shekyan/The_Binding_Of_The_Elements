@@ -233,6 +233,10 @@ void draw() {
         r.items.get(i).effect(Aang);
       }
     }
+    
+    //if (r.roomType==4 && r.enemies.size()!=0){
+    //  r.enemies.get(0).drawHealthBar();
+    //}
 
     Aang.move();
     Aang.display();
