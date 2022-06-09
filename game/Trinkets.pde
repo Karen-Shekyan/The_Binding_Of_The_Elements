@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Trinket implements Item{
   float xPos;
   float yPos;
@@ -5,6 +7,8 @@ public class Trinket implements Item{
   Room room;
   Hitbox areaOfEffect;
   int type;
+  //static Collection<Integer> availableTypes = new ArrayList<Integer>(); 
+  //need to make some static, shuffleable way to store the ramaining uysable types
   
   public Trinket(float x, float y, Room r, int type) {
     xPos = x;
@@ -12,6 +16,8 @@ public class Trinket implements Item{
     room = r;
     areaOfEffect = new Hitbox(x,y,0,0,15,r);
     this.type = type;
+    //how to prevent a trinket that's already been made from being made
+    
     switch (type) {
       case 1:
         
@@ -76,5 +82,9 @@ public class Trinket implements Item{
   
   boolean isTouching(Player p) {
     return areaOfEffect.isTouching(p);
+  }
+  
+  int getType() {
+    return type;
   }
 }
