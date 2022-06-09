@@ -38,7 +38,7 @@ public class Trinket implements Item{
       break;
       case 1:
         Aang.increaseMaxHearts(1);
-        Aang.heal(1);
+        Aang.heal(2);
         //grant a filled heart container
       break;
       case 2:
