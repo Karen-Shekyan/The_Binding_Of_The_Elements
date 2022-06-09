@@ -126,6 +126,8 @@ class MiniEnemy implements Enemy {
     textSize(10);
     text(""+health, xPos-camC, yPos-camR);
     decrementAttackCD();
+    
+    drawHealthBar();
   }
 
   void knockback(float x, float y) {
@@ -171,5 +173,14 @@ class MiniEnemy implements Enemy {
 
   Hitbox getTouchZone() {
     return touchZone;
+  }
+  
+  void drawHealthBar() {
+    fill(50);
+    strokeWeight(2);
+    rect(200,height-70,width-400,30);
+    noStroke();
+    fill(220,50,85); //color is gross, should fix later
+    rect(200,height-70,(float)health/150*(width-400),30);
   }
 }
