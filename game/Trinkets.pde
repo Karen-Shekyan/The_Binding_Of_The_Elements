@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Trinket implements Item{
   float xPos;
   float yPos;
@@ -5,13 +7,18 @@ public class Trinket implements Item{
   Room room;
   Hitbox areaOfEffect;
   int type;
+  //static Collection<Integer> availableTypes = new ArrayList<Integer>(); 
+  //need to make some static, shuffleable way to store the ramaining uysable types
   
   public Trinket(float x, float y, Room r, int type) {
     xPos = x;
     yPos = y;
     room = r;
     areaOfEffect = new Hitbox(x,y,0,0,15,r);
-    this.type = type;
+    //this.type = type;
+    this.type = availableTrinketTypes.poll();
+    //how to prevent a trinket that's already been made from being made
+    
     switch (type) {
       case 1:
         
@@ -19,6 +26,17 @@ public class Trinket implements Item{
     }
   }
   //maxHealth up, maxHelath up and one heal, maxHealth up and full heal, speed up, damage up, flat damage bonus(?), tear cooldown down, tear speed up, tear size increase, double invin, [more to come]
+  
+  //new method for when we don't need to give the type as a parameter (would outright replace the old one, but karen has code that uses it
+  public Trinket(float x, float y, Room r) {
+    xPos = x;
+    yPos = y;
+    room = r;
+    areaOfEffect = new Hitbox(x,y,0,0,15,r);
+    type = availableTrinketTypes.poll();
+    //how to prevent a trinket that's already been made from being made
+    
+  }
   
   void display() {
     fill(230,230,255);
@@ -28,6 +46,13 @@ public class Trinket implements Item{
     text(""+type,xPos-camC,yPos-camR);
   }
   //need to make it continue to display even after it's picked up (in the pause menu)
+  void display(int x) {
+    fill(230,230,255);
+    ellipse(250+40*x,250+x/(width-500),30,30);
+    textSize(10);
+    fill(10);
+    text(""+type,250+40*x,250+x/(width-500));
+  }
   
   void effect(Player p) {
     Aang.trinkets.add(this);
@@ -78,5 +103,9 @@ public class Trinket implements Item{
   
   boolean isTouching(Player p) {
     return areaOfEffect.isTouching(p);
+  }
+  
+  int getType() {
+    return type;
   }
 }
