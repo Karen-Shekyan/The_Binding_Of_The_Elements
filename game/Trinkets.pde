@@ -73,8 +73,10 @@ public class Trinket implements Item{
       break;
       case 3:
         //wanted to do speed up, it might be near impossible. but i'll leave the slot for now
+        maxV += .5;
+        a += .1;
       break;
-      case 4:
+      case 4: //   hypersynergy
         Aang.damageIncrease+=0.1;
         //up damage
       break;
