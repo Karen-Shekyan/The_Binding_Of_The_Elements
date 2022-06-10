@@ -418,6 +418,9 @@ public class Player implements Character {
   void increaseWealth() {
     money++;
   }
+  void increaseWealth(int h) {
+    money+=h;
+  }
   
   void addBomb() {
     bombs += 1;

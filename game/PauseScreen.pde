@@ -10,11 +10,12 @@ void pauseGame(){
   textSize(30);
   text("Trinkets:",250,220); //none yet but they should be there eventually right?
   for (int i=0; i<Aang.trinkets.size() ; i++) {
-    fill(255,0,0);
-    ellipse(250+40*i,250,30,30);
+    //fill(255,0,0);
+    //ellipse(250+40*i,250,30,30);
+    Aang.trinkets.get(i).display(i);
   }
   
-  
+  textSize(40);
   if (mouseX > width/2-110 && mouseX < width/2+105 && mouseY > 3*height/5-30 & mouseY < 3*height/5+5) {
     fill(150);
   } else{
