@@ -1,3 +1,5 @@
+import java.util.*;
+
 //display constants
 int wt = 100;
 float camR = 200;//corresponds to y
@@ -67,6 +69,8 @@ PShape miniBossSprite;
 //PShape aangWater;
 //PShape aangAir;
 
+LinkedList<Integer> availableTrinketTypes;
+
 void setup() {
   size(1000, 800);
 
@@ -104,6 +108,19 @@ void setup() {
   //r = new Room(1);//  change later  //
   //Aang = new Player();
   //LEVEL = new Dungeon(1);
+  
+  availableTrinketTypes = new LinkedList<Integer>();
+  availableTrinketTypes.add(0);
+  availableTrinketTypes.add(1);
+  availableTrinketTypes.add(2);
+  availableTrinketTypes.add(3);
+  availableTrinketTypes.add(4);
+  availableTrinketTypes.add(5);
+  availableTrinketTypes.add(6);
+  availableTrinketTypes.add(7);
+  availableTrinketTypes.add(8);
+  availableTrinketTypes.add(9);
+  Collections.shuffle(availableTrinketTypes);
 }
 
 void draw() {

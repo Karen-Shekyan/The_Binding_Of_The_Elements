@@ -15,7 +15,8 @@ public class Trinket implements Item{
     yPos = y;
     room = r;
     areaOfEffect = new Hitbox(x,y,0,0,15,r);
-    this.type = type;
+    //this.type = type;
+    this.type = availableTrinketTypes.poll();
     //how to prevent a trinket that's already been made from being made
     
     switch (type) {
@@ -25,6 +26,17 @@ public class Trinket implements Item{
     }
   }
   //maxHealth up, maxHelath up and one heal, maxHealth up and full heal, speed up, damage up, flat damage bonus(?), tear cooldown down, tear speed up, tear size increase, double invin, [more to come]
+  
+  //new method for when we don't need to give the type as a parameter (would outright replace the old one, but karen has code that uses it
+  public Trinket(float x, float y, Room r) {
+    xPos = x;
+    yPos = y;
+    room = r;
+    areaOfEffect = new Hitbox(x,y,0,0,15,r);
+    type = availableTrinketTypes.poll();
+    //how to prevent a trinket that's already been made from being made
+    
+  }
   
   void display() {
     fill(230,230,255);
