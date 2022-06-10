@@ -204,3 +204,5 @@ Jonathan Shavit:
 
 Jonathan Shavit:
 - Finished coding Trinket class for now, might add more trinkets later.
+- Made the Trinket constructor use a random element from a LinkedList of Integers (newly added to the game tab) for the Trinket type, rather than the parameter. Also made a Constructor that doesn't even take a parameter for type.
+- Added another display method (taking a parameter) to be called from the PauseScreen for use in its display of possessed Trinkets, and updated PauseScreen to use it accordingly (and fixed textSize-related issues that resulted)
