@@ -46,6 +46,13 @@ public class Trinket implements Item{
     text(""+type,xPos-camC,yPos-camR);
   }
   //need to make it continue to display even after it's picked up (in the pause menu)
+  void display(int x) {
+    fill(230,230,255);
+    ellipse(250+40*x,250+x/(width-500),30,30);
+    textSize(10);
+    fill(10);
+    text(""+type,250+40*x,250+x/(width-500));
+  }
   
   void effect(Player p) {
     Aang.trinkets.add(this);
