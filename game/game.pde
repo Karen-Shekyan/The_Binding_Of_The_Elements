@@ -21,7 +21,7 @@ boolean U = false;
 boolean D = false;
 boolean MOUSE = false;
 
-boolean godMode;
+boolean godMode = false;
 
 //speeds of the Player
 float vx = 0.0;
@@ -139,7 +139,7 @@ void draw() {
     pauseGame();
   } else {
     //check for door
-    if (!godMode || r.enemies.size() == 0) {
+    if (godMode || r.enemies.size() == 0) {
       if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
         currentRoom += 10;
         r = LEVEL.get(currentRoom);
