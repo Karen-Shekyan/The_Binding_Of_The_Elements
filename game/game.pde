@@ -298,6 +298,12 @@ void keyPressed() {
   if (key == 'g') {
     godMode = !godMode;
   }
+  if (key == 'k' && godMode) {
+    r.killAll();
+  }
+  if (key == 'c' && godMode) {
+    r.clearBullets();
+  }
 }
 
 void keyReleased() {
