@@ -21,6 +21,8 @@ boolean U = false;
 boolean D = false;
 boolean MOUSE = false;
 
+boolean godMode;
+
 //speeds of the Player
 float vx = 0.0;
 float vy = 0.0;
@@ -137,7 +139,7 @@ void draw() {
     pauseGame();
   } else {
     //check for door
-    if (r.enemies.size() == 0) {
+    if (!godMode || r.enemies.size() == 0) {
       if (r.floor[(int)Aang.getY()][(int)Aang.getX() + Aang.getR() + 1] == -2) {//right
         currentRoom += 10;
         r = LEVEL.get(currentRoom);
@@ -292,6 +294,9 @@ void keyPressed() {
   }
   if (keyCode == TAB) { //map size toggle
     bigMap =! bigMap;
+  }
+  if (key == 'g') {
+    godMode = !godMode;
   }
 }
 
