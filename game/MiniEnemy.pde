@@ -179,9 +179,10 @@ class MiniEnemy implements Enemy {
   void drawHealthBar() {
     fill(50);
     strokeWeight(2);
-    rect(200,height-70,width-400,30);
+    rect(250,height-100,width-430,30);
     noStroke();
     fill(220,50,85); //color is gross, should fix later
-    rect(200,height-70,(float)health/150*(width-400),30);
+    rect(250,height-100,(float)health/150*(width-430),30);
+    shape(miniBossSprite,220,height-115,60,60);
   }
 }
