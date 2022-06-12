@@ -67,6 +67,7 @@ PShape shootySprite;
 PShape stabbySprite;
 PShape swingySprite;
 PShape miniBossSprite;
+PShape bossSprite;
 PShape aangEarth;
 PShape aangFire;
 PShape aangWater;
@@ -104,7 +105,8 @@ void setup() {
   shootySprite = loadShape("enemyTouch-2.svg");
   stabbySprite = loadShape("enemyTouch-3.svg");
   swingySprite = loadShape("enemyTouch-4.svg");
-  miniBossSprite = loadShape("enemyTouch-5.svg");
+  miniBossSprite = loadShape("enemyTouch-6.svg"); //has a third eye now
+  bossSprite = loadShape("enemyTouch-10.svg"); //size of shape doesn't match with size of the circle in it, because i needed the horns to be big
   aangEarth = loadShape("aang-earth.svg");
   aangWater = loadShape("aang-water.svg");
   aangFire = loadShape("aang-fire.svg");
