@@ -89,7 +89,7 @@ public class Player implements Character {
   }
 
   void takeDamage(int damage) {
-      if (invinTimer == 0) {
+      if (invinTimer == 0 && !godMode) {
       if (tempHealth > 0) {
         tempHealth -= damage;
       } else {
@@ -424,6 +424,9 @@ public class Player implements Character {
   
   void addBomb() {
     bombs += 1;
+  }
+  void addBomb(int x) {
+    bombs += x;
   }
   
   void useBomb() {
