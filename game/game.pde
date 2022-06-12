@@ -197,21 +197,6 @@ void draw() {
       LEVEL.explored[currentRoom%10-1][currentRoom/10] = r;
     }
 
-    for (int i = 0; i < r.enemies.size(); i++) {//this is contact damage. Always deals 1.
-      Enemy guy = r.enemies.get(i);
-      guy.move();
-      guy.display();
-      if (guy.getTouchZone().isTouching(Aang)) {//             contact knockback HERE             //
-        Aang.takeDamage(1);
-        float dx = (Aang.getX() - guy.getX()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
-        float dy = (Aang.getY() - guy.getY()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
-        Aang.knockback(dx * 4.0, dy * 4.0);
-      }
-      guy.attack();
-      guy.decrementStun();
-    }
-
-
     for (int j = 0; j < r.playerBullets.size(); j++) {
       Bullet bullet = r.playerBullets.get(j);
       //not working rn, bullet gets no velocity
@@ -238,6 +223,20 @@ void draw() {
         r.enemyBullets.remove(bullet);
       }
       bullet.display();
+    }
+
+    for (int i = 0; i < r.enemies.size(); i++) {//this is contact damage. Always deals 1.
+      Enemy guy = r.enemies.get(i);
+      guy.move();
+      guy.display();
+      if (guy.getTouchZone().isTouching(Aang)) {//             contact knockback HERE             //
+        Aang.takeDamage(1);
+        float dx = (Aang.getX() - guy.getX()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        float dy = (Aang.getY() - guy.getY()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        Aang.knockback(dx * 4.0, dy * 4.0);
+      }
+      guy.attack();
+      guy.decrementStun();
     }
 
     for (int i=0; i<r.items.size(); i++) {
@@ -268,7 +267,7 @@ void draw() {
     for (int i = 0; i < r.activeBombs.size(); i++) {
       r.activeBombs.get(i).display();
     }
-    
+
     //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
     if (LEVEL.get(bossRoom).enemies.size()==0) {
       if (level == 1) {
@@ -277,6 +276,8 @@ void draw() {
         r = LEVEL.get(currentRoom);//  change later  //
         camR = 200;
         camC = 250;
+        Aang.setX(500+camC);
+        Aang.setY(400+camR);
         vx = 0;
         vy = 0;
         level = 2;
