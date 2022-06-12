@@ -37,7 +37,8 @@ public class Bomb implements Item {
     ellipse(x-camC,y-camR, 20, 20);
     
     if (price != 0) {
-      text("" + price, x, y+20);
+      textSize(15);
+      text("" + price, x-camC-5, y+30-camR);
     }
   }
   

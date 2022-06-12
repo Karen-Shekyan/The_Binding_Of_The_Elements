@@ -42,7 +42,8 @@ public class Trinket implements Item{
     text(""+type,xPos-camC,yPos-camR);
     
     if (price != 0) {
-      text("" + price, xPos, yPos+20);
+      textSize(15);
+      text("" + price, xPos-camC-10, yPos+30-camR);
     }
   }
   //need to make it continue to display even after it's picked up (in the pause menu)

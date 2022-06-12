@@ -68,7 +68,8 @@ public class Heart implements Item {
     }
     
     if (price != 0) {
-      text("" + price, x, y+20);
+      textSize(15);
+      text("" + price, x-camC-5, y+30-camR);
     }
   }
   

@@ -108,7 +108,7 @@ void setup() {
   //r = new Room(1);//  change later  //
   //Aang = new Player();
   //LEVEL = new Dungeon(1);
-  
+
   availableTrinketTypes = new LinkedList<Integer>();
   availableTrinketTypes.add(0);
   availableTrinketTypes.add(1);
@@ -124,6 +124,7 @@ void setup() {
 }
 
 void draw() {
+  //println(frameRate);
   if (dead) {
     gameSaved=false;//should move that to the player's die method, honestly, but then it's two files to push
     showDeathScreen();
@@ -243,15 +244,17 @@ void draw() {
       endCredits = true;
       endScreenTime = 0;
     }
-    
+
     for (int i=0; i<r.items.size(); i++) {
       r.items.get(i).display();
       if (r.items.get(i).isTouching(Aang)) {
-        Aang.increaseWealth(-r.items.get(i).getPrice());
-        r.items.get(i).effect(Aang);
+        if (Aang.getWealth() >= r.items.get(i).getPrice()) {
+          Aang.increaseWealth(-r.items.get(i).getPrice());
+          r.items.get(i).effect(Aang);
+        }
       }
     }
-    
+
     //if (r.roomType==4 && r.enemies.size()!=0){
     //  r.enemies.get(0).drawHealthBar();
     //}
@@ -266,7 +269,7 @@ void draw() {
     Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
-    
+
     for (int i = 0; i < r.activeBombs.size(); i++) {
       r.activeBombs.get(i).display();
     }

@@ -422,6 +422,10 @@ public class Player implements Character {
     money+=h;
   }
   
+  int getWealth() {
+    return money;
+  }
+  
   void addBomb() {
     bombs += 1;
   }

@@ -139,7 +139,7 @@ public class Dungeon {
         for (int j = 0; j < level[i].length; j++) {
           Room at = get(i, j);
 
-          if (at != null && at.roomType != 5) {
+          if (at != null) {
             //up
             if (get(i-1, j) != null && get(i-1, j).roomType != 5) { //door
               for (int k = 0; k <= wt; k++) {
