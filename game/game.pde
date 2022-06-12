@@ -94,9 +94,9 @@ void setup() {
   skull = loadShape("skull.svg");
 
   wasd = loadShape("was.svg");
-  mouseAim = loadShape("mouse-aim.svg");
+  mouseAim = loadShape("mouse-aim-2.svg");
   typeWeakness = loadShape("attribute chart-2.svg");
-  weaponIndicator = loadShape("weaponType.svg");
+  weaponIndicator = loadShape("aang-mode-instruction.svg");
   typeStrength = loadShape("attribute chart-3.svg");
 
   playerSprite = loadShape("aang.svg");
