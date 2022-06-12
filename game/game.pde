@@ -43,6 +43,7 @@ Dungeon LEVEL;
 int menuTextMode = 0;
 int currentRoom = 35; //there's no way to tell the starting pos fro a get method, so i'm using the hard-coded start of generation
 int bossRoom;
+int level = 1;
 
 //sprites
 PShape redHeart;
@@ -239,12 +240,6 @@ void draw() {
       bullet.display();
     }
 
-    //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
-    if (LEVEL.get(bossRoom).enemies.size()==0) {
-      endCredits = true;
-      endScreenTime = 0;
-    }
-
     for (int i=0; i<r.items.size(); i++) {
       r.items.get(i).display();
       if (r.items.get(i).isTouching(Aang)) {
@@ -272,6 +267,23 @@ void draw() {
 
     for (int i = 0; i < r.activeBombs.size(); i++) {
       r.activeBombs.get(i).display();
+    }
+    
+    //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
+    if (LEVEL.get(bossRoom).enemies.size()==0) {
+      if (level == 1) {
+        LEVEL = new Dungeon(2);
+        currentRoom = 35;
+        r = LEVEL.get(currentRoom);//  change later  //
+        camR = 200;
+        camC = 250;
+        vx = 0;
+        vy = 0;
+        level = 2;
+      } else if (level == 2) {
+        endCredits = true;
+        endScreenTime = 0;
+      }
     }
   }
 }
@@ -330,7 +342,7 @@ void mouseClicked() {
     if (mouseX > width/2-55 && mouseX < width/2+30 && mouseY > 3*height/5-40 & mouseY < 3*height/5+5) {
       menu=false;
       if (!gameSaved) {
-        startNewGame();
+        startNewGame(1);
       }
     }
     if (mouseX > width/2-65 && mouseX < width/2+25 && mouseY > 3*height/4-40 & mouseY < 3*height/4+5) {
@@ -346,7 +358,7 @@ void mouseClicked() {
     //the part of the screen where the retry button is
     if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < height/2 + 55 && mouseY > height/2 + 20) {
       dead=false;
-      startNewGame();
+      startNewGame(1);
     }
   }
   if (pause) {
@@ -360,7 +372,7 @@ void mouseClicked() {
     //button
     if (mouseX > width/2 - 100 && mouseX < width/2+90 && mouseY < 2*height/3 + 65 && mouseY > 2*height/3 + 35) {
       //menu=false;
-      startNewGame();
+      startNewGame(1);
       endCredits = false;
     }
     //button
@@ -371,7 +383,7 @@ void mouseClicked() {
   }
 }
 
-void startNewGame() {
+void startNewGame(int lvl) {
   loadPixels();
   LEVEL = new Dungeon(1);
   currentRoom = 35;
