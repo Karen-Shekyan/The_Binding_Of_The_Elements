@@ -297,6 +297,10 @@ void keyPressed() {
   }
   if (key == 'g') {
     godMode = !godMode;
+    if (godMode && Aang != null) {
+      Aang.increaseWealth(5000);
+      Aang.addBomb(5000);
+    }
   }
   if (key == 'k' && godMode) {
     r.killAll();
