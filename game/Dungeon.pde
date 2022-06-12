@@ -111,7 +111,7 @@ public class Dungeon {
       int attempts = 0;
       while (!done) {
         int guess = 10*(int)(Math.random()*8)+(int)(Math.random()*8+1);
-        
+
         if (attempts < 300) {
           if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 3) {
             level[guess%10-1][guess/10] = new Room(5);
@@ -155,7 +155,7 @@ public class Dungeon {
                 }
               }
             }
-            
+
             //down
             if (get(i+1, j) != null && get(i+1, j).roomType != 5) { //door
               for (int k = at.ROWS-wt; k < at.ROWS; k++) {
@@ -203,7 +203,7 @@ public class Dungeon {
                 }
               }
             }
-          } 
+          }
         }
       }
     }
@@ -299,10 +299,12 @@ public class Dungeon {
             drawPins(i, j, bigMap);
           } else if (getExplored(10*j+i+1)==null  && (getExplored(10*j+i+1+10) != null || getExplored(10*j+i+1-10) != null || getExplored(10*j+i) != null || getExplored(10*j+i+2) != null)) {
             // unexplored rooms should be invisible.
-            noStroke();
-            fill(100);
-            rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
-            drawPins(i, j, bigMap);
+            if (get(10*j+i+1).roomType != 5) {
+              noStroke();
+              fill(100);
+              rect(width - 245 + 30*(j), 10 + 20*(i), 27, 17);
+              drawPins(i, j, bigMap);
+            }
           }
         }
       }

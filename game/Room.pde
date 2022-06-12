@@ -45,23 +45,23 @@ public class Room {
       //enemies.add(new SwingyEnemy(this));
       //
 
-      //int numEnemies = (int)(Math.random()*3 + 4);
-      //for (int i = 0; i < numEnemies; i++) {
-      //  double prob = Math.random();
-      //  if (prob > 0.75) {
-      //    enemies.add(new TouchyEnemy(this));
-      //  } else if (prob > 0.5) {
-      //    enemies.add(new StabbyEnemy(this));
-      //  } else if (prob > 0.25) {
-      //    enemies.add(new SwingyEnemy(this));
-      //  } else {
-      //    enemies.add(new ShootyEnemy(this));
-      //  }
-      //}
+      int numEnemies = (int)(Math.random()*3 + 4);
+      for (int i = 0; i < numEnemies; i++) {
+        double prob = Math.random();
+        if (prob > 0.75) {
+          enemies.add(new TouchyEnemy(this));
+        } else if (prob > 0.5) {
+          enemies.add(new StabbyEnemy(this));
+        } else if (prob > 0.25) {
+          enemies.add(new SwingyEnemy(this));
+        } else {
+          enemies.add(new ShootyEnemy(this));
+        }
+      }
     } else if (roomType == 2) {                 //treasure
       float healLeft = (float)Math.random();
       float healRight = (float)Math.random();
-      
+
       if (healLeft > .5) {
         items.add(new Heart(COLS/2-100, ROWS/2, this));
       }
@@ -69,11 +69,10 @@ public class Room {
         items.add(new Heart(COLS/2+100, ROWS/2, this));
       }
       items.add(new Trinket((COLS/2), (ROWS/2), this));
-      
     } else if (roomType == 3) {                 //shop
       float item1 = (float)Math.random();
       float item2 = (float)Math.random();
-      
+
       if (item1 > .5) {
         items.add(new Heart(COLS/2-100, ROWS/2, this, 5));
       } else {
@@ -87,11 +86,53 @@ public class Room {
         items.add(new Trinket(COLS/2, ROWS/2, this, 20));
       }
       items.add(new Trinket(COLS/2+100, ROWS/2, this, 20));
-      
     } else if (roomType == 4) {                 //boss
-      enemies.add(new MiniEnemy(this));
+      enemies.add(new BossyEnemy(this));
     } else if (roomType == 5) {                 //secret
-      
+      float typeOfSecret = (float)Math.random();
+      if (typeOfSecret > 0.55) {
+        float healLeft = (float)Math.random();
+        float healRight = (float)Math.random();
+
+        if (healLeft > .5) {
+          items.add(new Heart(COLS/2-100, ROWS/2, this));
+        }
+        if (healRight > .5) {
+          items.add(new Heart(COLS/2+100, ROWS/2, this));
+        }
+        items.add(new Trinket((COLS/2), (ROWS/2), this));
+      } else if (typeOfSecret > 0.10) {
+        float item1 = (float)Math.random();
+        float item2 = (float)Math.random();
+
+        if (item1 > .5) {
+          items.add(new Heart(COLS/2-100, ROWS/2, this, 5));
+        } else {
+          items.add(new Bomb(COLS/2-100, ROWS/2, this, 5));
+        }
+        if (item2 > .67) {
+          items.add(new Heart(COLS/2, ROWS/2, this, 5));
+        } else if (item2 > 0.33) {
+          items.add(new Bomb(COLS/2, ROWS/2, this, 5));
+        } else {
+          items.add(new Trinket(COLS/2, ROWS/2, this, 20));
+        }
+        items.add(new Trinket(COLS/2+100, ROWS/2, this, 20));
+      } else {
+        int numEnemies = (int)(Math.random()*3 + 4);
+        for (int i = 0; i < numEnemies; i++) {
+          double prob = Math.random();
+          if (prob > 0.75) {
+            enemies.add(new TouchyEnemy(this));
+          } else if (prob > 0.5) {
+            enemies.add(new StabbyEnemy(this));
+          } else if (prob > 0.25) {
+            enemies.add(new SwingyEnemy(this));
+          } else {
+            enemies.add(new ShootyEnemy(this));
+          }
+        }
+      }
     }
   }
 

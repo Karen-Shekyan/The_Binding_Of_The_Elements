@@ -216,3 +216,10 @@ Karen Shekyan:
 - Made and enforced item prices, made shop functional.
 - Fixed bug with bombs and secret doors. Bombs opened secret doors without being placed near them.
 - Added second level. Transition between levels is instant w/o a loading screen.
+
+###### 6/12/22
+
+Karen Shekyan
+- Made final boss. Part of BossyEnemy (changed from MiniEnemy), basically a boolean check.
+- Secret room functional now. 45% to be a treasure room, same for shop, 10% to be a normal room.
+- Secret room no longer displays on the minimap until explored.
