@@ -99,7 +99,11 @@ public class Player implements Character {
         health += tempHealth;
         tempHealth = 0;
       }
+      hurt1.play();
       if (health <= 0) {
+        hurt1.stop();
+        delay(250);
+        death2.play();
         die();
       }
       setStun(25);                                                          /////////////////////set stun here/////////////////////
