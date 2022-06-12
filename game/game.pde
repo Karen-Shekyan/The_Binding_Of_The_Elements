@@ -247,6 +247,7 @@ void draw() {
     for (int i=0; i<r.items.size(); i++) {
       r.items.get(i).display();
       if (r.items.get(i).isTouching(Aang)) {
+        Aang.increaseWealth(-r.items.get(i).getPrice());
         r.items.get(i).effect(Aang);
       }
     }
