@@ -33,18 +33,18 @@ public class Room {
         }
       }
     }
-    
-    
+
+
     //enemy generation. EXPAND THIS SECTION
     if (roomType == 1) {                        //normal
-    //   FOR TESTING   //
+      //   FOR TESTING   //
       //enemies.add(new DummyEnemy(this));
       //enemies.add(new TouchyEnemy(this));
       //enemies.add(new ShootyEnemy(this));
       //enemies.add(new StabbyEnemy(this));
       //enemies.add(new SwingyEnemy(this));
-    //
-    
+      //
+
       //int numEnemies = (int)(Math.random()*3 + 4);
       //for (int i = 0; i < numEnemies; i++) {
       //  double prob = Math.random();
@@ -58,19 +58,35 @@ public class Room {
       //    enemies.add(new ShootyEnemy(this));
       //  }
       //}
-    } else if (roomType == 2) {                 //treasure //trinkets take x,y,room,type
+    } else if (roomType == 2) {                 //treasure
       float healLeft = (float)Math.random();
       float healRight = (float)Math.random();
-      int itemSpawn = (int)(Math.random()*10);
-      if (healLeft > .05) {
+      
+      if (healLeft > .5) {
         items.add(new Heart(COLS/2-100, ROWS/2, this));
       }
-      if (healRight > .05) {
+      if (healRight > .5) {
         items.add(new Heart(COLS/2+100, ROWS/2, this));
       }
-      items.add(new Trinket((float)(COLS/2), (float)(ROWS/2), this, itemSpawn));
+      items.add(new Trinket((COLS/2), (ROWS/2), this));
       
     } else if (roomType == 3) {                 //shop
+      float item1 = (float)Math.random();
+      float item2 = (float)Math.random();
+      
+      if (item1 > .5) {
+        items.add(new Heart(COLS/2-100, ROWS/2, this, 5));
+      } else {
+        items.add(new Bomb(COLS/2-100, ROWS/2, this, 5));
+      }
+      if (item2 > .67) {
+        items.add(new Heart(COLS/2, ROWS/2, this, 5));
+      } else if (item2 > 0.33) {
+        items.add(new Bomb(COLS/2, ROWS/2, this, 5));
+      } else {
+        items.add(new Trinket(COLS/2, ROWS/2, this, 20));
+      }
+      items.add(new Trinket(COLS/2+100, ROWS/2, this, 20));
       
     } else if (roomType == 4) {                 //boss
       enemies.add(new MiniEnemy(this));

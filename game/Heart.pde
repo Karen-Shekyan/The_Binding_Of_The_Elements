@@ -5,6 +5,7 @@ public class Heart implements Item {
   float y;
   Hitbox areaOfEffect;
   Room room;
+  int price;
   
   public Heart(float x_, float y_, Room r) {
     double rng = Math.random();
@@ -28,6 +29,30 @@ public class Heart implements Item {
     areaOfEffect = new Hitbox(x,y,10,0,0, room);
   }
   
+  public Heart(float x_, float y_, Room r, int price) {
+    double rng = Math.random();
+    if (rng<0.7){
+      healthType = 0;
+    } else {
+      healthType = 1;
+    }
+    
+    rng = Math.random();
+    if (rng<0.85){
+      health = 1;
+    } else {
+      health = 2;
+    }
+    
+    x = x_;
+    y = y_;
+    
+    room = r;
+    areaOfEffect = new Hitbox(x,y,10,0,0, room);
+    
+    this.price = price;
+  }
+  
   void display() {
     if (health==1 && healthType==0) {
       shape(halfHeart,x-10-camC,y-10-camR,20,20);
@@ -40,6 +65,11 @@ public class Heart implements Item {
     } else {
       //shape(emptyHeart,width/2,height/2,90,90);
       //here if i need to test if something is slipping through the cracks
+    }
+    
+    if (price != 0) {
+      textSize(15);
+      text("" + price, x-camC-5, y+30-camR);
     }
   }
   
@@ -57,5 +87,9 @@ public class Heart implements Item {
   
   boolean isTouching(Player p) {
     return areaOfEffect.isTouching(p);
+  }
+  
+  int getPrice() {
+    return price;
   }
 }
