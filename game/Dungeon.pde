@@ -10,6 +10,7 @@ public class Dungeon {
     generate(n);
     explored = new Room[9][8];
 
+    /*
     //    for debugging, remove later    //
     for (int i = 0; i < level.length; i++) {
       for (int j = 0; j < level[i].length; j++) {
@@ -21,6 +22,7 @@ public class Dungeon {
       }
       println();
     }
+    */
   }
 
   public Room get(int r, int c) {
@@ -28,7 +30,7 @@ public class Dungeon {
       return level[r][c];
     } 
     catch (IndexOutOfBoundsException ex) {
-      println("caught");
+      //println("caught");
       return null;
     }
   }
@@ -94,7 +96,7 @@ public class Dungeon {
     }
 
     if (roomsLeft != 0 || endRooms.size() < 3) {
-      println("failed");//    for debugging    //
+      //println("failed");//    for debugging    //
       generate(n);
     } else {
       //place special rooms
@@ -116,19 +118,19 @@ public class Dungeon {
           if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 3) {
             level[guess%10-1][guess/10] = new Room(5);
             done = true;
-            println("under 300");
+            //println("under 300");
           }
         } else if (attempts < 600) {
           if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 2) {
             level[guess%10-1][guess/10] = new Room(5);
             done = true;
-            println("under 600");
+            //println("under 600");
           }
         } else {
           if (get(guess) == null && !endRoomNeighbors(guess, endRooms) && countNeighbors(guess) >= 1) {
             level[guess%10-1][guess/10] = new Room(5);
             done = true;
-            println("over 600");
+            //println("over 600");
           }
         }
         attempts++;

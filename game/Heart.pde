@@ -74,7 +74,7 @@ public class Heart implements Item {
   }
   
   void effect(Player p) {
-    println("effect");
+    //println("effect");
     if (healthType==0){
       //heal player
       p.heal(health);
