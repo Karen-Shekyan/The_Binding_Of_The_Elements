@@ -146,17 +146,7 @@ void setup() {
   //LEVEL = new Dungeon(1);
   
   availableTrinketTypes = new LinkedList<Integer>();
-  availableTrinketTypes.add(0);
-  availableTrinketTypes.add(1);
-  availableTrinketTypes.add(2);
-  availableTrinketTypes.add(3);
-  availableTrinketTypes.add(4);
-  availableTrinketTypes.add(5);
-  availableTrinketTypes.add(6);
-  availableTrinketTypes.add(7);
-  availableTrinketTypes.add(8);
-  availableTrinketTypes.add(9);
-  Collections.shuffle(availableTrinketTypes);
+  refill(availableTrinketTypes);
   
   hurt1 = new SoundFile(this,"hurt-grunt.wav");
   hurt1.amp(0.3);
@@ -432,4 +422,18 @@ void startNewGame() {
   Aang = new Player();
   vx = 0;
   vy = 0;
+}
+
+void refill(LinkedList<Integer> a) {
+  a.add(0);
+  a.add(1);
+  a.add(2);
+  a.add(3);
+  a.add(4);
+  a.add(5);
+  a.add(6);
+  a.add(7);
+  a.add(8);
+  a.add(9);
+  Collections.shuffle(availableTrinketTypes);
 }
