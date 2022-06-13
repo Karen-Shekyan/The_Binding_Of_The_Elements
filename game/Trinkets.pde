@@ -141,7 +141,7 @@ public class Trinket implements Item{
         a += .1;
       break;
       case 4: //   hypersynergy
-        Aang.damageIncrease+=0.1;
+        Aang.damageIncrease+=0.5;
         //up damage
       break;
       case 5:
