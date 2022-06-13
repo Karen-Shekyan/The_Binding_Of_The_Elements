@@ -158,7 +158,8 @@ class BossyEnemy implements Enemy {
     if (level == 1) {
       shape(miniBossSprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
     } else if (level == 2) {
-      ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+      //ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+      shape(bossSprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
     }
 
     //fill(0);
