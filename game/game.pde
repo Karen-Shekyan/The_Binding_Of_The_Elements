@@ -61,6 +61,7 @@ PShape mouseAim;
 PShape typeWeakness;
 PShape weaponIndicator;
 PShape typeStrength;
+
 PShape playerSprite;
 PShape touchySprite;
 PShape shootySprite;
@@ -72,6 +73,19 @@ PShape aangEarth;
 PShape aangFire;
 PShape aangWater;
 PShape aangAir;
+
+PImage trinket0;
+PImage trinket1;
+PImage trinket2;
+PImage trinket3;
+PImage trinket4;
+PImage trinket5;
+PImage trinket6;
+PImage trinket7;
+PImage trinket8;
+PImage trinket9;
+//add more later maybe?
+
 
 LinkedList<Integer> availableTrinketTypes;
 
@@ -111,7 +125,19 @@ void setup() {
   aangWater = loadShape("aang-water.svg");
   aangFire = loadShape("aang-fire.svg");
   aangAir = loadShape("aang-air.svg");
-
+  
+  trinket0 = loadImage("Collectible_Empty_Heart_icon.png"); //maxHealth up, -empty heart or old bandage
+  trinket1 = loadImage("Collectible_Dinner_icon.png"); //maxHelath up and one heal, -supper or dinner
+  trinket2 = loadImage("Collectible_Raw_Liver_icon.png"); //maxHealth up and full heal, -liver or sausage
+  trinket3 = loadImage("Collectible_Caffeine_Pill_icon.png"); //speed up, -caffeine pill
+  trinket4 = loadImage("Collectible_Wooden_Spoon_icon.png"); //damage up, -wooden spoon
+  trinket5 = loadImage("Collectible_Screw_icon.png"); //flat damage bonus(?), -screw?
+  trinket6 = loadImage("Collectible_Soy_Milk_icon.png"); //tear cooldown down, -almond milk or soy milk
+  trinket7 = loadImage("Collectible_Synthoil_icon.png"); //tear speed up, -synthoil?
+  trinket8 = loadImage("Collectible_The_Sad_Onion_icon.png"); //tear size increase, -stem cells or sad onion
+  trinket9 = loadImage("Collectible_My_Little_Unicorn_icon.png"); //double invin, -unicorn horn
+  //[more to come, hopefully]
+  
   //startNewGame();
   //size(1000, 800);
   //loadPixels();
