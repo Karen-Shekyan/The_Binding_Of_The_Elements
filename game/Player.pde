@@ -259,9 +259,14 @@ public class Player implements Character {
   }
 
 
-  void display() {
+  void display() {    
     strokeWeight(1);
     stroke(0);
+    
+    fill(255);
+    textSize(20);
+    text("Press 'f' to use bombs", 700, 750);
+    text("Press 'g' to enter god mode", 700, 780);
     
     fill(255);
     textSize(20);
