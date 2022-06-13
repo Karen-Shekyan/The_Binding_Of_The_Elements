@@ -142,7 +142,10 @@ public class Room {
     return "" + roomType;
   }
   void killAll() {
-    enemies = new LinkedList<Enemy>();
+    //enemies = new LinkedList<Enemy>();
+    for (int i=enemies.size()-1; i>=0; i--) {
+      enemies.get(i).die();
+    }
   }
   void clearBullets() {
     enemyBullets = new LinkedList<Bullet>();
