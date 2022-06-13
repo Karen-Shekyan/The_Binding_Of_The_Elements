@@ -23,7 +23,7 @@ class BossyEnemy implements Enemy {
     attack = 1;
     xPos = a.COLS/2;
     yPos = a.ROWS/2;
-    health = 1;
+    health = 100 + level*50;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
