@@ -86,6 +86,8 @@ PImage trinket8;
 PImage trinket9;
 //add more later maybe?
 
+PShape wallVert; //walls on the sides of the room
+PShape wallHor; //walls on the top and bottom of the room
 
 LinkedList<Integer> availableTrinketTypes;
 
@@ -137,6 +139,9 @@ void setup() {
   trinket8 = loadImage("Collectible_The_Sad_Onion_icon.png"); //tear size increase, -stem cells or sad onion
   trinket9 = loadImage("Collectible_My_Little_Unicorn_icon.png"); //double invin, -unicorn horn
   //[more to come, hopefully]
+  
+  wallVert = loadShape("wall-4.svg");
+  wallHor = loadShape("wall-5.svg");
   
   //startNewGame();
   //size(1000, 800);
