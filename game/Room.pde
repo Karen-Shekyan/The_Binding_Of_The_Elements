@@ -44,7 +44,7 @@ public class Room {
       //enemies.add(new StabbyEnemy(this));
       //enemies.add(new SwingyEnemy(this));
       //
-
+      
       int numEnemies = (int)(Math.random()*3 + 4);
       for (int i = 0; i < numEnemies; i++) {
         double prob = Math.random();
@@ -58,6 +58,7 @@ public class Room {
           enemies.add(new ShootyEnemy(this));
         }
       }
+
     } else if (roomType == 2) {                 //treasure
       float healLeft = (float)Math.random();
       float healRight = (float)Math.random();
@@ -139,5 +140,15 @@ public class Room {
   //for debugging
   public String toString() {
     return "" + roomType;
+  }
+  void killAll() {
+    //enemies = new LinkedList<Enemy>();
+    for (int i=enemies.size()-1; i>=0; i--) {
+      enemies.get(i).die();
+    }
+  }
+  void clearBullets() {
+    enemyBullets = new LinkedList<Bullet>();
+    playerBullets = new LinkedList<Bullet>();
   }
 }

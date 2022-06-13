@@ -89,7 +89,7 @@ public class Player implements Character {
   }
 
   void takeDamage(int damage) {
-      if (invinTimer == 0) {
+      if (invinTimer == 0 && !godMode) {
       if (tempHealth > 0) {
         tempHealth -= damage;
       } else {
@@ -99,8 +99,12 @@ public class Player implements Character {
         health += tempHealth;
         tempHealth = 0;
       }
+      //hurt1.play();
       if (health <= 0) {
-        die();
+        //hurt1.stop();
+        delay(150); //do i want the delay? i guess it doesn't hurt
+        //death2.play();
+        //die();
       }
       setStun(25);                                                          /////////////////////set stun here/////////////////////
       setInvin((int)(invinFactor*45));
@@ -265,7 +269,7 @@ public class Player implements Character {
 
     fill(255, 0, 0);
     //ellipse(x-camC, y-camR, 2*radius, 2*radius);
-    shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+    //shape(playerSprite, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
     fill(20,170);
     rect(0,height-50,290,50);
     textSize(35);
@@ -275,22 +279,22 @@ public class Player implements Character {
     switch (weaponMode){
       case 0:
         fill(WATER);
-        //shape(aangWater, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        shape(aangWater, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("WATER",170,height-15);
       break;
       case 1:
         fill(EARTH);
-        //shape(aangEarth, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        shape(aangEarth, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("EARTH",170,height-15);
       break;
       case 2:
         fill(FIRE);
-        //shape(aangFire, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        shape(aangFire, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("FIRE",170,height-15);
       break;
       case 3:
         fill(AIR);
-        //shape(aangAir, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
+        shape(aangAir, x-camC-radius, y-camR-radius, 2*radius, 2*radius);
         text("AIR",170,height-15);
       break;
     }
@@ -327,7 +331,7 @@ public class Player implements Character {
     fill(200);
     text("Souls: "+money,45,90);
     
-    text("Bombs: " + bombs, 850,790);
+    text("Bombs: " + bombs, 45,125);
   }
 
 
@@ -428,6 +432,9 @@ public class Player implements Character {
   
   void addBomb() {
     bombs += 1;
+  }
+  void addBomb(int x) {
+    bombs += x;
   }
   
   void useBomb() {

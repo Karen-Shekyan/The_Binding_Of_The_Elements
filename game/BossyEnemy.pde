@@ -23,7 +23,7 @@ class BossyEnemy implements Enemy {
     attack = 1;
     xPos = a.COLS/2;
     yPos = a.ROWS/2;
-    health = 1;
+    health = 100 + level*50;
 
     body.add(new Hurtbox(xPos, yPos, radius));
     touchZone = new Hitbox(xPos, yPos, radius, 0, 0, room);
@@ -158,7 +158,8 @@ class BossyEnemy implements Enemy {
     if (level == 1) {
       shape(miniBossSprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
     } else if (level == 2) {
-      ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+      //ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
+      shape(bossSprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
     }
 
     //fill(0);

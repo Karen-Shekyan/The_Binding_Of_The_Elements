@@ -11,7 +11,7 @@ void showInstructions() {
   shape(weaponIndicator, 150-camC, 200-camR, 250, 250);
   //textSize(30);
   //fill(20);
-  text("Weapon mode indicated\n by circle in character", 125-camC, 500-camR);
+  text("Weapon mode indicated \nby color of arrow on \ncharacter", 135-camC, 500-camR);
   
   shape(typeWeakness, 150-camC, 650-camR, 400, 400);
   shape(typeStrength, 600-camC, 650-camR, 400, 400);
