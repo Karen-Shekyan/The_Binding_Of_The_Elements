@@ -242,7 +242,9 @@ Jonathan Shavit:
 - Removed code from Touchy that would drop a Trinket upon its death with 100% probability (it was only for testing, and it's game-breaking)
 - Added some wall sprites to try to use in the rooms
 - Fixed killAll method to actually kill the enemies in a room, not just send them to the garbage collector (this way we can get the loot)
-- Made a new boss sprite, and implemented it for the level 2 boss to use;
+- Made a new boss sprite, and implemented it for the level 2 boss to use
+- Commented out all debugging prints
+- Moved the bomb counter over near the currency counter
 
 Karen Shekyan
 - Made final boss. Part of BossyEnemy (changed from MiniEnemy), basically a boolean check.
