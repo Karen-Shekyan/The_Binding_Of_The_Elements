@@ -223,6 +223,11 @@ Jonathan Shavit:
 - On setting godMode to true, the game now gives you 5000 bombs and 5000 of the in-game currency
 - Added an addBombs method in Player that takes a parameter for how many bombs to add
 
+Karen Shekyan:
+- Made and enforced item prices, made shop functional.
+- Fixed bug with bombs and secret doors. Bombs opened secret doors without being placed near them.
+- Added second level. Transition between levels is instant w/o a loading screen.
+
 ###### 6/12/22
 
 Jonathan Shavit:
@@ -235,4 +240,9 @@ Jonathan Shavit:
 - Removed sound (didn't like it, and i didn't have enough samples; it would've maybe worked had i started on it earlier. oh well)
 - Removed code from Touchy that would drop a Trinket upon its death with 100% probability (it was only for testing, and it's game-breaking)
 - Added some wall sprites to try to use in the rooms
-- 
+-
+
+Karen Shekyan
+- Made final boss. Part of BossyEnemy (changed from MiniEnemy), basically a boolean check.
+- Secret room functional now. 45% to be a treasure room, same for shop, 10% to be a normal room.
+- Secret room no longer displays on the minimap until explored.

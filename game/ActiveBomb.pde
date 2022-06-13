@@ -44,25 +44,25 @@ public class ActiveBomb {
           Aang.knockback(dx * 5.0, dy * 5.0);
         }
         //open hidden door
-        if (room.secretWhere == 1 && (dist(x, y, x, wt) < radius || dist(x, y, room.COLS/2-75, wt) < radius || dist (x, y, room.COLS/2 + 75, wt) < radius)) {//up
+        if (room.secretWhere == 1 && (dist(x, y, room.COLS/2-75, wt) < radius || dist (x, y, room.COLS/2 + 75, wt) < radius)) {//up
           for (int k = 0; k <= wt; k++) {
             for (int l = room.COLS/2 - 75; l <= room.COLS/2 + 75; l++) {
               room.floor[k][l] = -2;
             }
           }
-        } else if (room.secretWhere == 2 && (dist(x, y, x, room.ROWS-wt) < radius || dist(x, y, room.COLS/2-75, room.ROWS-wt) < radius || dist (x, y, room.COLS/2 + 75, room.ROWS-wt) < radius)) {//down
+        } else if (room.secretWhere == 2 && (dist(x, y, room.COLS/2-75, room.ROWS-wt) < radius || dist (x, y, room.COLS/2 + 75, room.ROWS-wt) < radius)) {//down
           for (int k = room.ROWS-wt; k < room.ROWS; k++) {
             for (int l = room.COLS/2 - 75; l <= room.COLS/2 + 75; l++) { 
               room.floor[k][l] = -2;
             }
           }
-        } else if (room.secretWhere == 3 && (dist(x, y, wt, y) < radius || dist(x, y, wt, room.ROWS/2 - 75) < radius || dist (x, y, wt, room.ROWS/2 + 75) < radius)) {//left
+        } else if (room.secretWhere == 3 && (dist(x, y, wt, room.ROWS/2 - 75) < radius || dist (x, y, wt, room.ROWS/2 + 75) < radius)) {//left
           for (int k = room.ROWS/2 - 75; k <= room.ROWS/2 + 75; k++) {
             for (int l = 0; l <= wt; l++) {
               room.floor[k][l] = -2;
             }
           }
-        } else if (room.secretWhere == 4 && (dist(x, y, room.COLS-wt, y) < radius || dist(x, y, room.COLS-wt, room.ROWS/2 - 75) < radius || dist (x, y, room.COLS-wt, room.ROWS/2 + 75) < radius)) {//right
+        } else if (room.secretWhere == 4 && (dist(x, y, room.COLS-wt, room.ROWS/2 - 75) < radius || dist (x, y, room.COLS-wt, room.ROWS/2 + 75) < radius)) {//right
           for (int k = room.ROWS/2 - 75; k <= room.ROWS/2 + 75; k++) {
             for (int l = room.COLS-wt; l < room.COLS; l++) {
               room.floor[k][l] = -2;

@@ -148,9 +148,9 @@ class StabbyEnemy implements Enemy {
     //ellipse(xPos-camC, yPos-camR, 2*radius, 2*radius);
     shape(stabbySprite, xPos-camC-radius, yPos-camR-radius, 2*radius, 2*radius);
 
-    fill(0);
-    textSize(10);
-    text(""+health, xPos-camC, yPos-camR);
+    //fill(0);
+    //textSize(10);
+    //text(""+health, xPos-camC, yPos-camR);
     decrementAttackCD();
 
     if (attackFrame == 10) {

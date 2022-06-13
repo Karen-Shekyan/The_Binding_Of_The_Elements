@@ -7,10 +7,11 @@ public class Trinket implements Item{
   Room room;
   Hitbox areaOfEffect;
   int type;
+  int price = 0;
   //static Collection<Integer> availableTypes = new ArrayList<Integer>(); 
-  //need to make some static, shuffleable way to store the ramaining uysable types
+  //need to make some static, shuffleable way to store the remaining usable types
   
-  public Trinket(float x, float y, Room r, int type) {
+  public Trinket(float x, float y, Room r) {
     xPos = x;
     yPos = y;
     room = r;
@@ -18,23 +19,26 @@ public class Trinket implements Item{
     //this.type = type;
     this.type = availableTrinketTypes.poll();
     //how to prevent a trinket that's already been made from being made
-    
   }
-  //maxHealth up, maxHelath up and one heal, maxHealth up and full heal, speed up, damage up, flat damage bonus(?), tear cooldown down, tear speed up, tear size increase, double invin, [more to come]
   
-  //new method for when we don't need to give the type as a parameter (would outright replace the old one, but karen has code that uses it
-  public Trinket(float x, float y, Room r) {
+  public Trinket(float x, float y, Room r, int price) {
     xPos = x;
     yPos = y;
     room = r;
     areaOfEffect = new Hitbox(x,y,0,0,15,r);
+    
+    //it shouldn't ever need to be refilled, but just in case
     if (availableTrinketTypes.size()==0) {
       refill(availableTrinketTypes);
     }
-    type = availableTrinketTypes.poll();
+    //this.type = type;
+    this.type = availableTrinketTypes.poll();
+
     //how to prevent a trinket that's already been made from being made
     
+    this.price = price;
   }
+  //maxHealth up, maxHelath up and one heal, maxHealth up and full heal, speed up, damage up, flat damage bonus(?), tear cooldown down, tear speed up, tear size increase, double invin, [more to come]
   
   void display() {
     fill(230,230,255);
@@ -75,6 +79,11 @@ public class Trinket implements Item{
     textSize(10);
     fill(10);
     text(""+type,xPos-camC,yPos-camR);
+    
+    if (price != 0) {
+      textSize(15);
+      text("" + price, xPos-camC-10, yPos+30-camR);
+    }
   }
   //need to make it continue to display even after it's picked up (in the pause menu)
   void display(int x) {
@@ -171,5 +180,9 @@ public class Trinket implements Item{
   
   int getType() {
     return type;
+  }
+  
+  int getPrice() {
+    return price;
   }
 }

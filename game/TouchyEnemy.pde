@@ -90,9 +90,9 @@ class TouchyEnemy implements Enemy {
     //fill(0,255,0);
     //ellipse(touchZone.getX()-camC,touchZone.getY()-camR,2*radius,2*radius);
 
-    fill(0);
-    textSize(10);
-    text(""+health, xPos-camC, yPos-camR);
+    //fill(0);
+    //textSize(10);
+    //text(""+health, xPos-camC, yPos-camR);
   }
 
   void knockback(float x, float y) {
@@ -139,6 +139,8 @@ class TouchyEnemy implements Enemy {
       Aang.increaseWealth();
     }
     
+    //add probability checks later
+    //room.items.add(new Trinket(xPos, yPos, room, 0)); //change the 0 lster
   }
 
   float getX() {

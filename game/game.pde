@@ -46,6 +46,7 @@ Dungeon LEVEL;
 int menuTextMode = 0;
 int currentRoom = 35; //there's no way to tell the starting pos fro a get method, so i'm using the hard-coded start of generation
 int bossRoom;
+int level = 1;
 
 //sprites
 PShape redHeart;
@@ -149,7 +150,7 @@ void setup() {
   //r = new Room(1);//  change later  //
   //Aang = new Player();
   //LEVEL = new Dungeon(1);
-  
+
   availableTrinketTypes = new LinkedList<Integer>();
   refill(availableTrinketTypes);
   
@@ -161,6 +162,7 @@ void setup() {
 }
 
 void draw() {
+  //println(frameRate);
   if (dead) {
     gameSaved=false;//should move that to the player's die method, honestly, but then it's two files to push
     showDeathScreen();
@@ -232,21 +234,6 @@ void draw() {
       LEVEL.explored[currentRoom%10-1][currentRoom/10] = r;
     }
 
-    for (int i = 0; i < r.enemies.size(); i++) {//this is contact damage. Always deals 1.
-      Enemy guy = r.enemies.get(i);
-      guy.move();
-      guy.display();
-      if (guy.getTouchZone().isTouching(Aang)) {//             contact knockback HERE             //
-        Aang.takeDamage(1);
-        float dx = (Aang.getX() - guy.getX()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
-        float dy = (Aang.getY() - guy.getY()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
-        Aang.knockback(dx * 4.0, dy * 4.0);
-      }
-      guy.attack();
-      guy.decrementStun();
-    }
-
-
     for (int j = 0; j < r.playerBullets.size(); j++) {
       Bullet bullet = r.playerBullets.get(j);
       //not working rn, bullet gets no velocity
@@ -275,19 +262,30 @@ void draw() {
       bullet.display();
     }
 
-    //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
-    if (LEVEL.get(bossRoom).enemies.size()==0) {
-      endCredits = true;
-      endScreenTime = 0;
+    for (int i = 0; i < r.enemies.size(); i++) {//this is contact damage. Always deals 1.
+      Enemy guy = r.enemies.get(i);
+      guy.move();
+      guy.display();
+      if (guy.getTouchZone().isTouching(Aang)) {//             contact knockback HERE             //
+        Aang.takeDamage(1);
+        float dx = (Aang.getX() - guy.getX()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        float dy = (Aang.getY() - guy.getY()) / dist(Aang.getX(), Aang.getY(), guy.getX(), guy.getY());
+        Aang.knockback(dx * 4.0, dy * 4.0);
+      }
+      guy.attack();
+      guy.decrementStun();
     }
-    
+
     for (int i=0; i<r.items.size(); i++) {
       r.items.get(i).display();
       if (r.items.get(i).isTouching(Aang)) {
-        r.items.get(i).effect(Aang);
+        if (Aang.getWealth() >= r.items.get(i).getPrice()) {
+          Aang.increaseWealth(-r.items.get(i).getPrice());
+          r.items.get(i).effect(Aang);
+        }
       }
     }
-    
+
     //if (r.roomType==4 && r.enemies.size()!=0){
     //  r.enemies.get(0).drawHealthBar();
     //}
@@ -302,9 +300,28 @@ void draw() {
     Aang.decrementInvin();
 
     LEVEL.displayMiniMap();
-    
+
     for (int i = 0; i < r.activeBombs.size(); i++) {
       r.activeBombs.get(i).display();
+    }
+
+    //should maybe add some other additional condition to trigger the end screen. what if the player wants to backtrack (idk why, there's no real point -- i guess later you might want to check the shop out or something)
+    if (LEVEL.get(bossRoom).enemies.size()==0) {
+      if (level == 1) {
+        LEVEL = new Dungeon(2);
+        currentRoom = 35;
+        r = LEVEL.get(currentRoom);//  change later  //
+        camR = 200;
+        camC = 250;
+        Aang.setX(500+camC);
+        Aang.setY(400+camR);
+        vx = 0;
+        vy = 0;
+        level = 2;
+      } else if (level == 2) {
+        endCredits = true;
+        endScreenTime = 0;
+      }
     }
   }
 }
@@ -376,7 +393,7 @@ void mouseClicked() {
     if (mouseX > width/2-55 && mouseX < width/2+30 && mouseY > 3*height/5-40 & mouseY < 3*height/5+5) {
       menu=false;
       if (!gameSaved) {
-        startNewGame();
+        startNewGame(1);
       }
     }
     if (mouseX > width/2-65 && mouseX < width/2+25 && mouseY > 3*height/4-40 & mouseY < 3*height/4+5) {
@@ -392,7 +409,7 @@ void mouseClicked() {
     //the part of the screen where the retry button is
     if (mouseX > width/2 - 75 && mouseX < width/2+20 && mouseY < height/2 + 55 && mouseY > height/2 + 20) {
       dead=false;
-      startNewGame();
+      startNewGame(1);
     }
   }
   if (pause) {
@@ -406,7 +423,7 @@ void mouseClicked() {
     //button
     if (mouseX > width/2 - 100 && mouseX < width/2+90 && mouseY < 2*height/3 + 65 && mouseY > 2*height/3 + 35) {
       //menu=false;
-      startNewGame();
+      startNewGame(1);
       endCredits = false;
     }
     //button
@@ -417,7 +434,7 @@ void mouseClicked() {
   }
 }
 
-void startNewGame() {
+void startNewGame(int lvl) {
   loadPixels();
   LEVEL = new Dungeon(1);
   currentRoom = 35;
