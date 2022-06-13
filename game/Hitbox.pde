@@ -19,10 +19,6 @@ class Hitbox {//consider making these smaller than projectiles look
     this.r = where;
   }
 
-
-  void display() {
-  }
-
   float getX() {
     return xPos;
   }
