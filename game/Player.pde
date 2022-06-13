@@ -331,7 +331,7 @@ public class Player implements Character {
     fill(200);
     text("Souls: "+money,45,90);
     
-    text("Bombs: " + bombs, 850,790);
+    text("Bombs: " + bombs, 45,125);
   }
 
 

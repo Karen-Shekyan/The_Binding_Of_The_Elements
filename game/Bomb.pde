@@ -24,7 +24,7 @@ public class Bomb implements Item {
   }
   
   void effect(Player p) {
-    println("BOMB");
+    //println("BOMB");
     p.addBomb();
     
     room.items.remove(this);
