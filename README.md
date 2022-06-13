@@ -204,9 +204,35 @@ Jonathan Shavit:
 
 Jonathan Shavit:
 - Finished coding Trinket class for now, might add more trinkets later.
-<<<<<<< HEAD
 - Made the Trinket constructor use a random element from a LinkedList of Integers (newly added to the game tab) for the Trinket type, rather than the parameter. Also made a Constructor that doesn't even take a parameter for type.
 - Added another display method (taking a parameter) to be called from the PauseScreen for use in its display of possessed Trinkets, and updated PauseScreen to use it accordingly (and fixed textSize-related issues that resulted
 
 Karen Shekyan:
 - Made randomized loot spawn in the treasure room.
+
+###### 6/10/22
+
+Jonathan Shavit:
+- Updated the miniboss healthbar so it has a tiny picture of the miniboss on the left
+- Added a godMode boolean, toggled by the press of the 'g' key. it doesn't do much yet: so far it only lets you leave the current room even if there are enemies inside
+
+###### 6/11/22
+
+Jonathan Shavit:
+- Added methods to clear all Bullets and kill all Enemies, which can be activated in godMode on keypress of 'c' and 'k', respectively
+- On setting godMode to true, the game now gives you 5000 bombs and 5000 of the in-game currency
+- Added an addBombs method in Player that takes a parameter for how many bombs to add
+
+###### 6/12/22
+
+Jonathan Shavit:
+- Added damage sound and Death sound to Player
+- The Player once again changes colors in accordance with their weaponMode
+- Modified the miniboss' sprite a little, and added in the final boss' sprite
+- Updated instructions in the starting room
+- Added sprites for the current 10 trinkets, and updated the Trinket class' display methods so thy'd use the sprites (and also modified the size of the displayed trinkets)
+- Added a way to refill the trinket pool, though it doesn't seem to work exactly how i intended
+- Removed sound (didn't like it, and i didn't have enough samples; it would've maybe worked had i started on it earlier. oh well)
+- Removed code from Touchy that would drop a Trinket upon its death with 100% probability (it was only for testing, and it's game-breaking)
+- Added some wall sprites to try to use in the rooms
+- 
