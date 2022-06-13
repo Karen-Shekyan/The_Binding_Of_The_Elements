@@ -19,11 +19,6 @@ public class Trinket implements Item{
     this.type = availableTrinketTypes.poll();
     //how to prevent a trinket that's already been made from being made
     
-    switch (type) {
-      case 1:
-        
-      break;
-    }
   }
   //maxHealth up, maxHelath up and one heal, maxHealth up and full heal, speed up, damage up, flat damage bonus(?), tear cooldown down, tear speed up, tear size increase, double invin, [more to come]
   
@@ -40,7 +35,40 @@ public class Trinket implements Item{
   
   void display() {
     fill(230,230,255);
-    ellipse(xPos-camC,yPos-camR,30,30);
+    switch (type) {
+      case 0:
+        image(trinket0,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 1:
+        image(trinket1,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 2:
+        image(trinket2,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 3:
+        image(trinket3,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 4:
+        image(trinket4,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 5:
+        image(trinket5,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 6:
+        image(trinket6,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 7:
+        image(trinket7,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 8:
+        image(trinket8,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+      case 9:
+        image(trinket9,xPos-camC-15,yPos-camR-15,30,30);
+      break;
+    }
+    //ellipse(xPos-camC,yPos-camR,30,30);
+    //image(trinket0,xPos-camC-15,yPos-camR-15,30,30);
     textSize(10);
     fill(10);
     text(""+type,xPos-camC,yPos-camR);
@@ -48,7 +76,40 @@ public class Trinket implements Item{
   //need to make it continue to display even after it's picked up (in the pause menu)
   void display(int x) {
     fill(230,230,255);
-    ellipse(250+40*x,250+x/(width-500),30,30);
+    switch (type) {
+      case 0:
+        image(trinket0,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 1:
+        image(trinket1,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 2:
+        image(trinket2,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 3:
+        image(trinket3,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 4:
+        image(trinket4,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 5:
+        image(trinket5,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 6:
+        image(trinket6,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 7:
+        image(trinket7,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 8:
+        image(trinket8,250+40*x,250+x/(width-500),30,30);
+      break;
+      case 9:
+        image(trinket9,250+40*x,250+x/(width-500),30,30);
+      break;
+    }
+    //image(trinket0,250+40*x,250+x/(width-500),30,30);
+    //ellipse(250+40*x,250+x/(width-500),30,30);
     textSize(10);
     fill(10);
     text(""+type,250+40*x,250+x/(width-500));
