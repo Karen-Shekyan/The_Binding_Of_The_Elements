@@ -76,9 +76,9 @@ public class Trinket implements Item{
     }
     //ellipse(xPos-camC,yPos-camR,30,30);
     //image(trinket0,xPos-camC-15,yPos-camR-15,30,30);
-    textSize(10);
+    //textSize(10);
     fill(10);
-    text(""+type,xPos-camC,yPos-camR);
+    //text(""+type,xPos-camC,yPos-camR);
     
     if (price != 0) {
       textSize(15);
@@ -122,9 +122,9 @@ public class Trinket implements Item{
     }
     //image(trinket0,250+40*x,250+x/(width-500),30,30);
     //ellipse(250+40*x,250+x/(width-500),30,30);
-    textSize(10);
-    fill(10);
-    text(""+type,250+60*(x%9),250+60*(x/9));
+    //textSize(10);
+    //fill(10);
+    //text(""+type,250+60*(x%9),250+60*(x/9));
   }
   
   void effect(Player p) {
