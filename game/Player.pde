@@ -99,12 +99,12 @@ public class Player implements Character {
         health += tempHealth;
         tempHealth = 0;
       }
-      hurt1.play();
+      //hurt1.play();
       if (health <= 0) {
-        hurt1.stop();
-        delay(250);
-        death2.play();
-        die();
+        //hurt1.stop();
+        delay(150); //do i want the delay? i guess it doesn't hurt
+        //death2.play();
+        //die();
       }
       setStun(25);                                                          /////////////////////set stun here/////////////////////
       setInvin((int)(invinFactor*45));

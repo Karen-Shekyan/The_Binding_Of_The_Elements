@@ -1,4 +1,4 @@
-import processing.sound.*;
+//import processing.sound.*;
 import java.util.*;
 
 //display constants
@@ -89,10 +89,10 @@ PImage trinket9;
 
 LinkedList<Integer> availableTrinketTypes;
 
-SoundFile hurt1;
-SoundFile hurt2;
-SoundFile death1;
-SoundFile death2;
+//SoundFile hurt1;
+//SoundFile hurt2;
+//SoundFile death1;
+//SoundFile death2;
 
 void setup() {
   size(1000, 800);
@@ -148,11 +148,11 @@ void setup() {
   availableTrinketTypes = new LinkedList<Integer>();
   refill(availableTrinketTypes);
   
-  hurt1 = new SoundFile(this,"hurt-grunt.wav");
-  hurt1.amp(0.3);
-  hurt2 = new SoundFile(this,"hurt-grunt-sus.wav");
-  death1 = new SoundFile(this,"death-cry.wav");
-  death2 = new SoundFile(this,"death-cry-longer.wav");
+  //hurt1 = new SoundFile(this,"hurt-grunt.wav");
+  //hurt1.amp(0.3);
+  //hurt2 = new SoundFile(this,"hurt-grunt-sus.wav");
+  //death1 = new SoundFile(this,"death-cry.wav");
+  //death2 = new SoundFile(this,"death-cry-longer.wav");
 }
 
 void draw() {
